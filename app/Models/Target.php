@@ -9,8 +9,9 @@ class Target extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
+
     protected $fillable = [
-        'title',
-        'web_address'
+        'url'
     ];
 }

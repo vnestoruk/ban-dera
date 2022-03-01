@@ -15,10 +15,8 @@ return new class extends Migration
     {
         Schema::create('targets', function (Blueprint $table) {
             $table->id();
-            $table->string('title')->nullable();
             $table->string('url')->unique();
             $table->ipAddress()->nullable();
-            $table->timestamps();
         });
     }
 

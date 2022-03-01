@@ -1,39 +1,35 @@
 <template>
     <div class="container">
+        <div class="d-flex justify-content-center gap-5 mt-3">
+            <a href="javascript:void(0);" @click="setLocale('uk')">Українська</a>
+            <a href="javascript:void(0);" @click="setLocale('en')">English</a>
+        </div>
         <div class="row text-center mt-3">
-            <h1>BAN-dera</h1>
-            <p>Кількість сайтів в базі: {{ targets.length }} (<a target="_blank" href="https://t.me/nestoruk">Додати сайт / перевірити в списку</a>)</p>
+            <h1>{{ $t('app.title') }}</h1>
+            <p v-html="$t('app.subtitle')"></p>
+            <p>{{ $t(('targets')) }}: {{ targets.length }}</p>
+            <div class="d-flex justify-content-center gap-3">
+                <TargetListOffcanvas :targets="targets"/>
+                <HelpArmyModal />
+            </div>
         </div>
         <div class="row mt-3">
-            <div class="col-6">
-                <p>DoS-атака (Denial-of-service) - одним із найпоширеніших методів нападу, насичення атакованого сервера великою кількістю зовнішніх запитів.</p>
-                <p>З Вашого комп'ютера буде надсилатись нескінченна кількість запитів на російські сайти, що може відправити їх в слід за рускім воєнним кораблем. Тобто, НАХУЙ. Просто залишіть скрипт працюючим. Якщо якийсь сайт буде визначено як "відвалений" - його буде замінено на інший, тобто Ваша атака буде постійною.</p>
-                <p><strong>УВАГА!</strong> Так як цей скрипт ініціює велику кількість запитів за короткий проміжок часу, його запуск може сповільнити роботу Вашого комп'ютера та використати велику кількість трафіку. Не рекомендується використовувати його з мобільних мереж, де, зазвичай, трафік обмежений.</p>
-                <p class="fst-italic">Це - сайт з відкритим кодом (<a href="https://github.com/vnestoruk/ban-dera">Переглянути на Github</a>). Долучайтесь до розробки, або просто <a target="_blank" href="https://t.me/nestoruk">напишіть мені</a> ідеї щодо покращення.</p>
-            </div>
-            <div class="col-6 text-center">
-                <h3>Допоможи армії</h3>
-                <p>Bank: National Bank of Ukraine</p>
-                <p>MFO 300001</p>
-                <p>Account No. UA843000010000000047330992708</p>
-                <p>EDRPOU Code 00032106</p>
-                <p>Payee: National Bank of Ukraine</p>
-            </div>
+            <div class="col-md-12" v-html="$t('content')"></div>
         </div>
         <hr>
         <div class="row mt-3">
             <table>
                 <thead>
                 <tr>
-                    <td>URL</td>
-                    <td>Запитів</td>
-                    <td>Успішних</td>
-                    <td>Помилкових</td>
-                    <td>Відношення</td>
+                    <td>{{ $t('table.url') }}</td>
+                    <td>{{ $t('table.requests') }}</td>
+                    <td>{{ $t('table.success') }}</td>
+                    <td>{{ $t('table.failed') }}</td>
+                    <td>{{ $t('table.rate') }}</td>
                 </tr>
                 </thead>
                 <tbody id="bandera">
-                <tr v-for="(b, index) in queue">
+                <tr v-for="b in queue">
                     <td>{{ b.target.url }}</td>
                     <td>{{ b.requests.total }}</td>
                     <td>{{ b.requests.success }}</td>
@@ -49,9 +45,12 @@
 <script>
 import Bandera from "../modules/bandera";
 import request from "../modules/request";
+import TargetListOffcanvas from "./offcanvas/TargetListOffcanvas";
+import HelpArmyModal from "./modal/HelpArmyModal";
 
 export default {
     name: "Bandera",
+    components: {HelpArmyModal, TargetListOffcanvas},
     data() {
         return {
             targets: [],
@@ -93,7 +92,6 @@ export default {
         },
         // recursively getting random targets
         getRandomTargets(count, targets = []) {
-            console.log('recursive');
             if (count === 0) return targets.filter(target => {
                 let i = new Bandera(target);
                 this.queue.push(i);
@@ -110,6 +108,9 @@ export default {
         async replaceTarget(obj) {
             this.queue.splice(this.queue.findIndex(item => item.target.id === obj.target.id), 1);
             this.getRandomTargets(1);
+        },
+        setLocale(locale) {
+            this.$root.$i18n.locale = locale;
         }
     }
 }

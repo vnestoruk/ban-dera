@@ -1,4 +1,5 @@
 import Vue from "vue";
+import i18n from "./modules/i18n";
 import Bandera from "./views/Bandera";
 
 Vue.filter('rate', (value) => {
@@ -7,5 +8,6 @@ Vue.filter('rate', (value) => {
 
 new Vue({
     el: '#app',
+    i18n,
     render: h => h(Bandera)
 })
