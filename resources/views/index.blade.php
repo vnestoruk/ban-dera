@@ -33,13 +33,6 @@
             --color-text: #337401;
         }
 
-        @media (prefers-color-scheme: dark) {
-            body{
-                --color-bg: #121212;
-                --color-text: #337401;
-            }
-        }
-
         body {
             font-family: 'Anonymous Pro', monospace;
             background: var(--color-bg);
