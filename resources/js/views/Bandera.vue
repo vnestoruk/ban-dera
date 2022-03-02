@@ -69,6 +69,9 @@ export default {
             document.body.setAttribute('data-theme', (newMode) ? 'night' : 'light');
         }
     },
+    created() {
+        this.initNightMode();
+    },
     mounted() {
         // Get all the targets
         request({
@@ -120,6 +123,13 @@ export default {
         },
         setLocale(locale) {
             this.$root.$i18n.locale = locale;
+        },
+        initNightMode() {
+            const dark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+            if (dark) {
+                document.body.setAttribute('data-theme', 'night');
+            }
         }
     }
 }
