@@ -196,7 +196,11 @@ class TargetSeeder extends Seeder
         'https://sobesednik.ru/',
         'https://newsland.com/',
         'https://www.ng.ru/',
-        'https://www.bfm.ru/'
+        'https://www.bfm.ru/',
+        'https://ddos-guard.net/ru',
+        'https://stormwall.pro/',
+        'https://qrator.net/ru/',
+        'https://solidwall.ru/'
     ];
 
     /**
