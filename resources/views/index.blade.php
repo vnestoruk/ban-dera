@@ -23,13 +23,24 @@
         gtag('config', 'G-E2JP8HENB3');
     </script>
     <style>
+        :root {
+            --color-bg: #fafafa;
+            --color-text: #003687;
+        }
+
+        body[data-theme="night"] {
+            --color-bg: #121212;
+            --color-text: #337401;
+        }
+
         body {
             font-family: 'Anonymous Pro', monospace;
-            color: #003687;
+            background: var(--color-bg);
+            color: var(--color-text);
         }
 
         a {
-            color: #003287;
+            color: var(--color-text);
         }
 
         thead {

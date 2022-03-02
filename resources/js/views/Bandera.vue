@@ -4,6 +4,10 @@
             <a href="javascript:void(0);" @click="setLocale('uk')">Українська</a>
             <a href="javascript:void(0);" @click="setLocale('en')">English</a>
         </div>
+        <div class="d-flex form-check form-switch justify-content-center mt-3">
+            <input class="form-check-input me-2" type="checkbox" v-model="nightMode">
+            <label class="form-check-label">{{ $t('night') }}</label>
+        </div>
         <div class="row text-center mt-3">
             <h1>{{ $t('app.title') }}</h1>
             <p v-html="$t('app.subtitle')"></p>
@@ -11,6 +15,7 @@
             <div class="d-flex justify-content-center gap-3">
                 <TargetListOffcanvas :targets="targets"/>
                 <HelpArmyModal />
+                <SupportProjectModal />
             </div>
         </div>
         <div class="row mt-3">
@@ -32,8 +37,8 @@
                 <tr v-for="b in queue">
                     <td>{{ b.target.url }}</td>
                     <td>{{ b.requests.total }}</td>
-                    <td>{{ b.requests.success }}</td>
-                    <td>{{ b.requests.failed }}</td>
+                    <td class="text-success">{{ b.requests.success }}</td>
+                    <td class="text-danger">{{ b.requests.failed }}</td>
                     <td>{{ b.getRate() | rate }}</td>
                 </tr>
                 </tbody>
@@ -47,18 +52,22 @@ import Bandera from "../modules/bandera";
 import request from "../modules/request";
 import TargetListOffcanvas from "./offcanvas/TargetListOffcanvas";
 import HelpArmyModal from "./modal/HelpArmyModal";
+import SupportProjectModal from "./modal/SupportProjectModal";
 
 export default {
     name: "Bandera",
-    components: {HelpArmyModal, TargetListOffcanvas},
+    components: {SupportProjectModal, HelpArmyModal, TargetListOffcanvas},
     data() {
         return {
             targets: [],
-            queue: []
+            queue: [],
+            nightMode: false
         }
     },
-    computed: {
-
+    watch: {
+        nightMode(newMode) {
+            document.body.setAttribute('data-theme', (newMode) ? 'night' : 'light');
+        }
     },
     mounted() {
         // Get all the targets
