@@ -5,8 +5,10 @@
             <a href="javascript:void(0);" @click="setLocale('en')">English</a>
         </div>
         <div class="d-flex form-check form-switch justify-content-center mt-3">
-            <input class="form-check-input me-2" type="checkbox" v-model="nightMode">
-            <label class="form-check-label">{{ $t('night') }}</label>
+            <label class="form-check-label">
+                <input class="form-check-input me-2" type="checkbox" v-model="nightMode" >
+                {{ $t('night') }}
+            </label>
         </div>
         <div class="row text-center mt-3">
             <h1>{{ $t('app.title') }}</h1>
