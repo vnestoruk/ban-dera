@@ -35,7 +35,30 @@ export default {
         rate: 'Rate'
     },
     copy: 'Copy',
+    replace: 'Replace',
+    blackList: 'Add to black-list',
     night: 'Night mode',
     search: 'Search...',
-    filter: 'Filtered'
+    filter: 'Filtered',
+    settings: 'Settings',
+    attackSpeed: {
+        label: 'Attack speed',
+        options: [
+            'Sword (1 requests/sec)',
+            'Molotov cocktail (5 requests/sec)',
+            'Gun (10 requests/sec)',
+            'Assault riffle (20 requests/sec)',
+            'Tank (50 requests/sec)',
+            'Bayraktar (100 requests/sec)',
+        ]
+    },
+    maxTargets: {
+        label: 'Max. targets',
+        options: [
+            '10 websites',
+            '20 websites',
+            '50 websites',
+            '100 websites'
+        ]
+    }
 }

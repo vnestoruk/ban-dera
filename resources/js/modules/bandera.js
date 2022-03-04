@@ -5,7 +5,8 @@ class Bandera {
         success: 0,
         failed: 0,
         strike: 0
-    }
+    };
+    lastCode = null;
 
     constructor(target) {
         this.target = target;
@@ -13,7 +14,7 @@ class Bandera {
     }
 
     async run() {
-        return await fetch(this.target.url + this.#getRandomParam(), {
+        return fetch(this.target.url + this.getRandomParam(), {
             method: 'GET',
             mode: 'no-cors',
         }).catch(
@@ -31,12 +32,13 @@ class Bandera {
                     this.requests.strike = 0;
                 }
                 this.requests.total++;
+                this.lastCode = response.status;
             }
         );
     }
 
-    #getRandomParam() {
-        return this.requests.total % 3 === 0 ? '' : ('?' + Math.random() * 1000)
+    getRandomParam() {
+        return this.requests.total % 3 === 0 ? '' : ('?r=' + Math.random() * 1000);
     }
 
     getRate() {
