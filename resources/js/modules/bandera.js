@@ -17,6 +17,8 @@ class Bandera {
         return fetch(this.target.url + this.getRandomParam(), {
             method: 'GET',
             mode: 'no-cors',
+            cache: 'no-cache',
+            expires: 0
         }).catch(
             (error) => {
                 if (error.code === 20) {
