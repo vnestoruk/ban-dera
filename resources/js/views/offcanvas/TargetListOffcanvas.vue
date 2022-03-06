@@ -14,9 +14,9 @@
                 <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">
-                <ul>
-                    <li v-for="i in filteredTargets">{{ i.url }}</li>
-                </ul>
+                <ol>
+                    <li v-for="i in filteredTargets" :key="i.id">{{ i.url }}</li>
+                </ol>
             </div>
         </div>
     </div>

@@ -41,10 +41,12 @@
             <div class="col-md-6">
                 <label class="form-label">Attack speed</label>
                 <select v-model="maxTargets" class="form-select form-select-sm bandera" :aria-label="$t('maxTargets.label')">
-                    <option value="10">{{ $t('maxTargets.options[0]') }}</option>
-                    <option value="20">{{ $t('maxTargets.options[1]') }}</option>
-                    <option value="50">{{ $t('maxTargets.options[2]') }}</option>
-                    <option value="100">{{ $t('maxTargets.options[3]') }}</option>
+                    <option value="1">{{ $t('maxTargets.options[0]') }}</option>
+                    <option value="5">{{ $t('maxTargets.options[1]') }}</option>
+                    <option value="10">{{ $t('maxTargets.options[2]') }}</option>
+                    <option value="20">{{ $t('maxTargets.options[3]') }}</option>
+                    <option value="50">{{ $t('maxTargets.options[4]') }}</option>
+                    <option value="100">{{ $t('maxTargets.options[5]') }}</option>
                 </select>
             </div>
         </div>
@@ -53,7 +55,7 @@
             <table>
                 <thead>
                 <tr>
-                    <td></td>
+                    <!-- <td></td> -->
                     <td>{{ $t('table.url') }}</td>
                     <td>{{ $t('table.requests') }}</td>
                     <td>{{ $t('table.success') }}</td>
@@ -62,11 +64,12 @@
                 </tr>
                 </thead>
                 <tbody id="bandera">
-                <tr v-for="b in queue"  :class="{ 'text-warning' : b.requests.strike > 50, 'text-danger': b.requests.strike > 100 }">
+                <tr v-for="b in queue" :key="b.target.id" :class="{ 'text-warning' : b.requests.strike > 50, 'text-danger': b.requests.strike > 100 }">
+                    <!-- TODO: potentially memory leak
                     <td>
                         <a v-tooltip:top="$t('replace') + ' ' + b.target.url" href="javascript:void(0)" @click="replaceTarget(b)" class="text-white"><i class="bi bi-shuffle"></i></a>
                         <a v-tooltip:top="$t('blackList') + ' ' + b.target.url" href="javascript:void(0)" @click="addToBlackList(b)" class="text-danger"><i class="bi bi-x-octagon"></i></a>
-                    </td>
+                    </td> -->
                     <td>{{ b.target.url }}</td>
                     <td>{{ b.requests.total }}</td>
                     <td>{{ b.requests.success }}</td>
@@ -81,7 +84,6 @@
 
 <script>
 import Bandera from "../modules/bandera";
-import request from "../modules/request";
 import TargetListOffcanvas from "./offcanvas/TargetListOffcanvas";
 import HelpArmyModal from "./modal/HelpArmyModal";
 import SupportProjectModal from "./modal/SupportProjectModal";

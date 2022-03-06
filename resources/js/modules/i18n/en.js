@@ -55,6 +55,8 @@ export default {
     maxTargets: {
         label: 'Max. targets',
         options: [
+            '1 website',
+            '5 websites',
             '10 websites',
             '20 websites',
             '50 websites',
