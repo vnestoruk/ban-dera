@@ -42,12 +42,6 @@ class Bandera {
     getRandomParam() {
         return this.requests.total % 3 === 0 ? '' : ('?r=' + Math.random() * 1000);
     }
-
-    getRate() {
-        if (this.requests.total === 0) return 0;
-        if (this.requests.strike > 50) return 100;
-        return (100 * this.requests.failed / this.requests.total);
-    }
 }
 
 export { Bandera as default }

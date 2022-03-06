@@ -29,14 +29,12 @@ export default {
     },
     table: {
         url: 'URL',
-        requests: 'Запитів',
-        success: 'Успішних',
-        failed: 'Помилкових',
-        rate: 'Відношення'
+        requests: 'Запити',
+        actions: 'Дії'
     },
     copy: 'Копіювати',
     replace: 'Замінити',
-    blackList: 'В чорний список',
+    blackList: 'Виключити',
     night: 'Нічний режим',
     search: 'Пошук...',
     filter: 'Всього відфільтровано',

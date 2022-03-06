@@ -30,13 +30,11 @@ export default {
     table: {
         url: 'URL',
         requests: 'Requests',
-        success: 'Success',
-        failed: 'Failed',
-        rate: 'Rate'
+        actions: 'Actions'
     },
     copy: 'Copy',
     replace: 'Replace',
-    blackList: 'Add to black-list',
+    blackList: 'Remove',
     night: 'Night mode',
     search: 'Search...',
     filter: 'Filtered',

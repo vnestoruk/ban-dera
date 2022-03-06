@@ -55,26 +55,20 @@
             <table>
                 <thead>
                 <tr>
-                    <!-- <td></td> -->
                     <td>{{ $t('table.url') }}</td>
-                    <td>{{ $t('table.requests') }}</td>
-                    <td>{{ $t('table.success') }}</td>
-                    <td>{{ $t('table.failed') }}</td>
-                    <td>{{ $t('table.rate') }}</td>
+                    <td class="text-end">{{ $t('table.requests') }}</td>
+                    <td class="text-end d-none d-lg-table-cell">{{ $t('table.actions') }}</td>
                 </tr>
                 </thead>
                 <tbody id="bandera">
-                <tr v-for="b in queue" :key="b.target.id" :class="{ 'text-warning' : b.requests.strike > 50, 'text-danger': b.requests.strike > 100 }">
-                    <!-- TODO: potentially memory leak
-                    <td>
-                        <a v-tooltip:top="$t('replace') + ' ' + b.target.url" href="javascript:void(0)" @click="replaceTarget(b)" class="text-white"><i class="bi bi-shuffle"></i></a>
-                        <a v-tooltip:top="$t('blackList') + ' ' + b.target.url" href="javascript:void(0)" @click="addToBlackList(b)" class="text-danger"><i class="bi bi-x-octagon"></i></a>
-                    </td> -->
-                    <td>{{ b.target.url }}</td>
-                    <td>{{ b.requests.total }}</td>
-                    <td>{{ b.requests.success }}</td>
-                    <td>{{ b.requests.failed }}</td>
-                    <td>{{ b.getRate() | rate }}</td>
+                <tr v-for="(b, index) in queue" :key="index">
+                    <td :class="{ 'text-warning' : b.requests.strike > 50, 'text-danger': b.requests.strike > 100 }">{{ b.target.url }}</td>
+                    <td class="text-end"><span class="bi bi-check-circle me-2 text-success"></span>{{ b.requests.success }} / <span class="bi bi-x-circle me-2 text-danger"></span>{{ b.requests.failed }} / <span class="bi bi-exclamation-circle me-2 text-primary"></span>{{ b.requests.total }}</td>
+                    <td class="text-end d-none d-lg-table-cell">
+                        <a href="javascript:void(0)" @click="replaceTarget(b)" class="text-primary me-2"><i class="bi bi-shuffle me-2"></i>{{ $t('replace') }}</a>
+                        <a :href="b.target.url" target="_blank" class="text-warning me-2"><i class="bi bi-box-arrow-up-right me-2"></i>Відкрити</a>
+                        <a href="javascript:void(0)" @click="addToBlackList(b)" class="text-danger me-2"><i class="bi bi-x-octagon me-2"></i>{{ $t('blackList') }}</a>
+                    </td>
                 </tr>
                 </tbody>
             </table>
@@ -84,6 +78,7 @@
 
 <script>
 import Bandera from "../modules/bandera";
+import request from "../modules/request";
 import TargetListOffcanvas from "./offcanvas/TargetListOffcanvas";
 import HelpArmyModal from "./modal/HelpArmyModal";
 import SupportProjectModal from "./modal/SupportProjectModal";
@@ -135,9 +130,9 @@ export default {
     methods: {
         start() {
             if (this.queue.length === 0) this.getRandomTargets(this.maxTargets);
-           clearInterval(this.timer);
+            clearInterval(this.timer);
             this.timer = setInterval(() => {
-                // console.clear();
+                console.clear();
                 this.queue.filter(i => {
                     if (i.requests.strike > 150) return this.replaceTarget(i);
                     i.run();
@@ -155,7 +150,8 @@ export default {
                 this.queue.push(i);
             });
 
-            let selectedTarget = this.targets.sort(() => 0.5 - Math.random()).slice(0, 1)[0];
+            let source  = this.targets;
+            let selectedTarget = source.sort(() => 0.5 - Math.random()).slice(0, 1)[0];
             if ((typeof targets.find(item => item.id === selectedTarget.id) === 'undefined') ||
                 (typeof this.blackList.find(item => item.id === selectedTarget.id) === 'undefined') ||
                 (typeof this.queue.find(item => item.target.id === selectedTarget.id) === 'undefined')) {

@@ -30,13 +30,11 @@ export default {
     table: {
         url: 'URL',
         requests: 'Зпросов',
-        success: 'Успешных',
-        failed: 'Ошибочных',
-        rate: 'Соотношение'
+        actions: 'Действия'
     },
     copy: 'Копировать',
     replace: 'Заменить',
-    blackList: 'В чёрный список',
+    blackList: 'Исключить',
     night: 'Ночной режим',
     search: 'Поиск...',
     filter: 'Всего отфильтровано',

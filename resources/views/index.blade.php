@@ -49,6 +49,10 @@
             font-weight: 800;
         }
 
+        td {
+            width: calc(100% / 3);
+        }
+
         .bandera {
             background: var(--color-bg);
             color: var(--color-text);
