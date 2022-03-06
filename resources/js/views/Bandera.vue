@@ -65,7 +65,8 @@
                 </thead>
                 <tbody id="bandera">
                 <tr v-for="b in queue" :key="b.target.id" :class="{ 'text-warning' : b.requests.strike > 50, 'text-danger': b.requests.strike > 100 }">
-                    <!-- <td>
+                    <!-- TODO: potentially memory leak
+                    <td>
                         <a v-tooltip:top="$t('replace') + ' ' + b.target.url" href="javascript:void(0)" @click="replaceTarget(b)" class="text-white"><i class="bi bi-shuffle"></i></a>
                         <a v-tooltip:top="$t('blackList') + ' ' + b.target.url" href="javascript:void(0)" @click="addToBlackList(b)" class="text-danger"><i class="bi bi-x-octagon"></i></a>
                     </td> -->
