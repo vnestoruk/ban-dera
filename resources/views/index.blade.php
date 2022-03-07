@@ -24,6 +24,7 @@
 
         gtag('config', 'G-E2JP8HENB3');
     </script>
+    <script src="https://www.paypalobjects.com/donate/sdk/donate-sdk.js" charset="UTF-8"></script>
     <style>
         :root {
             --color-bg: #fafafa;

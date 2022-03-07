@@ -10,8 +10,20 @@ Vue.use(VueI18n);
 
 const messages = {uk, en, ru}
 
+export function getLocale() {
+    const language = (navigator.language || navigator.browserLanguage).toLowerCase();
+    const locales = Object.keys(messages);
+    for (const locale of locales) {
+        if (language.indexOf(locale) !== -1) {
+            return locale;
+        }
+    }
+    return DEFAULT_LOCALE;
+}
+
+
 const i18n = new VueI18n({
-    locale: DEFAULT_LOCALE,
+    locale: getLocale(),
     messages,
 });
 

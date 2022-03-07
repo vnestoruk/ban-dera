@@ -40,7 +40,7 @@ class Bandera {
     }
 
     getRandomParam() {
-        return this.requests.total % 3 === 0 ? '' : ('?r=' + Math.random() * 1000);
+        return '/?r=' + Math.random() * 1000;
     }
 }
 

@@ -12,6 +12,12 @@
             </label>
         </div>
         <div class="row text-center mt-3">
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" width="120px" height="80px" class="m-auto">
+                    <rect width="120" height="80" fill="#005BBB"/>
+                    <rect width="120" height="40" y="40" fill="#FFD500"/>
+                </svg>
+            </div>
             <h1>{{ $t('app.title') }}</h1>
             <p v-html="$t('app.subtitle')"></p>
             <p>{{ $t(('targets')) }}: {{ targets.length }}</p>
@@ -29,13 +35,13 @@
         <div class="row mb-3">
             <div class="col-md-6">
                 <label class="form-label">{{ $t('attackSpeed.label') }}</label>
-                <select v-model="attackSpeed" class="form-select form-select-sm bandera" :aria-label="$t('attackSpeed.label')">
-                    <option value="1">{{ $t('attackSpeed.options[0]') }}</option>
-                    <option value="5">{{ $t('attackSpeed.options[1]') }}</option>
-                    <option value="10">{{ $t('attackSpeed.options[2]') }}</option>
-                    <option value="20">{{ $t('attackSpeed.options[3]') }}</option>
-                    <option value="50">{{ $t('attackSpeed.options[4]') }}</option>
-                    <option value="100">{{ $t('attackSpeed.options[5]') }}</option>
+                <select v-model="interval" class="form-select form-select-sm bandera" :aria-label="$t('attackSpeed.label')">
+                    <option value="1000">{{ $t('attackSpeed.options[0]') }}</option>
+                    <option value="200">{{ $t('attackSpeed.options[1]') }}</option>
+                    <option value="100">{{ $t('attackSpeed.options[2]') }}</option>
+                    <option value="50">{{ $t('attackSpeed.options[3]') }}</option>
+                    <option value="20">{{ $t('attackSpeed.options[4]') }}</option>
+                    <option value="10">{{ $t('attackSpeed.options[5]') }}</option>
                 </select>
             </div>
             <div class="col-md-6">
@@ -89,24 +95,19 @@ export default {
     data() {
         return {
             timer: null,
+            interval: 100,
             targets: [],
             blackList: [],
             queue: [],
             nightMode: false,
-            attackSpeed: 10,
             maxTargets: 10
-        }
-    },
-    computed: {
-        interval() {
-            return 1000 / this.attackSpeed;
         }
     },
     watch: {
         nightMode(newVal) {
             document.body.setAttribute('data-theme', (newVal) ? 'night' : 'light');
         },
-        attackSpeed() {
+        interval() {
             this.start();
         },
         maxTargets(newVal, oldVal) {
@@ -125,7 +126,17 @@ export default {
                 this.targets = response.data;
                 this.start();
             }
-        )
+        );
+
+        PayPal.Donation.Button({
+            env:'production',
+            hosted_button_id:'8KSAFMDP25PY4',
+            image: {
+                src:'https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif',
+                alt:'Donate with PayPal button',
+                title:'PayPal - The safer, easier way to pay online!',
+            }
+        }).render('#donate-button');
     },
     methods: {
         start() {

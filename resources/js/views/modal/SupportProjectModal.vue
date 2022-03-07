@@ -19,39 +19,31 @@
 
                             </div>
                             <hr>
+                            <h3>PayPal</h3>
+                            <div id="donate-button-container" class="mb-5">
+                                <div id="donate-button"></div>
+                            </div>
                             <div class="d-flex flex-column align-items-center">
                                 <img class="w-50 mb-3" src="img/monobank-logo.svg" alt="">
-                                <h3>4441 1144 5100 7866</h3>
+                                <CopyToClipboard>
+                                    <h3 class="d-inline">4441 1144 5100 7866</h3>
+                                </CopyToClipboard>
                             </div>
                             <hr>
-                            <div class="d-flex justify-content-around p-2 w-100">
-                                <div class="w-50">
+                            <div class="row">
+                                <div class="col-lg-6">
                                     <h4>Bitcoin</h4>
-                                    <div class="input-group mb-3">
-                                        <input
-                                            type="text"
-                                            class="form-control"
-                                            v-on:focus="$event.target.select()"
-                                            ref="bitcoin"
-                                            readonly
-                                            value="bc1qyh0zurkv7v52sy798tulu98zhqmzejfzqkm2mf">
-                                        <button class="btn btn-outline-secondary" type="button" @click="copyBitcoin">{{ $t('copy') }}</button>
-                                    </div>
                                     <QrcodeVue value="bitcoin:bc1qyh0zurkv7v52sy798tulu98zhqmzejfzqkm2mf" :size="150" level="H"/>
+                                    <CopyToClipboard class="mt-3">
+                                        <h6 class="d-inline">bc1qyh0zurkv7v52sy798tulu98zhqmzejfzqkm2mf</h6>
+                                    </CopyToClipboard>
                                 </div>
-                                <div class="w-50">
+                                <div class="col-lg-6">
                                     <h4>Ethereum</h4>
-                                    <div class="input-group mb-3">
-                                        <input
-                                            type="text"
-                                            class="form-control"
-                                            v-on:focus="$event.target.select()"
-                                            ref="ethereum"
-                                            readonly
-                                            value="0xf0AD7E18327b644FF40fBbbA5757bdF3de6AE863">
-                                        <button class="btn btn-outline-secondary" type="button" @click="copyEthereum">{{ $t('copy') }}</button>
-                                    </div>
                                     <QrcodeVue value="0xf0AD7E18327b644FF40fBbbA5757bdF3de6AE863" :size="150" level="H"/>
+                                    <CopyToClipboard class="mt-3">
+                                        <h6 class="d-inline">0xf0AD7E18327b644FF40fBbbA5757bdF3de6AE863</h6>
+                                    </CopyToClipboard>
                                 </div>
                             </div>
 
@@ -65,10 +57,11 @@
 
 <script>
 import QrcodeVue from "qrcode.vue";
+import CopyToClipboard from "../../elements/CopyToClipboard";
 
 export default {
     name: "SupportProjectModal",
-    components: { QrcodeVue },
+    components: {CopyToClipboard, QrcodeVue },
     methods: {
         copyBitcoin() {
             this.$refs.bitcoin.focus();
