@@ -2,7 +2,7 @@
     <div class="d-inline">
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#supportProjectModal">
-            {{ $t('donation.support.button') }}
+            <i class="bi bi-heart me-2"></i>{{ $t('donation.support.button') }}
         </button>
 
         <!-- Modal -->
@@ -18,6 +18,12 @@
                             <div class="text-start" v-html="$t('donation.support.content')">
 
                             </div>
+                            <hr>
+                            <div class="d-flex flex-column align-items-center">
+                                <img class="w-50 mb-3" src="img/monobank-logo.svg" alt="">
+                                <h3>4441 1144 5100 7866</h3>
+                            </div>
+                            <hr>
                             <div class="d-flex justify-content-around p-2 w-100">
                                 <div class="w-50">
                                     <h4>Bitcoin</h4>
@@ -48,6 +54,7 @@
                                     <QrcodeVue value="0xf0AD7E18327b644FF40fBbbA5757bdF3de6AE863" :size="150" level="H"/>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 </div>

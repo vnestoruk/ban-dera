@@ -1,8 +1,8 @@
 <template>
     <div class="d-inline">
         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#helpArmyModal">
-            {{ $t('donation.army.button') }}
+        <button type="button" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#helpArmyModal">
+            <i class="bi bi-shield-check me-2"></i>{{ $t('donation.army.button') }}
         </button>
 
         <!-- Modal -->

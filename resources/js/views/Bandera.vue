@@ -39,7 +39,7 @@
                 </select>
             </div>
             <div class="col-md-6">
-                <label class="form-label">Attack speed</label>
+                <label class="form-label">{{ $t('maxTargets.label') }}</label>
                 <select v-model="maxTargets" class="form-select form-select-sm bandera" :aria-label="$t('maxTargets.label')">
                     <option value="1">{{ $t('maxTargets.options[0]') }}</option>
                     <option value="5">{{ $t('maxTargets.options[1]') }}</option>
@@ -150,7 +150,7 @@ export default {
                 this.queue.push(i);
             });
 
-            let source  = this.targets;
+            let source = this.targets;
             let selectedTarget = source.sort(() => 0.5 - Math.random()).slice(0, 1)[0];
             if ((typeof targets.find(item => item.id === selectedTarget.id) === 'undefined') ||
                 (typeof this.blackList.find(item => item.id === selectedTarget.id) === 'undefined') ||

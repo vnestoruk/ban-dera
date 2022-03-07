@@ -1,7 +1,7 @@
 <template>
     <div class="d-inline">
-        <a class="btn btn-sm btn-primary" data-bs-toggle="offcanvas" href="#offcanvasTargetsList" role="button" aria-controls="offcanvasTargetsList">
-            {{ $t('showTargets') }}
+        <a class="btn btn-sm btn-danger" data-bs-toggle="offcanvas" href="#offcanvasTargetsList" role="button" aria-controls="offcanvasTargetsList">
+            <i class="bi bi-bar-chart-steps me-2"></i>{{ $t('showTargets') }}
         </a>
         <div class="offcanvas offcanvas-start w-50 text-start" tabindex="-1" id="offcanvasTargetsList" aria-labelledby="offcanvasTargetsListLabel">
             <div class="offcanvas-header align-items-start">
