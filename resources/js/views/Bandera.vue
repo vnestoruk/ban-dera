@@ -3,11 +3,12 @@
         <div class="d-flex justify-content-center gap-5 mt-3">
             <a href="javascript:void(0);" @click="setLocale('uk')">Українська</a>
             <a href="javascript:void(0);" @click="setLocale('en')">English</a>
+            <a href="javascript:void(0);" @click="setLocale('es')">Español</a>
             <a href="javascript:void(0);" @click="setLocale('ru')">Кацапська</a>
         </div>
         <div class="d-flex form-check form-switch justify-content-center mt-3">
             <label class="form-check-label">
-                <input class="form-check-input me-2" type="checkbox" v-model="nightMode" >
+                <input class="form-check-input me-2" type="checkbox" v-model="nightMode">
                 {{ $t('night') }}
             </label>
         </div>
@@ -21,10 +22,18 @@
             <h1>{{ $t('app.title') }}</h1>
             <p v-html="$t('app.subtitle')"></p>
             <p>{{ $t(('targets')) }}: {{ targets.length }}</p>
-            <div class="d-flex justify-content-center gap-3">
+            <div class="d-flex justify-content-center gap-3 mt-3">
                 <TargetListOffcanvas :targets="targets"/>
                 <HelpArmyModal />
                 <SupportProjectModal />
+            </div>
+            <div class="d-flex justify-content-center gap-3 mt-3">
+                <a href="https://t.me/ban_dera_com" type="button" class="btn btn-secondary">
+                    <i class="bi bi-telegram"></i>
+                </a>
+                <a href="https://github.com/vnestoruk/ban-dera" type="button" class="btn btn-secondary">
+                    <i class="bi bi-github"></i>
+                </a>
             </div>
         </div>
         <div class="row mt-3">

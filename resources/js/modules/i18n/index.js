@@ -2,13 +2,14 @@ import Vue from "vue";
 import VueI18n from "vue-i18n";
 import uk from "./uk"
 import en from "./en"
+import es from "./es"
 import ru from "./ru"
 
 const DEFAULT_LOCALE = 'uk';
 
 Vue.use(VueI18n);
 
-const messages = {uk, en, ru}
+const messages = {uk, en, es, ru}
 
 export function getLocale() {
     const language = (navigator.language || navigator.browserLanguage).toLowerCase();

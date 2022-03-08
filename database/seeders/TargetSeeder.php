@@ -655,6 +655,24 @@ class TargetSeeder extends Seeder
         'https://cheladmin.ru',
         'https://krd.ru',
         'https://www.stavregion.ru',
+        'https://sberfn.ru',
+        'https://sber-am.ru',
+        'https://www.vtbcapital-pr.ru',
+        'https://region-am.ru',
+        'https://www.ingosinvest.ru',
+        'https://goszakaz.ru',
+        'https://star-pro.ru',
+        'http://ati.su',
+        'https://region.ru',
+        'https://monopoly.ru',
+        'https://ul.su/',
+        'http://gruzovozkin.pro',
+        'https://www.fl.ru',
+        'https://advego.com',
+        'https://kwork.ru',
+        'http://freelance.ru',
+        'http://freelansim.ru',
+        'https://work-zilla.com'
     ];
 
     /**
