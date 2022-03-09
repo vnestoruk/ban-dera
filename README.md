@@ -1,64 +1,73 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+<p align="center"><a href="https://ban-dera.com" target="_blank"><img src="https://ban-dera.com/img/ban-dera-logo.svg" width="400"></a></p>
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# Ban-DERA
+#### BAN Digital Environment for Russian Assets
 
-## About Laravel
+## About
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+On Feb 24, 2022 at 4:00 (GMT +2, Kyiv) Russia has launched a devastating attack on Ukraine, a European democracy of 44 million people, bombarding its cities.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+That's why we create ban-dera.com. It is a website for running continuous russian websites dos-attack. It is our cyber-response for Russia invasion.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## How to use website?
 
-## Learning Laravel
+We're tried to make this website as simple as possible. There are no any special skills required for using it, just open website: all the processes will be executed automatically.
+Here is exactly how this script works:
+1) The list with target websites will be loaded.
+2) First 10 websites to attack will be chosen randomly. You can also change amount of target.
+3) Your device will send requests 10 times per second to each website from selected list. You can change this speed too.
+ 
+## Settings
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- Change the number of simultaneously attacked targets.
+- Change the speed of requests.
+- Manually remove website from attack list.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Deploying project on your server
 
-## Laravel Sponsors
+This project created with Laravel and Vue framework. Here is instruction how you can copy it to your own server.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+1) Clone git repository.
+2) Open terminal in destination path root.
+3) Update composer
 
-### Premium Partners
+```shell
+path/to/your/repo> composer update
+```
+4) Make copy of .env.example file and save it without .example extension.
+5) Change APP_URL with your webserver endpoint.
+6) Write down your credentials to DB_DATABASE, DB_USERNAME and DB_PASSWORD.
+7) Run database migration. This action will create all required tables in your database.
+```shell
+php artisan migrate
+```
+8) Fill up targets table by running DB seeder.
+```shell
+php artisan db:seed
+```
+9) Run NPM build
+```shell
+npm install
+npm run production
+```
+10) You can also run local webserver:
+```shell
+php artisan serve
+```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+That's it! Now you have your own ban-dera!
 
-## Contributing
+## VPN usage
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+There are no any requirements for using VPN, but it is recommended.
+Here is some popular VPN services:
 
-## Code of Conduct
+- **[ExpressVPN](https://www.expressvpn.com/offer/coupon)**
+- **[NordVPN](https://nordvpn.com/)**
+- **[Surfshark](https://surfshark.com/)**
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+# Notes
 
-## Security Vulnerabilities
+Thank you for considering contributing to the Ban-DERA!
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+WARNING! Using this website may slow down your computer and network. We are not responsible for any damage that may be caused by the use of the site.
