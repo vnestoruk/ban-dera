@@ -67,6 +67,16 @@
             background-color: var(--color-text);
             color: var(--color-bg);
         }
+
+        body[data-theme="night"] .offcanvas,
+        body[data-theme="night"] .form-control {
+            background-color: var(--color-bg);
+            color: var(--color-text);
+        }
+
+        body[data-theme="night"] .btn-close {
+            background-color: var(--color-text);
+        }
     </style>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-E2JP8HENB3"></script>
