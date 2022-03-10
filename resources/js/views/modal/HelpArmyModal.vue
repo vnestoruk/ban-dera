@@ -7,15 +7,15 @@
 
         <!-- Modal -->
         <div class="modal fade" id="helpArmyModal" tabindex="-1" aria-labelledby="helpArmyModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-xl">
+            <div class="modal-dialog modal-dialog-centered modal-xl">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="helpArmyModalLabel">{{ $t('donation.army.title') }}</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="modal-body text-dark">
+                    <div class="modal-body">
                         <div class="row p-3">
-                            <div class="col-md-8">
+                            <div class="col-lg-8">
                                 <div class="d-flex align-items-start">
                                     <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                                         <button class="nav-link active" id="v-pills-uah-tab" data-bs-toggle="pill" data-bs-target="#v-pills-uah" type="button" role="tab" aria-controls="v-pills-uah" aria-selected="true">UAH</button>
@@ -95,9 +95,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-lg-4">
                                 <a href="https://savelife.in.ua/en/donate/" target="_blank">
-                                    <QrcodeVue value="https://savelife.in.ua/en/donate/" :size="200" level="H"/>
+                                    <QrcodeVue class="qr-code" value="https://savelife.in.ua/en/donate/" :size="200" level="H"/>
                                 </a>
                             </div>
                         </div>

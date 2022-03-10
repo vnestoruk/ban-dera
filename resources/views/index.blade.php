@@ -51,22 +51,9 @@
             font-weight: 800;
         }
 
-        td {
-            width: calc(100% / 3);
-        }
-
         .bandera {
             background: var(--color-bg);
             color: var(--color-text);
-        }
-
-        .bs-tooltip-top .tooltip-arrow::before {
-            border-top-color: var(--color-text);
-        }
-
-        .tooltip-inner {
-            background-color: var(--color-text);
-            color: var(--color-bg);
         }
 
         body[data-theme="night"] .offcanvas,
@@ -74,13 +61,18 @@
         body[data-theme="night"] .form-control {
             background-color: var(--color-bg);
             color: var(--color-text);
+            border-color: var(--color-text);
         }
 
-        body[data-theme="night"] .modal .modal-body.text-dark {
-            color: var(--color-text) !important; 
+        .modal-backdrop.show {
+            opacity: .8;
+        }
+
+        body[data-theme="night"] .modal .modal-body {
+            color: var(--color-text) !important;
         }
         body[data-theme="night"] .modal .modal-header {
-            border-bottom: 1px solid var(--color-faded); 
+            border-bottom: 1px solid var(--color-faded);
         }
 
         body[data-theme="night"] #monobank_logo {
@@ -90,6 +82,37 @@
         body[data-theme="night"] .btn-close {
             background-color: var(--color-text);
         }
+
+        .qr-code canvas {
+            border: 10px solid #fff;
+        }
+
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--color-bg);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--color-text);
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+        .offcanvas {
+            width: 50%;
+        }
+
+        @media screen and (max-width: 768px){
+            .offcanvas {
+                width: 100%;
+            }
+        }
+
     </style>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-E2JP8HENB3"></script>

@@ -7,7 +7,7 @@
 
         <!-- Modal -->
         <div class="modal fade" id="supportProjectModal" tabindex="-1" aria-labelledby="supportProjectModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-xl">
+            <div class="modal-dialog modal-dialog-centered modal-xl">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="supportProjectModalLabel">{{ $t('donation.support.title') }}</h5>
@@ -24,7 +24,7 @@
                                 <div id="donate-button"></div>
                             </div>
                             <div class="d-flex flex-column align-items-center">
-                                <img class="w-50 mb-3" src="img/monobank-logo.svg" alt="">
+                                <img id="monobank_logo" class="w-50 mb-3" src="img/monobank-logo.svg" alt="">
                                 <CopyToClipboard>
                                     <h3 class="d-inline">4441 1144 5100 7866</h3>
                                 </CopyToClipboard>
@@ -33,14 +33,14 @@
                             <div class="row">
                                 <div class="col-lg-6">
                                     <h4>Bitcoin</h4>
-                                    <QrcodeVue value="bitcoin:bc1qyh0zurkv7v52sy798tulu98zhqmzejfzqkm2mf" :size="150" level="H"/>
+                                    <QrcodeVue class="qr-code" value="bitcoin:bc1qyh0zurkv7v52sy798tulu98zhqmzejfzqkm2mf" :size="150" level="H"/>
                                     <CopyToClipboard class="mt-3">
                                         <h6 class="d-inline">bc1qyh0zurkv7v52sy798tulu98zhqmzejfzqkm2mf</h6>
                                     </CopyToClipboard>
                                 </div>
                                 <div class="col-lg-6">
                                     <h4>Ethereum</h4>
-                                    <QrcodeVue value="0xf0AD7E18327b644FF40fBbbA5757bdF3de6AE863" :size="150" level="H"/>
+                                    <QrcodeVue class="qr-code" value="0xf0AD7E18327b644FF40fBbbA5757bdF3de6AE863" :size="150" level="H"/>
                                     <CopyToClipboard class="mt-3">
                                         <h6 class="d-inline">0xf0AD7E18327b644FF40fBbbA5757bdF3de6AE863</h6>
                                     </CopyToClipboard>

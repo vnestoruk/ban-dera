@@ -226,7 +226,6 @@ class TargetSeeder extends Seeder
         'https://poezda.biletyplus.ru',
         'https://pzd-online.ru',
         'https://poezd-moskva.su',
-        'https://www.virail.com.ua',
         'https://www.tutu.travel',
         'https://zhd.online',
         'https://www.expresstorussia.com',
@@ -672,7 +671,21 @@ class TargetSeeder extends Seeder
         'https://kwork.ru',
         'http://freelance.ru',
         'http://freelansim.ru',
-        'https://work-zilla.com'
+        'https://work-zilla.com',
+        'http://www.patriarchia.ru',
+        'https://www.pravmir.ru',
+        'http://pravoslavie.ru',
+        'http://acs.vendorcert.mirconnect.ru',
+        'http://ds1.mirconnect.ru',
+        'http://ds2.mirconnect.ru',
+        'http://uat-ds1.mirconnect.ru',
+        'http://uat-ds2.mirconnect.ru',
+        'https://eadaily.com/ru',
+        'https://norussians.xyz',
+        'https://stopnazi.xyz',
+        'https://www.russianhighways.ru',
+        'https://www.nlmk.com',
+        'https://gtrklnr.com'
     ];
 
     /**
@@ -683,7 +696,9 @@ class TargetSeeder extends Seeder
     public function run()
     {
         foreach (array_unique($this->_TARGETS) as $target) {
-            Target::create(['url' => $target]);
+            if (!Target::where('url', '=', $target)->exists()) {
+                Target::create(['url' => $target]);
+            }
         }
     }
 }

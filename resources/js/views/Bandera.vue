@@ -14,10 +14,11 @@
         </div>
         <div class="row text-center mt-3">
             <div>
-                <svg xmlns="http://www.w3.org/2000/svg" width="120px" height="80px" class="m-auto">
-                    <rect width="120" height="80" fill="#005BBB"/>
-                    <rect width="120" height="40" y="40" fill="#FFD500"/>
-                </svg>
+                <img src="/img/ban-dera-logo.svg" alt="" style="max-width: 120px">
+<!--                <svg xmlns="http://www.w3.org/2000/svg" width="120px" height="80px" class="m-auto">-->
+<!--                    <rect width="120" height="80" fill="#005BBB"/>-->
+<!--                    <rect width="120" height="40" y="40" fill="#FFD500"/>-->
+<!--                </svg>-->
             </div>
             <h1>{{ $t('app.title') }}</h1>
             <p v-html="$t('app.subtitle')"></p>
@@ -28,16 +29,14 @@
                 <SupportProjectModal />
             </div>
             <div class="d-flex justify-content-center gap-3 mt-3">
-                <a href="https://t.me/ban_dera_com" type="button" class="btn btn-secondary">
-                    <i class="bi bi-telegram"></i>
+                <InfoModal/>
+                <a href="https://t.me/ban_dera_com" target="_blank" class="btn btn-sm btn-secondary">
+                    <i class="bi bi-telegram me-2"></i> Telegram
                 </a>
-                <a href="https://github.com/vnestoruk/ban-dera" type="button" class="btn btn-secondary">
-                    <i class="bi bi-github"></i>
+                <a href="https://github.com/vnestoruk/ban-dera" target="_blank" class="btn btn-sm btn-secondary">
+                    <i class="bi bi-github me-2"></i> GitHub
                 </a>
             </div>
-        </div>
-        <div class="row mt-3">
-            <div class="col-md-12" v-html="$t('content')"></div>
         </div>
         <hr>
         <h3 class="text-center">{{ $t('settings') }}</h3>
@@ -60,33 +59,60 @@
                     <option value="5">{{ $t('maxTargets.options[1]') }}</option>
                     <option value="10">{{ $t('maxTargets.options[2]') }}</option>
                     <option value="20">{{ $t('maxTargets.options[3]') }}</option>
-                    <option value="50">{{ $t('maxTargets.options[4]') }}</option>
-                    <option value="100">{{ $t('maxTargets.options[5]') }}</option>
+                    <option value="30">{{ $t('maxTargets.options[4]') }}</option>
+                    <option value="50">{{ $t('maxTargets.options[5]') }}</option>
+                    <option value="75">{{ $t('maxTargets.options[6]') }}</option>
+                    <option value="100">{{ $t('maxTargets.options[7]') }}</option>
                 </select>
             </div>
         </div>
         <hr>
+        <!-- Main screen -->
         <div class="row mt-3 mb-5">
             <table>
                 <thead>
                 <tr>
                     <td>{{ $t('table.url') }}</td>
                     <td class="text-end">{{ $t('table.requests') }}</td>
-                    <td class="text-end d-none d-lg-table-cell">{{ $t('table.actions') }}</td>
+                    <td class="text-end">{{ $t('table.actions') }}</td>
                 </tr>
                 </thead>
                 <tbody id="bandera">
                 <tr v-for="(b, index) in queue" :key="index">
                     <td :class="{ 'text-warning' : b.requests.strike > 50, 'text-danger': b.requests.strike > 100 }">{{ b.target.url }}</td>
-                    <td class="text-end"><span class="bi bi-check-circle me-2 text-success"></span>{{ b.requests.success }} / <span class="bi bi-x-circle me-2 text-danger"></span>{{ b.requests.failed }} / <span class="bi bi-exclamation-circle me-2 text-primary"></span>{{ b.requests.total }}</td>
-                    <td class="text-end d-none d-lg-table-cell">
-                        <a href="javascript:void(0)" @click="replaceTarget(b)" class="text-primary me-2"><i class="bi bi-shuffle me-2"></i>{{ $t('replace') }}</a>
-                        <a :href="b.target.url" target="_blank" class="text-warning me-2"><i class="bi bi-box-arrow-up-right me-2"></i>Відкрити</a>
-                        <a href="javascript:void(0)" @click="addToBlackList(b)" class="text-danger me-2"><i class="bi bi-x-octagon me-2"></i>{{ $t('blackList') }}</a>
+                    <td class="text-end">
+                        <span class="d-none d-md-inline"><i class="bi bi-check-circle me-2 text-success"></i>{{ b.requests.success }} /</span>
+                        <span class="d-none d-md-inline"><i class="bi bi-x-circle me-2 text-danger"></i>{{ b.requests.failed }} /</span>
+                        <span class=""><i class="bi bi-exclamation-circle me-2 text-primary"></i>{{ b.requests.total }}</span></td>
+                    <td class="text-end ">
+                        <a :href="b.target.url" target="_blank" class="text-primary me-2" :title="$t('open')"><i class="bi bi-box-arrow-up-right"></i></a>
+                        <a href="javascript:void(0)" @click="replaceTarget(b)" class="text-warning me-2" :title="$t('replace')"><i class="bi bi-shuffle"></i></a>
+                        <a href="javascript:void(0)" @click="addToBlackList(b)" class="text-danger me-2" :title="$t('blackList')"><i class="bi bi-x-octagon"></i></a>
                     </td>
                 </tr>
                 </tbody>
             </table>
+        </div>
+        <!-- End main screen -->
+        <hr>
+        <div class="text-center mb-3">
+            <p>{{ $t('share.timer', { darknessPeriod }) }}</p>
+            <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#stopPutinModal">{{ $t('share.stop') }}</a>
+            <div class="modal fade" id="stopPutinModal" tabindex="-1" aria-labelledby="stopPutinModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content text-start">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="stopPutinModalLabel">{{ $t('share.title') }}</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body text-center">
+                            <CopyToClipboard>
+                                <p class="h2">https://ban-dera.com</p>
+                            </CopyToClipboard>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -97,10 +123,12 @@ import request from "../modules/request";
 import TargetListOffcanvas from "./offcanvas/TargetListOffcanvas";
 import HelpArmyModal from "./modal/HelpArmyModal";
 import SupportProjectModal from "./modal/SupportProjectModal";
+import InfoModal from "./modal/InfoModal";
+import CopyToClipboard from "../elements/CopyToClipboard";
 
 export default {
     name: "Bandera",
-    components: {SupportProjectModal, HelpArmyModal, TargetListOffcanvas},
+    components: {CopyToClipboard, InfoModal, SupportProjectModal, HelpArmyModal, TargetListOffcanvas},
     data() {
         return {
             timer: null,
@@ -110,6 +138,12 @@ export default {
             queue: [],
             nightMode: false,
             maxTargets: 10
+        }
+    },
+    computed: {
+        darknessPeriod() {
+            let badDay = new Date('07-10-1952');
+            return ((new Date() - badDay) / (1000*60*60*24)).toFixed(0);
         }
     },
     watch: {
@@ -166,8 +200,7 @@ export default {
         // recursively getting random targets
         getRandomTargets(count, targets = []) {
             if (count === 0) return targets.filter(target => {
-                let i = new Bandera(target);
-                this.queue.push(i);
+                this.queue.push(new Bandera(target));
             });
 
             let source = this.targets;
