@@ -6,7 +6,7 @@
         <div class="offcanvas offcanvas-start text-start" tabindex="-1" id="offcanvasTargetsList" aria-labelledby="offcanvasTargetsListLabel">
             <div class="offcanvas-header align-items-start">
                 <div class="d-flex flex-column text-center w-100 me-3">
-                    <input class="form-control" v-model="filter" type="text" :placeholder="$t('search')" @keyup="runFilter">
+                    <input class="form-control" v-model="filter" type="text" :placeholder="$t('search')">
                     <div>
                         <p>{{ $t('filter') }}: {{ filteredTargets.length }}</p>
                     </div>
@@ -33,24 +33,16 @@ export default {
     },
     data() {
         return {
-            filter: '',
-            filteredTargets: []
+            filter: ''
         }
     },
-    methods: {
-        runFilter() {
-            this.filteredTargets = this.targets.filter(value => {
+    computed: {
+        filteredTargets() {
+            return this.targets.filter(value => {
                 return value.url.includes(this.filter);
             })
         }
-    },
-    // computed: {
-    //     filteredTargets() {
-    //         return this.targets.filter(value => {
-    //             return value.url.includes(this.filter);
-    //         })
-    //     }
-    // }
+    }
 }
 </script>
 
