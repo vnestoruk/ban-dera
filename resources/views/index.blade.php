@@ -34,6 +34,7 @@
         body[data-theme="night"] {
             --color-bg: #121212;
             --color-text: #5cd700;
+            --color-faded: #242424;
         }
 
         body {
@@ -69,9 +70,21 @@
         }
 
         body[data-theme="night"] .offcanvas,
+        body[data-theme="night"] .modal .modal-content,
         body[data-theme="night"] .form-control {
             background-color: var(--color-bg);
             color: var(--color-text);
+        }
+
+        body[data-theme="night"] .modal .modal-body.text-dark {
+            color: var(--color-text) !important; 
+        }
+        body[data-theme="night"] .modal .modal-header {
+            border-bottom: 1px solid var(--color-faded); 
+        }
+
+        body[data-theme="night"] #monobank_logo {
+            filter: invert(1);
         }
 
         body[data-theme="night"] .btn-close {
