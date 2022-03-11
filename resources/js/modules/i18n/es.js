@@ -1,4 +1,5 @@
 export default {
+    locale: 'Español',
     app: {
         title: 'Ban-DERA',
         subtitle: '<strong>BAN</strong> <strong>D</strong>igital <strong>E</strong>nvironment for <strong>R</strong>ussian <strong>A</strong>ssets'
@@ -18,7 +19,7 @@ export default {
         }
     },
     info: {
-        title: 'Інформація',
+        title: 'Info',
         content: '<p>DoS-attack (Denial-of-service) - uno de los métodos más comunes de ataque, satura el servidor objetivo con un gran número de peticiones externas. (intentos de cargar la página web)</p>' +
             '<p>Un número infinito de peticiones se enviarán desde tu ordenador a las webs rusas, para que se vayan al mismo sitio donde se fué el buque de guerra ruso. Simplemente deja el script corriendo. Si uno de los sitios web se define como "dropped" (caído) -  será remplazado por otro sitio web, esto quiere decir que el ataque desde tu ordenador será ininterrumpido.</p>' +
             '<p><strong>AVISO!</strong> Debido a que este script ejecuta un gran número de peticiones en un corto periodo de tiempo, ejecutarlo puede hacer que tu ordenador se ralentize y usar mucho tráfico. No se recomienda usarlo desde redes móviles, donde el tráfico normalmente está limitado.</p>' +

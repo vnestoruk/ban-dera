@@ -48,13 +48,36 @@
             color: var(--color-text);
         }
 
+        .table-container {
+            overflow-x: scroll;
+            display: block;
+            padding: 10px;
+        }
+
         thead {
             font-weight: 800;
+        }
+
+        td {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .bandera {
             background: var(--color-bg);
             color: var(--color-text);
+        }
+
+        a.dropdown-toggle {
+            text-decoration: none;
+        }
+
+        .dropdown-menu {
+            background: var(--color-bg);
+            border-color: var(--color-text);
+            padding: 10px 15px;
+            margin-top: 10px !important;
         }
 
         body[data-theme="night"] .offcanvas,
@@ -90,6 +113,7 @@
 
         ::-webkit-scrollbar {
             width: 10px;
+            height: 10px;
         }
 
         ::-webkit-scrollbar-track {
