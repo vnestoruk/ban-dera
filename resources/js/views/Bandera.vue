@@ -209,7 +209,7 @@ export default {
                 (typeof targets.find(item => item.id === selectedTarget.id) === 'undefined') ||
                 (typeof this.blackList.find(item => item.id === selectedTarget.id) === 'undefined') ||
                 (typeof this.queue.find(item => item.target.id === selectedTarget.id) === 'undefined') ||
-                (excludeId !== null && excludeId === selectedTarget)
+                (excludeId !== null && excludeId === selectedTarget.id)
             ) {
                 targets.push(selectedTarget);
                 this.getRandomTargets(--count, targets, excludeId);
