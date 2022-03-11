@@ -29,28 +29,32 @@ This project created with Laravel and Vue framework. Here is instruction how you
 
 1) Clone git repository.
 2) Open terminal in destination path root.
-3) Update composer
+3) Install composer dependencies
 
 ```shell
-path/to/your/repo> composer update
+path/to/your/repo> composer install
 ```
 4) Make copy of .env.example file and save it without .example extension.
 5) Change APP_URL with your webserver endpoint.
-6) Write down your credentials to DB_DATABASE, DB_USERNAME and DB_PASSWORD.
-7) Run database migration. This action will create all required tables in your database.
+6) Set the key that Laravel will use when doing encryption.
+```shell
+php artisan key:generate
+```
+7) Write down your credentials to DB_DATABASE, DB_USERNAME and DB_PASSWORD.
+8) Run database migration. This action will create all required tables in your database.
 ```shell
 php artisan migrate
 ```
-8) Fill up targets table by running DB seeder.
+9) Fill up targets table by running DB seeder.
 ```shell
 php artisan db:seed
 ```
-9) Run NPM build
+10) Run NPM build
 ```shell
 npm install
 npm run production
 ```
-10) You can also run local webserver:
+11) You can also run local webserver:
 ```shell
 php artisan serve
 ```
