@@ -198,25 +198,28 @@ export default {
             this.queue = [];
         },
         // recursively getting random targets
-        getRandomTargets(count, targets = []) {
+        getRandomTargets(count, targets = [], excludeId = null) {
             if (count === 0) return targets.filter(target => {
                 this.queue.push(new Bandera(target));
             });
 
             let source = this.targets;
             let selectedTarget = source.sort(() => 0.5 - Math.random()).slice(0, 1)[0];
-            if ((typeof targets.find(item => item.id === selectedTarget.id) === 'undefined') ||
+            if (
+                (typeof targets.find(item => item.id === selectedTarget.id) === 'undefined') ||
                 (typeof this.blackList.find(item => item.id === selectedTarget.id) === 'undefined') ||
-                (typeof this.queue.find(item => item.target.id === selectedTarget.id) === 'undefined')) {
+                (typeof this.queue.find(item => item.target.id === selectedTarget.id) === 'undefined') ||
+                (excludeId !== null && excludeId === selectedTarget.id)
+            ) {
                 targets.push(selectedTarget);
-                this.getRandomTargets(--count, targets);
+                this.getRandomTargets(--count, targets, excludeId);
             } else {
-                this.getRandomTargets(count, targets);
+                this.getRandomTargets(count, targets, excludeId);
             }
         },
         async replaceTarget(obj) {
             this.queue.splice(this.queue.findIndex(item => item.target.id === obj.target.id), 1);
-            this.getRandomTargets(1);
+            this.getRandomTargets(1, [], obj.target.id);
         },
         addToBlackList(obj) {
             this.blackList.push(obj);
