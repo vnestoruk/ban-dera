@@ -1,4 +1,5 @@
 export default {
+    locale: 'Українська',
     app: {
         title: 'Ban-DERA',
         subtitle: '<strong>BAN</strong> <strong>D</strong>igital <strong>E</strong>nvironment for <strong>R</strong>ussian <strong>A</strong>ssets'

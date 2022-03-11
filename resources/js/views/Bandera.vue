@@ -1,17 +1,26 @@
 <template>
     <div class="container">
-        <div class="d-flex justify-content-center gap-5 mt-3">
-            <a href="javascript:void(0);" @click="setLocale('uk')">Українська</a>
-            <a href="javascript:void(0);" @click="setLocale('en')">English</a>
-            <a href="javascript:void(0);" @click="setLocale('es')">Español</a>
-            <a href="javascript:void(0);" @click="setLocale('ru')">Кацапська</a>
+        <div class="d-flex justify-content-between mt-3">
+            <div class="d-flex form-check form-switch justify-content-center">
+                <label class="form-check-label">
+                    <input class="form-check-input me-2" type="checkbox" v-model="nightMode">
+                    {{ $t('night') }}
+                </label>
+            </div>
+            <div class="dropdown">
+                <a class="dropdown-toggle" href="#" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                    {{ $t('locale') }}
+                </a>
+
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <li><a href="javascript:void(0);" @click="setLocale('uk')">Українська</a></li>
+                    <li><a href="javascript:void(0);" @click="setLocale('en')">English</a></li>
+                    <li><a href="javascript:void(0);" @click="setLocale('es')">Español</a></li>
+                    <li><a href="javascript:void(0);" @click="setLocale('ru')">Кацапська</a></li>
+                </ul>
+            </div>
         </div>
-        <div class="d-flex form-check form-switch justify-content-center mt-3">
-            <label class="form-check-label">
-                <input class="form-check-input me-2" type="checkbox" v-model="nightMode">
-                {{ $t('night') }}
-            </label>
-        </div>
+
         <div class="row text-center mt-3">
             <div>
                 <img src="/img/ban-dera-logo.svg" alt="" style="max-width: 120px">
@@ -68,23 +77,23 @@
         </div>
         <hr>
         <!-- Main screen -->
-        <div class="row mt-3 mb-5">
+        <div class="row table-container mt-3 mb-5">
             <table>
                 <thead>
                 <tr>
                     <td>{{ $t('table.url') }}</td>
-                    <td class="text-end">{{ $t('table.requests') }}</td>
+                    <td class="text-end pe-3">{{ $t('table.requests') }}</td>
                     <td class="text-end">{{ $t('table.actions') }}</td>
                 </tr>
                 </thead>
                 <tbody id="bandera">
                 <tr v-for="(b, index) in queue" :key="index">
                     <td :class="{ 'text-warning' : b.requests.strike > 50, 'text-danger': b.requests.strike > 100 }">{{ b.target.url }}</td>
-                    <td class="text-end">
+                    <td class="text-end pe-3">
                         <span class="d-none d-md-inline"><i class="bi bi-check-circle me-2 text-success"></i>{{ b.requests.success }} /</span>
                         <span class="d-none d-md-inline"><i class="bi bi-x-circle me-2 text-danger"></i>{{ b.requests.failed }} /</span>
                         <span class=""><i class="bi bi-exclamation-circle me-2 text-primary"></i>{{ b.requests.total }}</span></td>
-                    <td class="text-end ">
+                    <td class="text-end">
                         <a :href="b.target.url" target="_blank" class="text-primary me-2" :title="$t('open')"><i class="bi bi-box-arrow-up-right"></i></a>
                         <a href="javascript:void(0)" @click="replaceTarget(b)" class="text-warning me-2" :title="$t('replace')"><i class="bi bi-shuffle"></i></a>
                         <a href="javascript:void(0)" @click="addToBlackList(b)" class="text-danger me-2" :title="$t('blackList')"><i class="bi bi-x-octagon"></i></a>
