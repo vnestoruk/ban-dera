@@ -58,6 +58,10 @@ npm run production
 ```shell
 php artisan serve
 ```
+12) To preview and compile all the assets in live mode (if you have separate local env like WAMP) run:
+```shell
+npx mix watch
+```
 
 That's it! Now you have your own ban-dera!
 
