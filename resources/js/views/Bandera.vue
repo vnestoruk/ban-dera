@@ -38,7 +38,8 @@
                 <SupportProjectModal />
             </div>
             <div class="d-flex justify-content-center gap-3 mt-3">
-                <InfoModal/>
+                <InfoModal />
+                <VPNServicesModal />
                 <a href="https://t.me/ban_dera_com" target="_blank" class="btn btn-sm btn-secondary">
                     <i class="bi bi-telegram me-2"></i> Telegram
                 </a>
@@ -49,8 +50,8 @@
         </div>
         <hr>
         <h3 class="text-center">{{ $t('settings') }}</h3>
-        <div class="row mb-3">
-            <div class="col-md-6">
+        <div class="d-flex align-items-end gap-3 mb-3">
+            <div class="col flex-grow-1">
                 <label class="form-label">{{ $t('attackSpeed.label') }}</label>
                 <select v-model="interval" class="form-select form-select-sm bandera" :aria-label="$t('attackSpeed.label')">
                     <option value="1000">{{ $t('attackSpeed.options[0]') }}</option>
@@ -61,7 +62,7 @@
                     <option value="10">{{ $t('attackSpeed.options[5]') }}</option>
                 </select>
             </div>
-            <div class="col-md-6">
+            <div class="col flex-grow-1">
                 <label class="form-label">{{ $t('maxTargets.label') }}</label>
                 <select v-model="maxTargets" class="form-select form-select-sm bandera" :aria-label="$t('maxTargets.label')">
                     <option value="1">{{ $t('maxTargets.options[0]') }}</option>
@@ -74,6 +75,12 @@
                     <option value="100">{{ $t('maxTargets.options[7]') }}</option>
                 </select>
             </div>
+            <button class="btn btn-sm btn-success" @click="start">
+                <i class="bi bi-play-circle me-2"></i>Start
+            </button>
+            <button class="btn btn-sm btn-danger" @click="stop">
+                <i class="bi bi-stop-circle me-2"></i>Stop
+            </button>
         </div>
         <hr>
         <!-- Main screen -->
@@ -133,11 +140,12 @@ import TargetListOffcanvas from "./offcanvas/TargetListOffcanvas";
 import HelpArmyModal from "./modal/HelpArmyModal";
 import SupportProjectModal from "./modal/SupportProjectModal";
 import InfoModal from "./modal/InfoModal";
-import CopyToClipboard from "../elements/CopyToClipboard";
+import CopyToClipboard from "./elements/CopyToClipboard";
+import VPNServicesModal from "./modal/VPNServicesModal";
 
 export default {
     name: "Bandera",
-    components: {CopyToClipboard, InfoModal, SupportProjectModal, HelpArmyModal, TargetListOffcanvas},
+    components: {VPNServicesModal, CopyToClipboard, InfoModal, SupportProjectModal, HelpArmyModal, TargetListOffcanvas},
     data() {
         return {
             timer: null,
@@ -204,6 +212,7 @@ export default {
             }, this.interval);
         },
         stop() {
+            clearInterval(this.timer);
             this.queue = [];
         },
         // recursively getting random targets

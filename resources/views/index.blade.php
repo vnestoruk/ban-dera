@@ -58,6 +58,14 @@
             font-weight: 800;
         }
 
+        tr {
+            border-bottom: 1px solid #00000000;
+        }
+
+        tr:hover {
+            border-bottom-color: var(--color-text);
+        }
+
         td {
             white-space: nowrap;
             overflow: hidden;

@@ -22,7 +22,7 @@
 
 <script>
 import QrcodeVue from "qrcode.vue";
-import CopyToClipboard from "../../elements/CopyToClipboard";
+import CopyToClipboard from "../elements/CopyToClipboard";
 
 export default {
     name: "InfoModal",
