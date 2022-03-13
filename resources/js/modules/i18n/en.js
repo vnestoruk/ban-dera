@@ -25,6 +25,24 @@ export default {
             '<p><strong>WARNING!</strong> As far as this script initiates a large number of requests in a short period of time, running it can slow down your computer and use a lot of traffic. Also, it is not recommended to use it from mobile networks, where traffic is usually limited.</p>' +
             '<p class="fst-italic">This is an open source website (<a href="https://github.com/vnestoruk/ban-dera" target="_blank">Show on Github</a>). Join in development or join the <a target="_blank" href="https://t.me/ban_dera_com">Telegram group</a>, share ideas and stay tuned on updates.</p>',
     },
+    vpnServices: {
+        title: 'VPN services',
+        table: {
+            title: 'VPN Service',
+            hasRussiaServers: 'Servers in russia',
+            isFree: 'Has free plan',
+            demo: 'Has demo/test period',
+            description: 'Additional'
+        },
+        services: [
+            ['Hotspot Shield', 'https://www.hotspotshield.com/', true, true, true, ''],
+            ['ClearVPN', 'https://clearvpn.com/', true, true, true, 'Free for Ukraine'],
+            ['urbanVPN', 'https://www.urban-vpn.com/', true, true, true, ''],
+            ['Freedome Secure', 'https://onlineshop.f-secure.com/789/purl-free-freedome-for-ukraine', false, false, true, 'Free 6 months for Ukraine'],
+            ['VPN Unlimited', 'https://www.vpnunlimited.com/stop-russian-aggression', false, false, false, 'Free 1 year for Ukraine'],
+            ['ProtonVPN', 'https://protonvpn.com/ua/', true, true, true, ''],
+        ]
+    },
     share: {
         timer: 'It is {darknessPeriod} days since putin live on Earth.',
         stop: 'Stop timer',

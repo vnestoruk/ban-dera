@@ -24,6 +24,24 @@ export default {
             '<p><strong>УВАГА!</strong> Так як цей скрипт ініціює велику кількість запитів за короткий проміжок часу, його запуск може сповільнити роботу Вашого комп\'ютера та використати велику кількість трафіку. Не рекомендується використовувати його з мобільних мереж, де, зазвичай, трафік обмежений.</p>' +
             '<p class="fst-italic">Це сайт з відкритим кодом (<a href="https://github.com/vnestoruk/ban-dera" target="_blank">Переглянути на Github</a>). Долучайтесь до розробки, або діліться своїми ідеями щодо покращення та слідкуйте за оновленнями.</p>',
     },
+    vpnServices: {
+        title: 'VPN-сервіси',
+        table: {
+            title: 'VPN сервіс',
+            hasRussiaServers: 'Сервери у рашці',
+            isFree: 'Є безкоштовно',
+            demo: 'Є демо/тестовий період',
+            description: 'Додатково'
+        },
+        services: [
+            ['Hotspot Shield', 'https://www.hotspotshield.com/', true, true, true, ''],
+            ['ClearVPN', 'https://clearvpn.com/', true, true, true, 'Безкоштовно з України'],
+            ['UrbanVPN', 'https://www.urban-vpn.com/', true, true, true, ''],
+            ['Freedome Secure', 'https://onlineshop.f-secure.com/789/purl-free-freedome-for-ukraine', false, false, true, 'Безкоштовно 6 місяців для України'],
+            ['VPN Unlimited', 'https://www.vpnunlimited.com/stop-russian-aggression', false, false, false, 'Річна підписка для України'],
+            ['ProtonVPN', 'https://protonvpn.com/ua/', true, true, true, ''],
+        ]
+    },
     share: {
         timer: 'На Землі путін прожив вже {darknessPeriod} днів.',
         stop: 'Зупинити таймер',
