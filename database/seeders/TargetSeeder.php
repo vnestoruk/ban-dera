@@ -685,7 +685,8 @@ class TargetSeeder extends Seeder
         'https://stopnazi.xyz',
         'https://www.russianhighways.ru',
         'https://www.nlmk.com',
-        'https://gtrklnr.com'
+        'https://gtrklnr.com',
+        'https://tr.sputniknews.com'
     ];
 
     /**
