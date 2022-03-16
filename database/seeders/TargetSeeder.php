@@ -127,7 +127,6 @@ class TargetSeeder extends Seeder
         'http://udcs.ru',
         'http://v1.rostec.ru/',
         'http://vostok-trans.com',
-        'http://wikimapia.org',
         'http://woori.ru',
         'http://www.024.by',
         'http://www.131.ru',
