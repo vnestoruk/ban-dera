@@ -204,7 +204,6 @@ class TargetSeeder extends Seeder
         'https://sevastopol.su',
         'https://vesti-k.ru',
         'https://www.sobyanin.ru',
-        'http://wikimapia.org',
         'http://sber.ru',
         'http://185.157.96.130',
         'http://profile.sber.ru',
@@ -685,7 +684,9 @@ class TargetSeeder extends Seeder
         'https://stopnazi.xyz',
         'https://www.russianhighways.ru',
         'https://www.nlmk.com',
-        'https://gtrklnr.com'
+        'https://gtrklnr.com',
+        'https://koronapay.com',
+        'https://api.koronapay.com'
     ];
 
     /**
