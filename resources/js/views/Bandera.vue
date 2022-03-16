@@ -88,6 +88,7 @@
             <table>
                 <thead>
                 <tr>
+                    <td></td>
                     <td>{{ $t('table.url') }}</td>
                     <td class="text-end pe-3">{{ $t('table.requests') }}</td>
                     <td class="text-end">{{ $t('table.actions') }}</td>
@@ -95,6 +96,9 @@
                 </thead>
                 <tbody id="bandera">
                 <tr v-for="(b, index) in queue" :key="index">
+                    <td>
+                        <a href="javascript:void(0)" @click="pinTarget(b)" class="me-2" :class="{ 'text-danger' : b.pinned }" :title="$t('replace')"><i class="bi" :class="b.pinned ? 'bi-pin' : 'bi-pin-angle'"></i></a>
+                    </td>
                     <td :class="{ 'text-warning' : b.requests.strike > 50, 'text-danger': b.requests.strike > 100 }">{{ b.target.url }}</td>
                     <td class="text-end pe-3">
                         <span class="d-none d-md-inline"><i class="bi bi-check-circle me-2 text-success"></i>{{ b.requests.success }} /</span>
@@ -205,7 +209,7 @@ export default {
             this.timer = setInterval(() => {
                 console.clear();
                 this.queue.filter(i => {
-                    if (i.requests.strike > 150) return this.replaceTarget(i);
+                    if (!i.pinned && i.requests.strike > 150) return this.replaceTarget(i);
                     i.run();
                 });
 
@@ -238,6 +242,10 @@ export default {
         async replaceTarget(obj) {
             this.queue.splice(this.queue.findIndex(item => item.target.id === obj.target.id), 1);
             this.getRandomTargets(1, [], obj.target.id);
+        },
+        pinTarget(obj) {
+            let item = this.queue.find(item => item.target.id === obj.target.id);
+            item.pinned = !item.pinned;
         },
         addToBlackList(obj) {
             this.blackList.push(obj);

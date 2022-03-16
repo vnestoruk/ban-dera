@@ -1,4 +1,5 @@
 class Bandera {
+    pinned = false;
     target = null;
     requests = {
         total: 0,
