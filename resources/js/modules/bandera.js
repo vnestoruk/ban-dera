@@ -41,7 +41,18 @@ class Bandera {
     }
 
     getRandomParam() {
-        return '/?' + Math.random().toString(36).slice(2) + '=' + Math.random() * 1000;
+        return '/?' + this.getRandomString() + '=' + this.getRandomString();
+    }
+
+    getRandomString(minLen = 3, maxLen = 25) {
+        const chars = 'abcdefghijklmnopqrstuvwxyz';
+        const len = Math.floor(Math.random() * (maxLen - minLen + 1)) + minLen;
+
+        let str = '';
+        for (let i = 0; i < len; i++) {
+            str += chars.charAt(Math.floor(Math.random() * chars.length));
+        }
+        return str;
     }
 }
 
