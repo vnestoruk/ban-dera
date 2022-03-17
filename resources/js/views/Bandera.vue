@@ -228,9 +228,9 @@ export default {
             let source = this.targets;
             let selectedTarget = source.sort(() => 0.5 - Math.random()).slice(0, 1)[0];
             if (
-                (typeof targets.find(item => item.id === selectedTarget.id) === 'undefined') ||
-                (typeof this.blackList.find(item => item.id === selectedTarget.id) === 'undefined') ||
-                (typeof this.queue.find(item => item.target.id === selectedTarget.id) === 'undefined') ||
+                (typeof targets.find(item => item.id === selectedTarget.id) === 'undefined') &&
+                (typeof this.blackList.find(item => item.id === selectedTarget.id) === 'undefined') &&
+                (typeof this.queue.find(item => item.target.id === selectedTarget.id) === 'undefined') &&
                 (excludeId !== null && excludeId === selectedTarget.id)
             ) {
                 targets.push(selectedTarget);
