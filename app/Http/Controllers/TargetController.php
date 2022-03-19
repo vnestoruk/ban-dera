@@ -10,12 +10,13 @@ class TargetController extends Controller
 {
     public function index()
     {
-        return TargetResource::collection(Target::all());
-    }
-
-    public function replace()
-    {
-        return TargetResource::make(Target::inRandomOrder()->limit(1)->get());
+        $targets = Target::availableFrom(request()->input('location_iso'))->get();
+        return response()->json([
+            'total' => Target::all()->count(),
+            'ready' => $targets->count(),
+            'data' => TargetResource::collection($targets)
+        ]);
+//        return TargetResource::collection(Target::availableFrom(request()->input('location_iso'))->get());
     }
 
 }

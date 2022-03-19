@@ -2,10 +2,9 @@
 
 namespace App\Http\Resources;
 
-use App\Models\TargetStatus;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class TargetResource extends JsonResource
+class NodeResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,12 +14,6 @@ class TargetResource extends JsonResource
      */
     public function toArray($request)
     {
-        return [
-            'id' => $this->id,
-            'url' => $this->url,
-            'is_down' => $this->is_down(),
-            'ip_address' => $this->ip_address(),
-            'available_from' => $this->available_from()
-        ];
+        return parent::toArray($request);
     }
 }

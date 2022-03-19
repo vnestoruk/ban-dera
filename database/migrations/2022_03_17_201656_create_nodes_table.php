@@ -13,12 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('targets', function (Blueprint $table) {
+        Schema::create('nodes', function (Blueprint $table) {
             $table->id();
-            $table->string('url')->unique();
-            $table->boolean('secure')->default(true);
-            $table->string('check_host_request_id')->nullable();
-            $table->timestamps();
+            $table->string('host');
+            $table->string('asn');
+            $table->string('ip_address');
+            $table->string('location_iso');
+            $table->string('location_country');
+            $table->string('location_city');
         });
     }
 
@@ -29,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('targets');
+        Schema::dropIfExists('nodes');
     }
 };

@@ -49,6 +49,25 @@
             color: var(--color-text);
         }
 
+        #preloader {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--color-bg);
+            z-index: 9999;
+            transform: translateY(-110%);
+            transition: all 0.6s cubic-bezier(0.65, 0.05, 0.36, 1);
+        }
+
+        #preloader.show {
+            transform: translateY(0);
+        }
+
         a {
             color: var(--color-text);
         }
@@ -152,18 +171,6 @@
             }
         }
     </style>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-E2JP8HENB3"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
-
-        gtag('config', 'G-E2JP8HENB3');
-    </script>
 </head>
 
 <body>

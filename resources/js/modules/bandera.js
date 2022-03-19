@@ -19,6 +19,7 @@ class Bandera {
             method: 'GET',
             mode: 'no-cors',
             cache: 'no-cache',
+            referrerPolicy: "no-referrer",
             expires: 0
         }).catch(
             (error) => {
