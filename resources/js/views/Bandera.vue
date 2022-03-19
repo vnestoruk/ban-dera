@@ -1,5 +1,6 @@
 <template>
     <div class="container">
+        <Preloader ref="preloader" />
         <div class="d-flex justify-content-between mt-3">
             <div class="d-flex form-check form-switch justify-content-center">
                 <label class="form-check-label">
@@ -24,10 +25,6 @@
         <div class="row text-center mt-3">
             <div>
                 <img src="/img/ban-dera-logo.svg" alt="" style="max-width: 120px">
-<!--                <svg xmlns="http://www.w3.org/2000/svg" width="120px" height="80px" class="m-auto">-->
-<!--                    <rect width="120" height="80" fill="#005BBB"/>-->
-<!--                    <rect width="120" height="40" y="40" fill="#FFD500"/>-->
-<!--                </svg>-->
             </div>
             <h1>{{ $t('app.title') }}</h1>
             <p v-html="$t('app.subtitle')"></p>
@@ -146,10 +143,13 @@ import SupportProjectModal from "./modal/SupportProjectModal";
 import InfoModal from "./modal/InfoModal";
 import CopyToClipboard from "./elements/CopyToClipboard";
 import VPNServicesModal from "./modal/VPNServicesModal";
+import Preloader from "./elements/Preloader";
 
 export default {
     name: "Bandera",
-    components: {VPNServicesModal, CopyToClipboard, InfoModal, SupportProjectModal, HelpArmyModal, TargetListOffcanvas},
+    components: {
+        Preloader,
+        VPNServicesModal, CopyToClipboard, InfoModal, SupportProjectModal, HelpArmyModal, TargetListOffcanvas},
     data() {
         return {
             timer: null,
@@ -189,6 +189,7 @@ export default {
             (response) => {
                 this.targets = response.data;
                 this.start();
+                this.$refs.preloader.close();
             }
         );
 
