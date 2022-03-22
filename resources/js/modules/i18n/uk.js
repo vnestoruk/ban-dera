@@ -40,6 +40,7 @@ export default {
             ['Freedome Secure', 'https://onlineshop.f-secure.com/789/purl-free-freedome-for-ukraine', false, false, true, 'Безкоштовно 6 місяців для України'],
             ['VPN Unlimited', 'https://www.vpnunlimited.com/stop-russian-aggression', false, false, false, 'Річна підписка для України'],
             ['ProtonVPN', 'https://protonvpn.com/ua/', true, true, true, ''],
+            ['DewVPN', 'https://www.dewvpn.com/', true, true, true, 'Безкоштовний та безлімітний для некомерційного використання'],
         ]
     },
     share: {
