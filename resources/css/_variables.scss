@@ -1,0 +1,18 @@
+$pure-white: #ffffff;
+$muted-gray: #666666;
+$nightly-dark: #00050a;
+$ukrainian-blue: #005bbb;
+$ukrainian-yellow: #ffd500;
+$hacker-green: #5cd700;
+$russian-shit: #d46e00;
+$russian-blood: #d20000;
+
+$theme-colors: (
+    "primary":  $ukrainian-blue,
+    "secondary":$ukrainian-yellow,
+    "warning":  $russian-shit,
+    "danger":   $russian-blood,
+    "grey":     $muted-gray,
+    "light":    $pure-white,
+    "dark":     $nightly-dark
+)

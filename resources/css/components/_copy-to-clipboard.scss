@@ -1,0 +1,20 @@
+.copy-to-clipboard {
+    position: relative;
+
+    .copy-btn {
+        position: absolute;
+        display: block;
+        top: 0;
+        left: 0;
+        transform: translateY(35px);
+        transition: all 0.4s ease-in-out;
+        opacity: 0;
+    }
+
+    &:hover .copy-btn,
+    &:active .copy-btn {
+
+        transform: translateY(-35px);
+        opacity: 1;
+    }
+}

@@ -1,7 +1,7 @@
 <template>
     <div class="d-inline">
         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#supportProjectModal">
+        <button type="button" class="btn btn-sm btn-secondary" data-bs-toggle="modal" data-bs-target="#supportProjectModal">
             <i class="bi bi-heart me-2"></i>{{ $t('donation.support.button') }}
         </button>
 
@@ -62,6 +62,17 @@ import CopyToClipboard from "../elements/CopyToClipboard";
 export default {
     name: "SupportProjectModal",
     components: {CopyToClipboard, QrcodeVue },
+    mounted() {
+        PayPal.Donation.Button({
+            env:'production',
+            hosted_button_id:'8KSAFMDP25PY4',
+            image: {
+                src:'https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif',
+                alt:'Donate with PayPal button',
+                title:'PayPal - The safer, easier way to pay online!',
+            }
+        }).render('#donate-button');
+    },
     methods: {
         copyBitcoin() {
             this.$refs.bitcoin.focus();

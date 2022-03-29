@@ -22,6 +22,7 @@ Here is exactly how this script works:
 - Change the number of simultaneously attacked targets.
 - Change the speed of requests.
 - Manually remove website from attack list.
+- Pin target.
 
 ## Deploying project on your server
 
@@ -36,6 +37,10 @@ path/to/your/repo> composer install
 ```
 4) Make copy of .env.example file and save it without .example extension.
 5) Change APP_URL with your webserver endpoint.
+6) Set APP_SECRET key to use it later in your cron task to call ```check-host``` API endpoint.
+```
+curl --header "X-App-Secret: {your_app_secret_here}" {your_route_here}
+```
 6) Set the key that Laravel will use when doing encryption.
 ```shell
 php artisan key:generate

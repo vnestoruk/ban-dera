@@ -2,10 +2,23 @@ export default {
     locale: 'Español',
     app: {
         title: 'Ban-DERA',
-        subtitle: '<strong>BAN</strong> <strong>D</strong>igital <strong>E</strong>nvironment for <strong>R</strong>ussian <strong>A</strong>ssets'
+        subtitle: '<strong>BAN</strong> <strong>D</strong>igital <strong>E</strong>nvironment for <strong>R</strong>ussian <strong>A</strong>ssets',
+        version: {
+            code: '2.0',
+            title: 'Chornobaivka'
+        }
     },
-    targets: 'Número de webs objetivo',
-    showTargets: 'Mostrar lista',
+    statusPanel: {
+        title: 'Panel de estado',
+        data: {
+            ip: 'IP',
+            country: 'País',
+            totalTargets: 'Objetivos totales',
+            activeTargets: 'Disponible',
+            maxTargets: 'Máx. numero de objetivos',
+            attackSpeed: 'Velocidad de ataque'
+        }
+    },
     donation: {
         army: {
             button: 'Ayuda al ejército Ucraniano',
@@ -22,67 +35,69 @@ export default {
         title: 'Info',
         content: '<p>DoS-attack (Denial-of-service) - uno de los métodos más comunes de ataque, satura el servidor objetivo con un gran número de peticiones externas. (intentos de cargar la página web)</p>' +
             '<p>Un número infinito de peticiones se enviarán desde tu ordenador a las webs rusas, para que se vayan al mismo sitio donde se fué el buque de guerra ruso. Simplemente deja el script corriendo. Si uno de los sitios web se define como "dropped" (caído) -  será remplazado por otro sitio web, esto quiere decir que el ataque desde tu ordenador será ininterrumpido.</p>' +
-            '<p><strong>AVISO!</strong> Debido a que este script ejecuta un gran número de peticiones en un corto periodo de tiempo, ejecutarlo puede hacer que tu ordenador se ralentize y usar mucho tráfico. No se recomienda usarlo desde redes móviles, donde el tráfico normalmente está limitado.</p>' +
-            '<p class="fst-italic">Esta web es de código abierto(<a href="https://github.com/vnestoruk/ban-dera" target="_blank">Mostrar en GitHub</a>). Únete al equipo de desarrollo o únete al <a target="_blank" href="https://t.me/ban_dera_com">grupo de Telegram</a>, comparte ideas y mantente al tanto de las actualizaciones.</p>',
+            '<p><strong>AVISO!</strong> Debido a que este script ejecuta un gran número de peticiones en un corto periodo de tiempo, ejecutarlo puede hacer que tu ordenador se ralentize y usar mucho tráfico. No se recomienda usarlo desde redes móviles, donde el tráfico normalmente está limitado.</p>'
+    },
+    statusInfo: {
+        title: 'About the effectiveness of the attack',
+        content: '<p>The availability of the site is its ability to respond to requests. To ensure fast work with web pages, often the same site is located on many servers in different places and countries. Sometimes the website stops working in one country but is fully working in others.</p>' +
+            '<p>Ban-DERA has compiled one of the largest databases of target sites among similar services. But we went further and added the ability to check the availability of each target from 21 data centers in 18 countries.</p>' +
+            '<p><strong>For example:</strong> If you use a VPN with a server in Germany, you will only be offered targets that are still available from Germany.</p>'
     },
     vpnServices: {
-        title: 'Some VPN services',
+        title: 'Servicios VPN',
         table: {
             title: 'VPN Service',
             hasRussiaServers: 'Servers in russia',
             isFree: 'Has free plan',
             demo: 'Has demo/test period',
-            description: 'Additional'
+            description: 'Features'
         },
         services: [
             ['Hotspot Shield', 'https://www.hotspotshield.com/', true, true, true, ''],
             ['ClearVPN', 'https://clearvpn.com/', true, true, true, 'Free for Ukraine'],
-            ['urbanVPN', 'https://www.urban-vpn.com/', true, true, true, ''],
+            ['UrbanVPN', 'https://www.urban-vpn.com/', true, true, true, ''],
             ['Freedome Secure', 'https://onlineshop.f-secure.com/789/purl-free-freedome-for-ukraine', false, false, true, 'Free 6 months for Ukraine'],
             ['VPN Unlimited', 'https://www.vpnunlimited.com/stop-russian-aggression', false, false, false, 'Free 1 year for Ukraine'],
             ['ProtonVPN', 'https://protonvpn.com/ua/', true, true, true, ''],
         ]
     },
     share: {
-        timer: 'It is {darknessPeriod} days since putin live on Earth.',
-        stop: 'Stop timer',
-        title: 'Share link'
+        timer: 'Han pasado {darknessPeriod} días desde que putin vive en la Tierra.',
+        stop: 'Detener el temporizador',
+        title: 'Compartir enlace'
     },
     table: {
         url: 'URL (Dirección web)',
         requests: 'Peticiones',
         actions: 'Acciones'
     },
+    start: 'Comienzo',
+    stop: 'Detener',
     copy: 'Copiar',
     replace: 'Remplazar',
     open: 'Dirección web',
     blackList: 'Eliminar',
     night: 'Modo nocturno',
+    loading: 'Cargando',
     search: 'Busca...',
     filter: 'Filtrado',
     settings: 'Ajustes',
-    attackSpeed: {
-        label: 'Velocidad de ataque',
-        options: [
-            'Espada (1 peticion/segundo)',
-            'Cocktail Molotov  (5 peticiones/segundo)',
-            'Pistola (10 peticiones/segundo)',
-            'Metralleta (20 peticiones/segundo)',
-            'Tanque (50 peticiones/segundo)',
-            'Dron de combate (100 peticiones/segundo)',
-        ]
+    units: {
+        target: '{n} página web | {n} páginas web',
+        request: '{n} peticion/s | {n} peticiones/s'
     },
-    maxTargets: {
-        label: 'Máximo numero de objetivos',
-        options: [
-            '1 página web',
-            '5 páginas web',
-            '10 páginas web',
-            '20 páginas web',
-            '30 páginas web',
-            '50 páginas web',
-            '75 páginas web',
-            '100 páginas web'
-        ]
+    notification: {
+        title: {
+            success: 'Éxito',
+            warning: 'Advertencia',
+            error: 'Error'
+        },
+        text: {
+            error: {
+                'unknown': 'Have no idea what\'s going on. Try to refresh the page.',
+                '429': 'Too many requests! Cool down, and try again in a minute.',
+                '500': 'Internal server error.'
+            }
+        }
     }
 }
