@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CheckHostController;
 use App\Http\Controllers\TargetController;
+use App\Http\Middleware\SecureAccess;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,7 +16,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-/* Put CheckHostController route here... This route will be hidden for security reasons */
 
 Route::get('/targets', [TargetController::class, 'index']);
-Route::get('/target/replace', [TargetController::class, 'replace']);
+
+/*
+ * Set APP_SECRET key in .env file and use it in your cron task to call this route securely
+ * e.g. curl --header "X-App-Secret: {your_app_secret_here}" {your_route_here}
+ */
+Route::get('/target/check-hosts', CheckHostController::class)->middleware([SecureAccess::class]);

@@ -18,9 +18,7 @@ class TargetResource extends JsonResource
         return [
             'id' => $this->id,
             'url' => $this->url,
-            'is_down' => $this->is_down(),
-            'ip_address' => $this->ip_address(),
-            'available_from' => $this->available_from()
+            'is_down' => $this->is_down()
         ];
     }
 }

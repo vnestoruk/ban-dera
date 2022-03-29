@@ -1,0 +1,20 @@
+.tooltip {
+    .tooltip-inner {
+        color: var(--color-text);
+        border: 1px solid var(--color-text);
+        background-color: var(--color-bg);
+    }
+
+}
+.bs-tooltip-top .tooltip-arrow::before {
+    border-top-color: var(--color-text);
+}
+.bs-tooltip-end .tooltip-arrow::before {
+    border-right-color: var(--color-text);
+}
+.bs-tooltip-bottom .tooltip-arrow::before {
+    border-bottom-color: var(--color-text);
+}
+.bs-tooltip-start .tooltip-arrow::before {
+    border-left-color: var(--color-text);
+}

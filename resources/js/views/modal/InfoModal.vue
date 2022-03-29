@@ -1,9 +1,7 @@
 <template>
     <div class="d-inline">
         <!-- Button trigger modal -->
-        <a href="javascript:void(0);" class="btn btn-sm btn-secondary" data-bs-toggle="modal" data-bs-target="#infoModal">
-            <i class="bi bi-info-circle me-2"></i> {{ $t('info.title') }}
-        </a>
+        <i class="bi bi-info-circle me-2" data-bs-toggle="modal" data-bs-target="#infoModal" v-tooltip:top="$t('info.title')"></i>
 
         <!-- Modal -->
         <div class="modal fade" id="infoModal" tabindex="-1" aria-labelledby="infoModalLabel" aria-hidden="true">

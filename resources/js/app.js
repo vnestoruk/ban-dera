@@ -1,10 +1,14 @@
 import Vue from "vue";
 import i18n from "./modules/i18n";
-import Bandera from "./views/Bandera";
+import store from "./modules/store";
+import router from "./modules/router";
+import VueNotification from "vue-notification";
+import VueSocialSharing from "vue-social-sharing";
+import * as bootstrap from "bootstrap"
 
-Vue.filter('rate', (value) => {
-    return (!value) ? '0%' : value.toFixed(0).padStart(3, ' ') + '%';
-});
+import App from './views/App'
+
+window.bootstrap = bootstrap;
 
 Vue.directive('tooltip', function(el, binding) {
     let tooltip = new bootstrap.Tooltip(el, {
@@ -18,8 +22,13 @@ Vue.directive('tooltip', function(el, binding) {
     })
 });
 
+Vue.use(VueNotification);
+Vue.use(VueSocialSharing);
+
 new Vue({
     el: '#app',
+    store,
+    router,
     i18n,
-    render: h => h(Bandera)
+    render: h => h(App)
 })

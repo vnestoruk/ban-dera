@@ -20,4 +20,18 @@ class Node extends Model
         'location_city'
     ];
 
+    public function status()
+    {
+        return $this->hasMany(TargetStatus::class);
+    }
+
+    public function available_targets(): int
+    {
+        return $this
+            ->status()
+            ->where('error', '=', false)
+            ->groupBy('node_id')
+            ->count();
+    }
+
 }

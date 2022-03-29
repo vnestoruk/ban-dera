@@ -56,6 +56,13 @@ class Target extends Model
             ->pluck('node.location_country', 'node.location_iso');
     }
 
+    public function scopeAvailable($query)
+    {
+        return $query->whereHas('status', function(Builder $query) {
+            $query->where('error', '=', false);
+        });
+    }
+
     public function scopeAvailableFrom($query, $locationISO = null)
     {
         if (is_null($locationISO)) return $query;
@@ -67,7 +74,6 @@ class Target extends Model
                         ->where('location_iso', '=', $locationISO);
                 });
         });
-
     }
 
 }
