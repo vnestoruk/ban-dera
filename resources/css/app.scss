@@ -1,0 +1,129 @@
+@import url('https://fonts.googleapis.com/css2?family=Anonymous+Pro&display=swap');
+
+@import "variables";
+
+@import "~bootstrap/scss/bootstrap";
+@import "~bootstrap-icons";
+
+@import "components/index";
+
+:root {
+    --color-bg: #{$pure-white};
+    --color-text: #{$ukrainian-blue};
+}
+
+body {
+    font-family: 'Anonymous Pro', monospace;
+    background: var(--color-bg);
+    color: var(--color-text);
+
+    &[data-theme="night"] {
+        --color-bg: #{$nightly-dark};
+        --color-text: #{$hacker-green};
+        --color-faded: #242424;
+    }
+
+}
+
+a {
+    color: var(--color-text);
+}
+
+.table-container {
+    overflow-x: scroll;
+    display: block;
+    padding: 10px;
+}
+
+thead {
+    font-weight: 800;
+}
+
+tr {
+    border-bottom: 1px solid #00000000;
+}
+
+tr:hover {
+    border-bottom-color: var(--color-text);
+}
+
+td {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.bandera {
+    background: var(--color-bg);
+    color: var(--color-text);
+}
+
+a.dropdown-toggle {
+    text-decoration: none;
+}
+
+.dropdown-menu {
+    background: var(--color-bg);
+    border-color: var(--color-text);
+    padding: 10px 15px;
+    margin-top: 10px !important;
+}
+
+body[data-theme="night"] .offcanvas,
+body[data-theme="night"] .modal .modal-content,
+body[data-theme="night"] .form-control {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    border-color: var(--color-text);
+}
+
+.modal-backdrop.show {
+    opacity: .8;
+}
+
+body[data-theme="night"] .modal .modal-body {
+    color: var(--color-text) !important;
+}
+
+body[data-theme="night"] .modal .modal-header {
+    border-bottom: 1px solid var(--color-text);
+}
+
+body[data-theme="night"] #monobank_logo {
+    filter: invert(1);
+}
+
+body[data-theme="night"] .btn-close {
+    background-color: var(--color-text);
+}
+
+.qr-code canvas {
+    border: 10px solid #fff;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--color-bg);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--color-text);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.offcanvas {
+    width: 50%;
+}
+
+@media screen and (max-width: 768px) {
+    .offcanvas {
+        width: 100%;
+    }
+}

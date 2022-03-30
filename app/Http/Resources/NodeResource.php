@@ -14,6 +14,14 @@ class NodeResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'available_targets_count' => $this->available_targets(),
+            'location' => [
+                'iso' => $this->location_iso,
+                'country' => $this->location_country,
+                'city' => $this->location_city,
+            ]
+        ];
     }
 }

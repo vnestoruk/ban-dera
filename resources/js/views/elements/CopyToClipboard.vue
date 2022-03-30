@@ -1,7 +1,9 @@
 <template>
-    <div>
+    <div class="copy-to-clipboard">
         <slot></slot>
-        <i class="bi bi-files me-2" @click="copy" :title="$t('copy')"></i>
+        <button class="btn btn-secondary btn-sm copy-btn" @click="copy">
+            <i class="bi bi-files me-2"></i>{{ $t('copy') }}
+        </button>
     </div>
 </template>
 

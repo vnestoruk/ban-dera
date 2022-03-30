@@ -1,7 +1,7 @@
 <template>
     <div class="d-inline">
         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#helpArmyModal">
+        <button type="button" class="btn btn-sm btn-secondary" data-bs-toggle="modal" data-bs-target="#helpArmyModal">
             <i class="bi bi-shield-check me-2"></i>{{ $t('donation.army.button') }}
         </button>
 
@@ -10,21 +10,22 @@
             <div class="modal-dialog modal-dialog-centered modal-xl">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="helpArmyModalLabel">{{ $t('donation.army.title') }}</h5>
+<!--                        <h5 class="modal-title" id="helpArmyModalLabel">{{ $t('donation.army.title') }}</h5>-->
+                        <div class="nav nav-pills mx-3" id="v-pills-tab" role="tablist">
+                            <button class="nav-link active" id="v-pills-uah-tab" data-bs-toggle="pill" data-bs-target="#v-pills-uah" type="button" role="tab" aria-controls="v-pills-uah" aria-selected="true">UAH</button>
+                            <button class="nav-link" id="v-pills-usd-tab" data-bs-toggle="pill" data-bs-target="#v-pills-usd" type="button" role="tab" aria-controls="v-pills-usd" aria-selected="false">USD</button>
+                            <button class="nav-link" id="v-pills-eur-tab" data-bs-toggle="pill" data-bs-target="#v-pills-eur" type="button" role="tab" aria-controls="v-pills-eur" aria-selected="false">EUR</button>
+                            <button class="nav-link" id="v-pills-gbp-tab" data-bs-toggle="pill" data-bs-target="#v-pills-gbp" type="button" role="tab" aria-controls="v-pills-gbp" aria-selected="false">GBP</button>
+                            <button class="nav-link" id="v-pills-pln-tab" data-bs-toggle="pill" data-bs-target="#v-pills-pln" type="button" role="tab" aria-controls="v-pills-pln" aria-selected="false">PLN</button>
+                        </div>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <div class="row p-3">
                             <div class="col-lg-8">
-                                <div class="d-flex align-items-start">
-                                    <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                                        <button class="nav-link active" id="v-pills-uah-tab" data-bs-toggle="pill" data-bs-target="#v-pills-uah" type="button" role="tab" aria-controls="v-pills-uah" aria-selected="true">UAH</button>
-                                        <button class="nav-link" id="v-pills-usd-tab" data-bs-toggle="pill" data-bs-target="#v-pills-usd" type="button" role="tab" aria-controls="v-pills-usd" aria-selected="false">USD</button>
-                                        <button class="nav-link" id="v-pills-eur-tab" data-bs-toggle="pill" data-bs-target="#v-pills-eur" type="button" role="tab" aria-controls="v-pills-eur" aria-selected="false">EUR</button>
-                                        <button class="nav-link" id="v-pills-gbp-tab" data-bs-toggle="pill" data-bs-target="#v-pills-gbp" type="button" role="tab" aria-controls="v-pills-gbp" aria-selected="false">GBP</button>
-                                        <button class="nav-link" id="v-pills-pln-tab" data-bs-toggle="pill" data-bs-target="#v-pills-pln" type="button" role="tab" aria-controls="v-pills-pln" aria-selected="false">PLN</button>
-                                    </div>
-                                    <div class="tab-content flex-grow-1 text-start ms-5" id="v-pills-tabContent">
+                                <div class="d-flex flex-column align-items-start">
+
+                                    <div class="tab-content flex-grow-1 text-start" id="v-pills-tabContent">
                                         <div class="tab-pane fade show active" id="v-pills-uah" role="tabpanel" aria-labelledby="v-pills-uah-tab">
                                             <CopyToClipboard>
                                                 <p>

@@ -3,20 +3,30 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\TargetResource;
+use App\Models\Node;
 use App\Models\Target;
-use Illuminate\Http\Request;
+use Stevebauman\Location\Facades\Location;
 
 class TargetController extends Controller
 {
+
     public function index()
     {
-        $targets = Target::availableFrom(request()->input('location_iso'))->get();
+        $location = Location::get(request()->ip());
+        if ($location && Node::where('location_iso', '=', $location->countryCode)->exists()) {
+            $targets = Target::available()->availableFrom($location->countryCode)->get();
+        } else {
+            $targets = Target::available()->get();
+        }
+
         return response()->json([
-            'total' => Target::all()->count(),
-            'ready' => $targets->count(),
+            'location' => $location,
+            'status' => [
+                'total' => Target::all()->count(),
+                'alive' => Target::available()->count()
+            ],
             'data' => TargetResource::collection($targets)
         ]);
-//        return TargetResource::collection(Target::availableFrom(request()->input('location_iso'))->get());
     }
 
 }

@@ -1,7 +1,7 @@
 <template>
     <div class="d-inline">
         <!-- Button trigger modal -->
-        <a href="javascript:void(0);" class="btn btn-sm btn-secondary" data-bs-toggle="modal" data-bs-target="#vpnServicesModal">
+        <a href="javascript:void(0);" class="btn btn-sm btn-grey" data-bs-toggle="modal" data-bs-target="#vpnServicesModal">
             <i class="bi bi-info-circle me-2"></i> {{ $t('vpnServices.title') }}
         </a>
 
