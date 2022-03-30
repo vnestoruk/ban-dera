@@ -1,0 +1,28 @@
+.card {
+    background-color: var(--color-bg);
+    border: 1px solid var(--color-text);
+
+    .card-header {
+        border-bottom: 1px solid var(--color-text);
+    }
+}
+
+.status-panel {
+    flex-grow: 1;
+
+    .card-body {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        justify-content: center;
+
+        .status-item {
+            display: flex;
+            justify-content: space-between;
+
+            span:first-child {
+                font-weight: 700;
+            }
+        }
+    }
+}

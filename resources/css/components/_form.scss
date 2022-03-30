@@ -1,0 +1,11 @@
+.form-select {
+    width: auto;
+    text-align: end;
+    padding: 0 1.5rem 0 0;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    border: none;
+    box-shadow: none;
+    background-image: escape-svg(url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path fill='none' stroke='#{$ukrainian-yellow}' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/></svg>"));
+    background-position: right 0 center;
+}

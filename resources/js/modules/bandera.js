@@ -1,4 +1,8 @@
 class Bandera {
+
+    static _attackSpeed = [1, 5, 10, 20, 50, 100];
+    static _maxTargets = [5, 10, 20, 30, 50, 75, 100];
+
     pinned = false;
     target = null;
     requests = {
@@ -7,7 +11,6 @@ class Bandera {
         failed: 0,
         strike: 0
     };
-    lastCode = null;
 
     constructor(target) {
         this.target = target;
@@ -36,7 +39,6 @@ class Bandera {
                     this.requests.strike = 0;
                 }
                 this.requests.total++;
-                this.lastCode = response.status;
             }
         );
     }
