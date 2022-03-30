@@ -5,9 +5,20 @@ namespace App\Http\Controllers;
 use App\Models\Node;
 use App\Models\Target;
 use App\Models\TargetStatus;
+use App\Http\Controllers\CurlController as CURL;
 
 class CheckHostController extends Controller
 {
+    /**
+     * Links to check host service
+     *
+     * @var array
+     */
+    public array $HOST_CHECK_ENDPOINT = [
+        'http' => 'http://check-host.net/check-http?host=',
+        'result' => 'http://check-host.net/check-result/',
+    ];
+
 
     public function __invoke()
     {
@@ -20,30 +31,32 @@ class CheckHostController extends Controller
         ]);
     }
 
-    /**
-     * @return mixed|null
-     */
-    public function makeCheckHttpRequest() {
-
-        $target = Target::whereNull('check_host_request_id')->orderBy('updated_at', 'asc')->first();
+    protected function makeCheckHttpRequest()
+    {
+        $target = Target::whereNull('check_host_request_id')
+            ->orderBy('updated_at', 'asc')
+            ->first();
 
         if (is_null($target)) return null;
 
-        $response = $this->curlRequest('https://check-host.net/check-http?host='.$target->url.'/');
-
+        $curl = new CURL;
+        $response = $curl->getJSON($this->HOST_CHECK_ENDPOINT['http'] . $target->url . '/');
         $target->check_host_request_id = $response->{'request_id'};
-        $target->save();
 
-        return $response;
+        $target->save();
+        return $response->{'request_id'};
     }
 
-    public function makeCheckResultRequest() {
-
-        $target = Target::whereNotNull('check_host_request_id')->orderBy('updated_at', 'desc')->first();
+    protected function makeCheckResultRequest()
+    {
+        $target = Target::whereNotNull('check_host_request_id')
+            ->orderBy('updated_at', 'desc')
+            ->first();
 
         if (is_null($target)) return null;
 
-        $response = $this->curlRequest('https://check-host.net/check-result/'.$target->check_host_request_id);
+        $curl = new CURL;
+        $response = $curl->getJSON($this->HOST_CHECK_ENDPOINT['result'] . $target->check_host_request_id);
 
         $target->check_host_request_id = null;
         $target->status()->delete();
@@ -64,31 +77,6 @@ class CheckHostController extends Controller
         }
 
         $target->save();
-
-        return $response;
+        return $data ?? [];
     }
-
-    protected function curlRequest($url)
-    {
-        $curl = curl_init();
-        curl_setopt_array($curl, array(
-            CURLOPT_URL => $url,
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => '',
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 20,
-            CURLOPT_FOLLOWLOCATION => true,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => 'GET',
-            CURLOPT_HTTPHEADER => array(
-                'Accept: application/json'
-            ),
-        ));
-
-        $response = json_decode(curl_exec($curl));
-        curl_close($curl);
-
-        return $response;
-    }
-
 }
