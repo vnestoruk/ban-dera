@@ -134,7 +134,7 @@ export default {
     mounted() {
         this.queue.length = 0;
         this.getTargets().then(() => {
-            // this.start();
+            this.start();
         });
     },
     methods: {

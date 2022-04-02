@@ -8,6 +8,7 @@
             <li><a href="javascript:void(0);" @click="setLocale('uk')">Українська</a></li>
             <li><a href="javascript:void(0);" @click="setLocale('en')">English</a></li>
             <li><a href="javascript:void(0);" @click="setLocale('es')">Español</a></li>
+            <li><a href="javascript:void(0);" @click="setLocale('pl')">Polski</a></li>
         </ul>
     </div>
 </template>
