@@ -3,6 +3,7 @@ import VueI18n from "vue-i18n";
 import store from '../store'
 import uk from "./uk"
 import en from "./en"
+import fr from "./fr"
 import es from "./es"
 import pl from "./pl"
 
@@ -10,7 +11,7 @@ const DEFAULT_LOCALE = 'uk';
 
 Vue.use(VueI18n);
 
-const messages = {uk, en, es, pl}
+const messages = {uk, en, fr, es, pl}
 
 export function getLocale() {
     let sl = store.getters['app/locale'];

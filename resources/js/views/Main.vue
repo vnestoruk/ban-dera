@@ -5,7 +5,7 @@
             <div class="col-lg-6 d-flex align-items-center flex-column justify-content-center">
                 <img src="/img/ban-dera-logo.svg" alt="" style="max-width: 120px">
                 <h1>{{ $t('app.title') }}</h1>
-                <small>v.{{ $t('app.version.code') }} «{{ $t('app.version.title') }}»</small>
+                <small>v.2.0.1 «{{ $t('app.versionTitle') }}»</small>
 <!--                <p v-html="$t('app.subtitle')"></p>-->
                 <div class="d-flex flex-wrap justify-content-center gap-3 m-2">
                     <button class="btn btn-primary btn-lg my-2" :disabled="this.isRunning" @click="start()">

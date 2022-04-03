@@ -3,10 +3,7 @@ export default {
     app: {
         title: 'Ban-DERA',
         subtitle: '<strong>BAN</strong> <strong>D</strong>igital <strong>E</strong>nvironment for <strong>R</strong>ussian <strong>A</strong>ssets',
-        version: {
-            code: '2.0',
-            title: 'Chornobaivka'
-        }
+        versionTitle: 'Chornobaivka'
     },
     statusPanel: {
         title: 'Status panel',

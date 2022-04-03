@@ -3,10 +3,7 @@ export default {
     app: {
         title: 'Ban-DERA',
         subtitle: '<strong>BAN</strong> <strong>D</strong>igital <strong>E</strong>nvironment for <strong>R</strong>ussian <strong>A</strong>ssets',
-        version: {
-            code: '2.0',
-            title: 'Чорнобаївка'
-        }
+        versionTitle: 'Chornobaivka'
     },
     statusPanel: {
         title: 'Panel informacji',
@@ -38,8 +35,7 @@ export default {
     },
     statusInfo: {
         title: 'Про ефективність атаки',
-        content: '<p>Доступність сайту - це його можливість відповідати на запити. Для забезпечення швидкої роботи з веб-сторінками часто один і той же сайт знаходиться на багатьох серверах у різних точках світу. Інколи сайт припиняє свою роботу в певній країні, проте повністю функціонує в інших.</p>' +
-            '<p>Ban-DERA ma jedna z największych bazę stron spośród podobnych serwisów. I do tego wszystkieg zrobiliśmy mozliwosc sprawdzic dostepnosc każdej z celów z 21 różnych Centrum danych 18-tu krajów!</p>' +
+        content: '<p>Ban-DERA ma jedna z największych bazę stron spośród podobnych serwisów. I do tego wszystkieg zrobiliśmy mozliwosc sprawdzic dostepnosc każdej z celów z 21 różnych Centrum danych 18-tu krajów!</p>' +
             '<p><strong>Przykladowo:</strong> Jezeli uzywamy VPN z serwerem w Niemczech, będą proponowane tylko te strony które sa dostepne z Niemiec.</p>'
     },
     vpnServices: {
@@ -61,8 +57,8 @@ export default {
         ]
     },
     share: {
-        timer: 'SKURWYSYN PUTIN żyje już {darknessPeriod} dni.',
-        stop: 'ZAJEBAĆ KURWĘ',
+        timer: 'Skurwysyn putin żyje już {darknessPeriod} dni.',
+        stop: 'Zajebać kurwę',
         title: 'Udostępnij'
     },
     table: {

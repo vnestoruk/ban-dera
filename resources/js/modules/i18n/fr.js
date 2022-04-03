@@ -1,12 +1,9 @@
 export default {
-    locale: 'French',
+    locale: 'Français',
     app: {
         title: 'Ban-DERA',
         subtitle: '<strong>BAN</strong> <strong>D</strong>igital <strong>E</strong>nvironment for <strong>R</strong>ussian <strong>A</strong>ssets (BANNIR les Moyens Numériques des Actifs Russes)',
-        version: {
-            code: '2.0',
-            title: 'Chornobaivka'
-        }
+        versionTitle: 'Chornobaivka'
     },
     statusPanel: {
         title: 'Résumé',
@@ -94,7 +91,7 @@ export default {
         },
         text: {
             error: {
-                'Inconnue': 'Je n\'ai AUCUNE IDÉE de ce qu\'il s\'est passé, essaie de recharger la page !',
+                'unknown': 'Je n\'ai AUCUNE IDÉE de ce qu\'il s\'est passé, essaie de recharger la page !',
                 '429': 'Trop de requêtes ! Va te faire un café et reviens d\'ici quelques minutes :)',
                 '500': 'Erreur interne du serveur, ce n\'est pas de ta faute, tkt.'
             }
