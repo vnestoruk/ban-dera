@@ -38,7 +38,7 @@ export default {
     components: {CopyToClipboard},
     computed: {
         darknessPeriod() {
-            let badDay = new Date('07-10-1952');
+            let badDay = new Date('1952-10-07T00:00:00');
             return ((new Date() - badDay) / (1000*60*60*24)).toFixed(0);
         }
     }
