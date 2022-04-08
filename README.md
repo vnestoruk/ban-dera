@@ -7,7 +7,7 @@
 
 On Feb 24, 2022 at 4:00 (GMT +2, Kyiv) Russia has launched a devastating attack on Ukraine, a European democracy of 44 million people, bombarding its cities.
 
-That's why we create ban-dera.com. It is a website for running continuous russian websites dos-attack. It is our cyber-response for Russia invasion.
+That's why we create ban-dera.com. It is a website for running continuous russian websites stress-test.
 
 ## How to use website?
 
