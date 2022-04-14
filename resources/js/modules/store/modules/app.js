@@ -3,6 +3,7 @@ import request from "../../request";
 const state = {
     locale: null,
     nightMode: null,
+    autostart: false,
     interval: 100,
     maxTargets: 10,
     targets: [],
@@ -37,6 +38,9 @@ const mutations = {
     SET_THEME: (state, nightMode) => {
         state.nightMode = nightMode;
     },
+    SET_AUTOSTART: (state, autostart) => {
+        state.autostart = autostart;
+    },
     SET_INTERVAL: (state, interval) => {
         state.interval = interval;
     },
@@ -57,6 +61,7 @@ const mutations = {
 const getters = {
     locale: (state) => state.locale,
     nightMode: (state) => state.nightMode,
+    autostart: (state) => state.autostart,
     interval: (state) => state.interval,
     maxTargets: (state) => state.maxTargets,
     targets: (state) => state.targets,

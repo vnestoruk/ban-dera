@@ -33,6 +33,10 @@ export default {
         if (typeof this.$route.query.max !== 'undefined' && Bandera._maxTargets.includes(parseInt(this.$route.query.max))) {
             this.$store.commit('app/SET_MAX_TARGETS', parseInt(this.$route.query.max))
         }
+
+        if (typeof this.$route.query.autostart !== 'undefined') {
+            this.$store.commit('app/SET_AUTOSTART', this.$route.query.autostart === 'true')
+        }
     },
 }
 </script>

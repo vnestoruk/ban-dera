@@ -118,7 +118,7 @@ export default {
         }
     },
     computed: {
-        ...mapGetters('app', ['location', 'status', 'targets', 'blackList', 'maxTargets', 'interval']),
+        ...mapGetters('app', ['autostart', 'location', 'status', 'targets', 'blackList', 'maxTargets', 'interval']),
         isRunning() {
             return this.queue.length > 0;
         }
@@ -134,7 +134,9 @@ export default {
     mounted() {
         this.queue.length = 0;
         this.getTargets().then(() => {
-            this.start();
+            if (this.autostart) {
+                this.start();
+            }
         });
     },
     methods: {
