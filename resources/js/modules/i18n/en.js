@@ -61,7 +61,11 @@ export default {
     share: {
         timer: 'It has been {darknessPeriod} days since putin lives on Earth.',
         stop: 'Stop timer',
-        title: 'Share link'
+        title: 'Share link',
+        content: {
+            title: 'Join the IT army on the digital front!',
+            description: 'Each of you has the opportunity to join the IT troops of Ukraine and support the offensive operation on rashists web resources together with #ban-dera. Follow the link!'
+        }
     },
     table: {
         url: 'URL',

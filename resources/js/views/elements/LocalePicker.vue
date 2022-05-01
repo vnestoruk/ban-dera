@@ -15,8 +15,24 @@
 </template>
 
 <script>
+import {mapGetters} from "vuex";
+
 export default {
     name: "LocalePicker",
+    data() {
+        return {
+            flags: {
+                uk: 'ua',
+                en: 'gb',
+                fr: 'fr',
+                es: 'es',
+                pl: 'pl'
+            }
+        }
+    },
+    computed: {
+        ...mapGetters('app', ['locale'])
+    },
     methods: {
         setLocale(locale) {
             this.$store.commit('app/SET_LOCALE', locale);

@@ -61,7 +61,11 @@ export default {
     share: {
         timer: 'Han pasado {darknessPeriod} días desde que putin vive en la Tierra.',
         stop: 'Detener el temporizador',
-        title: 'Compartir enlace'
+        title: 'Compartir enlace',
+        content: {
+            title: 'Únase al ejército de TI en el frente digital',
+            description: 'Cada uno de ustedes tiene la oportunidad de unirse a las tropas de TI de Ucrania y apoyar la operación ofensiva en los recursos web rusos junto con #ban-dera. ¡Sigue el link!'
+        }
     },
     table: {
         url: 'URL (Dirección web)',

@@ -10,8 +10,11 @@
 
     <title>Ban-DERA</title>
 
-{{--    <link rel="preconnect" href="https://fonts.googleapis.com">--}}
-{{--    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>--}}
+    <script>
+        window.ban_dera = {
+            version: "{{ config('app.version') }}"
+        }
+    </script>
 
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 

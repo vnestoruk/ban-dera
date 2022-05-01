@@ -59,7 +59,11 @@ export default {
     share: {
         timer: 'Skurwysyn putin żyje już {darknessPeriod} dni.',
         stop: 'Zajebać kurwę',
-        title: 'Udostępnij'
+        title: 'Udostępnij',
+        content: {
+            title: 'Dołącz do armii IT na froncie cyfrowym!',
+            description: 'Każdy z Was ma możliwość dołączenia do oddziałów IT Ukrainy i wsparcia ofensywnej operacji na rosyjskich zasobach internetowych wraz z #ban-dera. Śledź ten link!'
+        }
     },
     table: {
         url: 'URL',

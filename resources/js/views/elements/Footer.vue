@@ -14,8 +14,8 @@
 </template>
 
 <script>
-import InfoModal from "../modal/InfoModal";
-import VPNServicesModal from "../modal/VPNServicesModal";
+import InfoModal from "../components/modal/InfoModal";
+import VPNServicesModal from "../components/modal/VPNServicesModal";
 import ShareTimer from "./ShareTimer";
 export default {
     name: "Footer",

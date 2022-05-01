@@ -1,0 +1,22 @@
+.navbar {
+
+    .navbar-toggler {
+        color: var(--color-text);
+    }
+
+    .nav-link {
+        color: var(--color-text);
+    }
+
+    @include media-breakpoint-down(lg) {
+        .navbar-collapse {
+
+            .navbar-nav {
+                align-items: center;
+                font-size: 2em;
+                text-shadow: 0 0 10px var(--color-bg);
+            }
+        }
+    }
+
+}

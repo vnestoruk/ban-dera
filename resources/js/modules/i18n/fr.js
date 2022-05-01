@@ -61,7 +61,11 @@ export default {
     share: {
         timer: 'Poutine est en vie depuis {darknessPeriod} jours, c\'est {darknessPeriod} jours de trop.',
         stop: 'Timer Stop',
-        title: 'Partager'
+        title: 'Partager',
+        content: {
+            title: 'Rejoignez l\'armée informatique sur le front numérique!',
+            description: 'Chacun de vous a la possibilité de rejoindre les troupes informatiques de l\'Ukraine et de soutenir l\'opération offensive sur les ressources Web russes avec #ban-dera. Suivez le lien !'
+        }
     },
     table: {
         url: 'URL',

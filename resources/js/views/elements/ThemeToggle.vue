@@ -1,9 +1,6 @@
 <template>
-    <div class="d-flex form-check form-switch justify-content-center">
-        <label class="form-check-label">
-            <input class="form-check-input me-2" type="checkbox" v-model="nightMode">
-            {{ $t('night') }}
-        </label>
+    <div class="theme-toggle">
+        <i class="bi" :class="nightMode ? 'bi-moon-fill' : 'bi-sun'" @click.prevent="nightMode = !nightMode"></i>
     </div>
 </template>
 

@@ -1,3 +1,9 @@
+.form-control {
+    &:focus {
+        box-shadow: 0 0 3px 0.1rem var(--color-text);
+    }
+}
+
 .form-select {
     width: auto;
     text-align: end;

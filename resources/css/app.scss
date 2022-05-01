@@ -10,6 +10,13 @@
 :root {
     --color-bg: #{$pure-white};
     --color-text: #{$ukrainian-blue};
+    --color-primary: #{$ukrainian-blue};
+    --color-secondary: #{$ukrainian-yellow};
+    --color-warning: #{$russian-shit};
+    --color-danger: #{$russian-blood};
+    --color-grey: #{$muted-gray};
+    --color-light: #{$pure-white};
+    --color-dark: #{$nightly-dark};
 }
 
 body {

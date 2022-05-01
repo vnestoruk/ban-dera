@@ -1,12 +1,9 @@
 <template>
-    <div class="container">
-
-        <div class="row m-2">
+    <div class="content-wrapper container">
+        <div class="row m-2 w-100">
             <div class="col-lg-6 d-flex align-items-center flex-column justify-content-center">
-                <img src="/img/ban-dera-logo.svg" alt="" style="max-width: 120px">
-                <h1>{{ $t('app.title') }}</h1>
-                <small>v.2.0.1 «{{ $t('app.versionTitle') }}»</small>
-<!--                <p v-html="$t('app.subtitle')"></p>-->
+                <Logo class="w-50 mb-2" />
+                <small>v.{{ appVersion }} «{{ $t('app.versionTitle') }}»</small>
                 <div class="d-flex flex-wrap justify-content-center gap-3 m-2">
                     <button class="btn btn-primary btn-lg my-2" :disabled="this.isRunning" @click="start()">
                         <i class="bi bi-play me-2"></i>{{ $t('start') }}
@@ -60,7 +57,7 @@
         </div>
 
         <!-- Main screen -->
-        <div v-if="queue.length > 0" class="row table-container mt-3 mb-5">
+        <div v-if="queue.length > 0" class="row table-container mt-3 mb-5 w-100">
             <table>
                 <thead>
                 <tr>
@@ -94,19 +91,23 @@
 </template>
 
 <script>
-import Bandera from "../modules/bandera";
-import HelpArmyModal from "./modal/HelpArmyModal";
-import SupportProjectModal from "./modal/SupportProjectModal";
-import InfoModal from "./modal/InfoModal";
-import CopyToClipboard from "./elements/CopyToClipboard";
-import VPNServicesModal from "./modal/VPNServicesModal";
+import Bandera from "../../modules/bandera";
+import HelpArmyModal from "../components/modal/HelpArmyModal";
+import SupportProjectModal from "../components/modal/SupportProjectModal";
+import InfoModal from "../components/modal/InfoModal";
+import CopyToClipboard from "../elements/CopyToClipboard";
+import VPNServicesModal from "../components/modal/VPNServicesModal";
 import {mapActions, mapGetters} from "vuex";
-import MaxTargetPicker from "./elements/MaxTargetPicker";
-import IntervalPicker from "./elements/IntervalPicker";
+import MaxTargetPicker from "../elements/MaxTargetPicker";
+import IntervalPicker from "../elements/IntervalPicker";
+import AppLayout from "../layouts/AppLayout";
+import Logo from "../elements/Logo";
 
 export default {
     name: "Main",
     components: {
+        Logo,
+        AppLayout,
         IntervalPicker,
         MaxTargetPicker, VPNServicesModal, CopyToClipboard, InfoModal, SupportProjectModal, HelpArmyModal },
     data() {
@@ -119,6 +120,9 @@ export default {
     },
     computed: {
         ...mapGetters('app', ['autostart', 'location', 'status', 'targets', 'blackList', 'maxTargets', 'interval']),
+        appVersion() {
+            return window.ban_dera.version;
+        },
         isRunning() {
             return this.queue.length > 0;
         }
@@ -138,6 +142,9 @@ export default {
                 this.start();
             }
         });
+    },
+    beforeDestroy() {
+        this.stop();
     },
     methods: {
         ...mapActions('app', [

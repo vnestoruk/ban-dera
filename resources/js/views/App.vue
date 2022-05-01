@@ -1,12 +1,10 @@
 <template>
-    <div class="container">
-        <Header />
-        <div class="content-wrapper">
-            <transition name="fade" mode="out-in">
-                <router-view></router-view>
-            </transition>
-        </div>
-        <Footer />
+    <div class="main">
+        <Header/>
+        <transition name="fade" mode="out-in">
+            <router-view></router-view>
+        </transition>
+        <Footer/>
         <notifications position="bottom right" class="m-3"/>
     </div>
 </template>
@@ -23,7 +21,7 @@ export default {
     methods: {
         ...mapActions('app', ['initTheme'])
     },
-    beforeMount() {
+    mounted() {
         this.initTheme();
 
         if (typeof this.$route.query.speed !== 'undefined' && Bandera._attackSpeed.includes(parseInt(this.$route.query.speed))) {

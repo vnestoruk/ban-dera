@@ -1,5 +1,6 @@
-@import url(https://fonts.googleapis.com/css2?family=Anonymous+Pro&display=swap);
 @charset "UTF-8";
+@import url(https://fonts.googleapis.com/css2?family=Anonymous+Pro&display=swap);
+
 /*!
  * Bootstrap v5.1.3 (https://getbootstrap.com/)
  * Copyright 2011-2021 The Bootstrap Authors
@@ -678,7 +679,7 @@ progress {
 }
 
 .col {
-  flex: 1 0 0%;
+  flex: 1 0 0;
 }
 
 .row-cols-auto > * {
@@ -887,7 +888,7 @@ progress {
 
 @media (min-width: 576px) {
   .col-sm {
-    flex: 1 0 0%;
+    flex: 1 0 0;
   }
 
   .row-cols-sm-auto > * {
@@ -1100,7 +1101,7 @@ progress {
 }
 @media (min-width: 768px) {
   .col-md {
-    flex: 1 0 0%;
+    flex: 1 0 0;
   }
 
   .row-cols-md-auto > * {
@@ -1313,7 +1314,7 @@ progress {
 }
 @media (min-width: 992px) {
   .col-lg {
-    flex: 1 0 0%;
+    flex: 1 0 0;
   }
 
   .row-cols-lg-auto > * {
@@ -1526,7 +1527,7 @@ progress {
 }
 @media (min-width: 1200px) {
   .col-xl {
-    flex: 1 0 0%;
+    flex: 1 0 0;
   }
 
   .row-cols-xl-auto > * {
@@ -1739,7 +1740,7 @@ progress {
 }
 @media (min-width: 1400px) {
   .col-xxl {
-    flex: 1 0 0%;
+    flex: 1 0 0;
   }
 
   .row-cols-xxl-auto > * {
@@ -4570,7 +4571,7 @@ textarea.form-control-lg {
     flex-flow: row wrap;
   }
   .card-group > .card {
-    flex: 1 0 0%;
+    flex: 1 0 0;
     margin-bottom: 0;
   }
   .card-group > .card + .card {
@@ -6331,15 +6332,15 @@ textarea.form-control-lg {
 
 @-webkit-keyframes placeholder-wave {
   100% {
-    -webkit-mask-position: -200% 0%;
-            mask-position: -200% 0%;
+    -webkit-mask-position: -200% 0;
+            mask-position: -200% 0;
   }
 }
 
 @keyframes placeholder-wave {
   100% {
-    -webkit-mask-position: -200% 0%;
-            mask-position: -200% 0%;
+    -webkit-mask-position: -200% 0;
+            mask-position: -200% 0;
   }
 }
 .clearfix::after {
@@ -17952,6 +17953,12 @@ textarea.form-control-lg {
   margin: auto;
 }
 
+.theme-toggle {
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+}
+
 .btn {
   transition: all 0.6s ease;
 }
@@ -18018,6 +18025,10 @@ textarea.form-control-lg {
   text-decoration: none;
 }
 
+.form-control:focus {
+  box-shadow: 0 0 3px 0.1rem var(--color-text);
+}
+
 .form-select {
   width: auto;
   text-align: end;
@@ -18038,6 +18049,20 @@ textarea.form-control-lg {
   border-color: var(--color-text);
   outline: 0;
   box-shadow: 0 0 0.25rem 0 var(--color-text);
+}
+
+.navbar .navbar-toggler {
+  color: var(--color-text);
+}
+.navbar .nav-link {
+  color: var(--color-text);
+}
+@media (max-width: 991.98px) {
+  .navbar .navbar-collapse .navbar-nav {
+    align-items: center;
+    font-size: 2em;
+    text-shadow: 0 0 10px var(--color-bg);
+  }
 }
 
 .nav-pills .nav-link {
@@ -18153,6 +18178,13 @@ textarea.form-control-lg {
 :root {
   --color-bg: #ffffff;
   --color-text: #005bbb;
+  --color-primary: #005bbb;
+  --color-secondary: #ffd500;
+  --color-warning: #d46e00;
+  --color-danger: #d20000;
+  --color-grey: #666666;
+  --color-light: #ffffff;
+  --color-dark: #00050a;
 }
 
 body {

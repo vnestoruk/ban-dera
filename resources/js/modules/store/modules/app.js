@@ -9,7 +9,8 @@ const state = {
     targets: [],
     blackList: [],
     location: {},
-    status: {}
+    status: {},
+    authenticated: null
 }
 
 const actions = {
@@ -67,7 +68,8 @@ const getters = {
     targets: (state) => state.targets,
     blackList: (state) => state.blackList,
     location: (state) => state.location,
-    status: (state) => state.status
+    status: (state) => state.status,
+    authenticated: (state) => state.authenticated
 }
 
 export default {

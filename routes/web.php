@@ -13,6 +13,30 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/media/{media}', function ($media) {
+    switch ($media) {
+        case 'telegram':
+            $path = 'https://t.me/ban_dera_com';
+            break;
+        case 'youtube':
+            $path = 'https://www.youtube.com/channel/UCOLh8pXAIT-6oGMaf3GadTA';
+            break;
+        default:
+            $path = config('app.url');
+    }
+
+    response()->redirectTo($path);
+});
+
 Route::get('/{any}', function () {
     return view('index');
 })->where('any', '.*');
+
+Route::get('/media/{media}', function ($media) {
+    switch ($media) {
+        case 'youtube':
+            return response()->redirectTo('https://www.youtube.com/channel/UCOLh8pXAIT-6oGMaf3GadTA');
+    }
+
+    return response()->redirectTo('');
+});
