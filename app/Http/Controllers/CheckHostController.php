@@ -32,6 +32,20 @@ class CheckHostController extends Controller
         $response = $this->curlRequest('https://check-host.net/check-http?host='.$target->url.'/');
 
         $target->check_host_request_id = $response->{'request_id'};
+
+        foreach ($response->{'nodes'} as $node_host => $node_data) {
+            Node::firstOrCreate(
+                ['host' => $node_host],
+                [
+                    'asn' => $node_data[4],
+                    'ip_address' => $node_data[3],
+                    'location_iso' => $node_data[0],
+                    'location_country' => $node_data[1],
+                    'location_city' => $node_data[2]
+                ],
+            );
+        }
+
         $target->save();
 
         return $response;
@@ -48,6 +62,7 @@ class CheckHostController extends Controller
         $target->check_host_request_id = null;
         $target->status()->delete();
 
+//        dd($response);
         foreach ($response as $node => $data) {
             if (!is_null($data) && !is_null($data[0])) {
                 $status = new TargetStatus;

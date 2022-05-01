@@ -15,13 +15,15 @@ return new class extends Migration
     {
         Schema::create('target_statuses', function (Blueprint $table) {
             $table->foreignId('target_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
-            $table->foreignId('node_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
+            $table->string('node_host', 50);
             $table->boolean('error')->nullable();
             $table->string('response_time')->nullable();
             $table->string('message')->nullable();
             $table->string('status_code')->nullable();
             $table->string('ip_address')->nullable();
             $table->timestamps();
+
+            $table->foreign('node_host')->references('host')->on('nodes')->cascadeOnUpdate()->cascadeOnDelete();
         });
     }
 

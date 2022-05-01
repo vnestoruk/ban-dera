@@ -9,7 +9,9 @@ class Node extends Model
 {
     use HasFactory;
 
-    public $timestamps = false;
+    public $primaryKey = 'host';
+
+    public $keyType = 'string';
 
     protected $fillable = [
         'host',
