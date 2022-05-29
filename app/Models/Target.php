@@ -23,6 +23,11 @@ class Target extends Model
         );
     }
 
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class);
+    }
+
     public function status(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(TargetStatus::class);

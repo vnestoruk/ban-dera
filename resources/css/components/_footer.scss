@@ -1,0 +1,22 @@
+.footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5em;
+
+    @include media-breakpoint-down(md) {
+        flex-direction: column-reverse;
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    .social-share-buttons {
+        display: flex;
+        gap: 2em;
+
+        a {
+            font-size: 1.5em;
+        }
+    }
+}

@@ -1,15 +1,17 @@
-@import url('https://fonts.googleapis.com/css2?family=Anonymous+Pro&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Montserrat:wght@300;400;700&family=Oswald&display=swap');
 
 @import "variables";
 
 @import "~bootstrap/scss/bootstrap";
 @import "~bootstrap-icons";
 
+@import "~aos/dist/aos.css";
+
 @import "components/index";
 
 :root {
     --color-bg: #{$pure-white};
-    --color-text: #{$ukrainian-blue};
+    --color-text: #{$dark-blue};
     --color-primary: #{$ukrainian-blue};
     --color-secondary: #{$ukrainian-yellow};
     --color-warning: #{$russian-shit};
@@ -20,16 +22,25 @@
 }
 
 body {
-    font-family: 'Anonymous Pro', monospace;
+    font-family: 'Inter', sans-serif;
     background: var(--color-bg);
     color: var(--color-text);
 
     &[data-theme="night"] {
-        --color-bg: #{$nightly-dark};
-        --color-text: #{$hacker-green};
-        --color-faded: #242424;
+        --color-bg: #{$dark-blue};
+        --color-text: #{$ukrainian-yellow};
+        //--color-faded: #242424;
     }
 
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Oswald', sans-serif;
 }
 
 a {
@@ -58,6 +69,13 @@ td {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+.main {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .bandera {

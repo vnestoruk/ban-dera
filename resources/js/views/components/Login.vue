@@ -2,26 +2,36 @@
     <div class="w-100">
         <div class="card">
             <div class="card-header text-center">
-                <h3>Вхід</h3>
+                <h3>{{ $t('authentication.login') }}</h3>
             </div>
             <div class="card-body">
-                <div class="mb-3">
-                    <label class="form-label">Email</label>
-                    <input type="email" class="form-control" aria-describedby="emailHelp">
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Пароль</label>
-                    <input type="password" class="form-control">
-                </div>
-                <div class="d-flex justify-content-center">
-                    <button class="btn btn-primary  m-auto">
-                        <i class="bi bi-lock me-3"></i>Увійти
-                    </button>
-                </div>
+                <form @submit.prevent="login()">
+                    <div class="mb-3" :class="{ 'invalid': errors && errors.nickname }">
+                        <label class="form-label">{{ $t('authentication.nickname') }}<sup>*</sup></label>
+                        <input
+                            v-model="credentials.nickname"
+                            type="text"
+                            class="form-control">
+                        <small v-if="errors && errors.nickname">{{ errors.nickname[0] }}</small>
+                    </div>
+                    <div class="mb-3" :class="{ 'invalid': errors && errors.password }">
+                        <label class="form-label">{{ $t('authentication.password') }}<sup>*</sup></label>
+                        <input
+                            v-model="credentials.password"
+                            type="password"
+                            class="form-control">
+                        <small v-if="errors && errors.password">{{ errors.password[0] }}</small>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <button type="submit" class="btn btn-primary m-auto">
+                            <i class="bi bi-lock me-3"></i>{{ $t('authentication.login') }}
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
         <p class="mt-3 text-center">
-            Ще без облікового запису? <router-link :to="{ name: 'signup' }">Реєстрація</router-link>
+            {{ $t('authentication.ctaSignup') }} <router-link :to="{ name: 'signup' }">{{ $t('authentication.signup') }}</router-link>
         </p>
     </div>
 </template>
@@ -30,9 +40,39 @@
 
 import AppLayout from "../layouts/AppLayout";
 import Logo from "../elements/Logo";
+import AuthenticationResource from "../../modules/ajax/api/AuthenticationResource";
+import {mapMutations} from "vuex";
 export default {
     name: "Login",
     components: {Logo, AppLayout},
+    data() {
+        return {
+            credentials: {
+                nickname: '',
+                password: ''
+            },
+            errors: null
+        }
+    },
+    methods: {
+        ...mapMutations('user', {
+            setUser: 'SET_USER'
+        }),
+        login() {
+            new AuthenticationResource().logIn(this.credentials).then(
+                (response) => {
+                    this.errors = null;
+                    this.setUser(response.data);
+                    this.$router.push({ name: 'bunker' });
+                }
+            ).catch(
+                (error) => {
+                    console.log(error.response.data);
+                    this.errors = error.response.data.errors;
+                }
+            )
+        }
+    }
 }
 </script>
 

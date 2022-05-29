@@ -2,14 +2,30 @@ export default {
     locale: 'English',
     app: {
         title: 'Ban-DERA',
-        subtitle: '<strong>BAN</strong> <strong>D</strong>igital <strong>E</strong>nvironment for <strong>R</strong>ussian <strong>A</strong>ssets',
-        versionTitle: 'Chornobaivka'
+        versionTitle: 'Mariupol'
+    },
+    authentication: {
+        signup: 'Sign Up',
+        login: 'Log In',
+        nickname: 'Nickname',
+        email: 'Email',
+        password: 'Password',
+        password_confirmation: 'Password Confirmation',
+        ctaSignup: 'Haven\'t account yet?',
+        ctaLogin: 'Already registered?',
+    },
+    navigation: {
+        index: 'Home',
+        bunker: 'Bunker',
+        instructions: 'Instructions',
+        about: 'About'
     },
     statusPanel: {
         title: 'Status panel',
         data: {
             ip: 'IP-address',
             country: 'Country',
+            city: 'City',
             totalTargets: 'Targets total',
             activeTargets: 'Available',
             maxTargets: 'Attack max. targets',

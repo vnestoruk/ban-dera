@@ -1,9 +1,9 @@
 <template>
     <div class="content-wrapper container">
         <div class="row m-2 w-100">
-            <div class="col-lg-6 d-flex align-items-center flex-column justify-content-center">
+            <div class="col-lg-4 d-flex align-items-center flex-column justify-content-center">
                 <Logo class="w-50 mb-2" />
-                <small>v.{{ appVersion }} «{{ $t('app.versionTitle') }}»</small>
+                <h6>v.{{ appVersion }} «{{ $t('app.versionTitle') }}»</h6>
                 <div class="d-flex flex-wrap justify-content-center gap-3 m-2">
                     <button class="btn btn-primary btn-lg my-2" :disabled="this.isRunning" @click="start()">
                         <i class="bi bi-play me-2"></i>{{ $t('start') }}
@@ -13,46 +13,69 @@
                     </button>
                 </div>
 
-                <div class="d-flex flex-wrap justify-content-center gap-3 m-2">
-                    <HelpArmyModal />
-                    <SupportProjectModal />
-                </div>
+<!--                <div class="d-flex flex-wrap justify-content-center gap-3 m-2">-->
+<!--                    <HelpArmyModal />-->
+<!--                    <SupportProjectModal />-->
+<!--                </div>-->
             </div>
-            <div class="col-lg-6 d-flex mt-3 mt-lg-0">
-                <div class="card status-panel">
-                    <div class="card-header">
-                        {{ $t('statusPanel.title') }}
-                        <div class="float-end">
-                            <InfoModal />
-                        </div>
+            <div class="col-lg-8 mt-3 mt-lg-0 info-panel">
+                <div class="info-container">
+                    <div class="info-element">
+                        <p class="m-0">{{ $t('statusPanel.data.ip') }}</p>
+                        <h2>{{ location.ip }}</h2>
                     </div>
-                    <div class="card-body">
-                        <div class="status-item">
-                            <span>{{ $t('statusPanel.data.ip') }}</span>
-                            <span>{{ location.ip }}</span>
-                        </div>
-                        <div class="status-item">
-                            <span>{{ $t('statusPanel.data.country') }}</span>
-                            <span><img v-if="location.countryCode" :src="'../../img/flags/'+location.countryCode.toLowerCase()+'.svg'" alt="" class="flag me-3">{{ location.countryName }}</span>
-                        </div>
-                        <div class="status-item">
-                            <span>{{ $t('statusPanel.data.totalTargets') }}</span>
-                            <span>{{ status.total }}</span>
-                        </div>
-                        <div class="status-item">
-                            <span>{{ $t('statusPanel.data.activeTargets') }}</span>
-                            <span>{{ targets.length }}</span>
-                        </div>
-                        <div class="status-item">
-                            <span>{{ $t('statusPanel.data.maxTargets') }}</span>
-                            <MaxTargetPicker />
-                        </div>
-                        <div class="status-item">
-                            <span>{{ $t('statusPanel.data.attackSpeed') }}</span>
-                            <IntervalPicker />
-                        </div>
+                    <div class="info-element">
+                        <p class="m-0">{{ $t('statusPanel.data.country') }}</p>
+                        <h2><img v-if="location.countryCode" :src="'../../img/flags/'+location.countryCode.toLowerCase()+'.svg'" alt="" class="flag me-3">{{ location.countryName }}</h2>
+                    </div>
+                    <div class="info-element">
+                        <p class="m-0">{{ $t('statusPanel.data.city') }}</p>
+                        <h2>{{ location.cityName }}</h2>
+                    </div>
+                    <div class="info-element">
+                        <p class="m-0">{{ $t('statusPanel.data.totalTargets') }}</p>
+                        <h2>{{ status.total }}</h2>
+                    </div>
+                    <div class="info-element">
+                        <p class="m-0">{{ $t('statusPanel.data.activeTargets') }}</p>
+                        <h2>{{ targets.length }}</h2>
                     </div>
                 </div>
+
+<!--                <div class="card status-panel">-->
+<!--                    <div class="card-header">-->
+<!--                        {{ $t('statusPanel.title') }}-->
+<!--                        <div class="float-end">-->
+<!--                            <InfoModal />-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="card-body">-->
+<!--                        <div class="status-item">-->
+<!--                            <span>{{ $t('statusPanel.data.ip') }}</span>-->
+<!--                            <span>{{ location.ip }}</span>-->
+<!--                        </div>-->
+<!--                        <div class="status-item">-->
+<!--                            <span>{{ $t('statusPanel.data.country') }}</span>-->
+<!--                            <span><img v-if="location.countryCode" :src="'../../img/flags/'+location.countryCode.toLowerCase()+'.svg'" alt="" class="flag me-3">{{ location.countryName }}</span>-->
+<!--                        </div>-->
+<!--                        <div class="status-item">-->
+<!--                            <span>{{ $t('statusPanel.data.totalTargets') }}</span>-->
+<!--                            <span>{{ status.total }}</span>-->
+<!--                        </div>-->
+<!--                        <div class="status-item">-->
+<!--                            <span>{{ $t('statusPanel.data.activeTargets') }}</span>-->
+<!--                            <span>{{ targets.length }}</span>-->
+<!--                        </div>-->
+<!--                        <div class="status-item">-->
+<!--                            <span>{{ $t('statusPanel.data.maxTargets') }}</span>-->
+<!--                            <MaxTargetPicker />-->
+<!--                        </div>-->
+<!--                        <div class="status-item">-->
+<!--                            <span>{{ $t('statusPanel.data.attackSpeed') }}</span>-->
+<!--                            <IntervalPicker />-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
             </div>
         </div>
 
@@ -102,9 +125,11 @@ import MaxTargetPicker from "../elements/MaxTargetPicker";
 import IntervalPicker from "../elements/IntervalPicker";
 import AppLayout from "../layouts/AppLayout";
 import Logo from "../elements/Logo";
+import ConfigMixin from "../../modules/mixins/ConfigMixin";
 
 export default {
     name: "Main",
+    mixins: [ConfigMixin],
     components: {
         Logo,
         AppLayout,
@@ -120,9 +145,6 @@ export default {
     },
     computed: {
         ...mapGetters('app', ['autostart', 'location', 'status', 'targets', 'blackList', 'maxTargets', 'interval']),
-        appVersion() {
-            return window.ban_dera.version;
-        },
         isRunning() {
             return this.queue.length > 0;
         }
@@ -147,9 +169,7 @@ export default {
         this.stop();
     },
     methods: {
-        ...mapActions('app', [
-            'getTargets', 'initTheme'
-        ]),
+        ...mapActions('app', ['getTargets', 'initTheme']),
         start() {
             if (!this.isRunning) this.getRandomTargets(this.maxTargets);
             clearInterval(this.timer);

@@ -12,13 +12,41 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    const _RESERVED_NICKNAMES = [
+        'admin',
+        'administrator',
+        'bandera',
+        'ban-dera',
+        'ban_dera',
+        's-bandera',
+        's_bandera',
+        'stepan-bandera',
+        'stepan_bandera',
+        'putin',
+        'v-putin',
+        'v_putin',
+        'vova-putin',
+        'vova_putin',
+        'vladimir-putin',
+        'vladimir_putin',
+        'zelensky',
+        'v-zelensky',
+        'v_zelensky',
+        'vova-zelensky',
+        'vova_zelensky',
+        'volodymyr-zelensky',
+        'volodymyr_zelensky',
+        'boris-johnson',
+        'boris_johnson'
+    ];
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'nickname',
         'email',
         'password',
     ];

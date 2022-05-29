@@ -1,8 +1,12 @@
 <template>
-    <div class="content-wrapper">
-        <h2>Будуємо криївку, заходьте пізніше...</h2>
+    <div class="content-wrapper text-center">
+        <h1>Криївка</h1>
+        <h3>Ласкаво просимо, {{ user.nickname }}</h3>
+        <button class="btn btn-primary btn-sm" @click="logout"><i class="bi bi-box-arrow-right me-2"></i>
+            Вийти
+        </button>
         <div class="col-xl-3-4 col-lg-4 col-md-6 col-8 mb-3">
-            <svg width="%" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500"><!--Maintenance-->
+            <svg class="d-block m-auto" style="width: 300px; max-width: 80%" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500"><!--Maintenance-->
                 <g id="freepik--background-simple--inject-1--inject-574">
                     <path
                         d="M441.4,270.76c2-26.75-4.24-54.7-12.64-79.6-12.47-37-36.67-74.94-77.44-83.69-23.51-5-47.43.36-67.58,13-19.39,12.17-34.5,27.88-58.33,30.93-24.1,3.08-48.83,1.84-73.06,1.84-62.29,0-112.85,65-100.21,132.71s72.22,114.65,122.78,114.65c45.43,0,82.8-27.07,126-34.34,21.4-3.6,42.88.66,64.06-4.74,24.61-6.28,47.75-21.26,61.39-42.95C435.61,303.8,440.13,287.51,441.4,270.76Z"
@@ -247,10 +251,23 @@
 
 <script>
 import AppLayout from "../../layouts/AppLayout";
+import {mapActions, mapGetters} from "vuex";
 
 export default {
     name: "Bunker",
-    components: {AppLayout}
+    components: {AppLayout},
+    computed: {
+        ...mapGetters('user', ['user'])
+    },
+    methods: {
+        ...mapActions('user', {
+            _logout: 'logout'
+        }),
+        logout() {
+            this.$router.push({ name: 'index' });
+            this._logout();
+        }
+    }
 }
 </script>
 

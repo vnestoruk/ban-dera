@@ -19,18 +19,16 @@ export default {
     name: "App",
     components: {Footer, Header},
     methods: {
-        ...mapActions('app', ['initTheme'])
-    },
-    mounted() {
-        this.initTheme();
+        ...mapActions('app', ['initTheme']),
+        ...mapActions('user', ['authenticate']),
+        checkQuerySettings() {
+            if (typeof this.$route.query.speed !== 'undefined' && Bandera._attackSpeed.includes(parseInt(this.$route.query.speed))) {
+                this.$store.commit('app/SET_INTERVAL', (1000 / parseInt(this.$route.query.speed)))
+            }
 
-        if (typeof this.$route.query.speed !== 'undefined' && Bandera._attackSpeed.includes(parseInt(this.$route.query.speed))) {
-            this.$store.commit('app/SET_INTERVAL', (1000 / parseInt(this.$route.query.speed)))
-        }
-
-        if (typeof this.$route.query.max !== 'undefined' && Bandera._maxTargets.includes(parseInt(this.$route.query.max))) {
-            this.$store.commit('app/SET_MAX_TARGETS', parseInt(this.$route.query.max))
-        }
+            if (typeof this.$route.query.max !== 'undefined' && Bandera._maxTargets.includes(parseInt(this.$route.query.max))) {
+                this.$store.commit('app/SET_MAX_TARGETS', parseInt(this.$route.query.max))
+            }
 
             if (typeof this.$route.query.autostart !== 'undefined') {
                 this.$store.commit('app/SET_AUTOSTART', this.$route.query.autostart === 'true')
@@ -40,13 +38,44 @@ export default {
     mounted() {
         this.initTheme();
 
-        setTimeout(() => {
-            document.getElementById('preloader').classList.remove('show');
+        this.authenticate().then((response) => {
             setTimeout(() => {
-                document.getElementById('preloader').remove();
-            }, 400)
-        }, 2000);
-        
+                document.getElementById('preloader').classList.remove('show');
+                setTimeout(() => {
+                    document.getElementById('preloader').remove();
+                }, 400)
+            }, 2000);
+        });
+
+        Echo.listen('default', 'NewVisitorEvent', (e) => {
+            this.$notify({
+                title: this.$t('notification.title.newVisitor'),
+                text: this.$t('notification.text.newVisitor', {
+                    city: e.data.cityName,
+                    country: e.data.countryName
+                })
+            })
+        });
+
+        Echo.listen('default', 'SignUpEvent', (e) => {
+            this.$notify({
+                title: this.$t('notification.title.newUser'),
+                text: this.$t('notification.text.newUser', {
+                    nickname: e.nickname,
+                })
+            })
+        });
+
+        Echo.listen('default', 'LogInEvent', (e) => {
+            this.$notify({
+                title: this.$t('notification.title.newLogin'),
+                text: this.$t('notification.text.newLogin', {
+                    nickname: e.nickname,
+                })
+            })
+        });
+
+        this.checkQuerySettings();
     },
 }
 </script>

@@ -63,7 +63,7 @@ export default {
     stroke: none;
 
     @at-root body[data-theme="night"] & {
-        fill: var(--color-danger);
+        fill: var(--color-text);
     }
 }
 
@@ -73,7 +73,7 @@ export default {
     stroke: none;
 
     @at-root body[data-theme="night"] & {
-        fill: var(--color-danger);
+        fill: var(--color-secondary);
     }
 }
 
@@ -82,7 +82,7 @@ export default {
     stroke: none;
 
     @at-root body[data-theme="night"] & {
-        fill: var(--color-danger);
+        fill: var(--color-secondary);
     }
 }
 

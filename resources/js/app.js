@@ -1,3 +1,5 @@
+require('./bootstrap');
+
 import Vue from "vue";
 import i18n from "./modules/i18n";
 import store from "./modules/store";

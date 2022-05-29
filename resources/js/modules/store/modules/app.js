@@ -1,4 +1,4 @@
-import request from "../../request";
+import TargetResource from "../../ajax/api/TargetResource";
 
 const state = {
     locale: null,
@@ -10,15 +10,11 @@ const state = {
     blackList: [],
     location: {},
     status: {},
-    authenticated: null
 }
 
 const actions = {
     getTargets: (context) => {
-        return request({
-            method: 'GET',
-            url: '/api/targets'
-        }).then(
+        new TargetResource().getTargets().then(
             (response) => {
                 // TODO check data
                 context.commit('SET_LOCATION', response.location)
@@ -68,8 +64,7 @@ const getters = {
     targets: (state) => state.targets,
     blackList: (state) => state.blackList,
     location: (state) => state.location,
-    status: (state) => state.status,
-    authenticated: (state) => state.authenticated
+    status: (state) => state.status
 }
 
 export default {

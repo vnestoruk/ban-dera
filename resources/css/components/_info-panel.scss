@@ -1,0 +1,22 @@
+.info-panel {
+    .info-container {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        column-gap: 2em;
+        row-gap: 4em;
+
+        @include media-breakpoint-down(md) {
+            column-gap: 1em;
+        }
+
+        .info-element {
+            flex-basis: 12em;
+            flex-grow: 1;
+
+            @include media-breakpoint-down(md) {
+                flex-basis: 10em;
+            }
+        }
+    }
+}

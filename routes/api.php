@@ -16,6 +16,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::prefix('authentication')->group(function () {
+
+    Route::get('/signin', [\App\Http\Controllers\AuthenticationController::class, 'signIn'])->name('auth.signin');
+
+    Route::middleware('guest')->group(function () {
+        Route::post('/signup', [\App\Http\Controllers\AuthenticationController::class, 'signUp'])->name('auth.signup');
+        Route::post('/login', [\App\Http\Controllers\AuthenticationController::class, 'logIn'])->name('auth.login');
+    });
+
+    Route::middleware('auth:sanctum')->group(function () {
+        Route::post('/logout', [\App\Http\Controllers\AuthenticationController::class, 'logOut'])->name('auth.logout');
+    });
+});
 
 Route::get('/targets', [TargetController::class, 'index']);
 

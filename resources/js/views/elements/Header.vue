@@ -1,11 +1,7 @@
 <template>
-    <div class="header">
-<!--        <div class="d-flex justify-content-between mt-3">-->
-<!--            <ThemeToggle/>-->
-<!--            <LocalePicker/>-->
-<!--        </div>-->
+    <div class="header container-fluid">
         <nav class="navbar navbar-expand-lg">
-            <div class="container-fluid d-flex align-content-center">
+            <div class="container-fluid align-content-center gap-2">
                 <RouterLink class="navbar-brand" :to="{ name: 'index' }">
                     <svg height="1.5em" version="1.1" viewBox="0 0 100 16.667" xmlns="http://www.w3.org/2000/svg">
                         <g transform="matrix(1.0417 0 0 1.0952 -2.0833 -90.932)" aria-label="Ban-DERA" style="fill: var(--color-text)">
@@ -27,19 +23,20 @@
                     <ThemeToggle class="nav-link"/>
                 </div>
 
+
                 <div class="collapse navbar-collapse justify-content-lg-end" id="navbarSupportedContent">
-                    <ul class="navbar-nav d-flex align-content-center">
+                    <ul class="navbar-nav align-content-center gap-2">
                         <li class="nav-item">
-                            <RouterLink class="nav-link active" aria-current="page" :to="{ name: 'index' }">Головна</RouterLink>
+                            <RouterLink class="nav-link" :to="{ name: 'index' }">{{ $t('navigation.index') }}</RouterLink>
                         </li>
                         <li class="nav-item">
-                            <router-link class="nav-link" :to="{ name: 'dashboard' }">Криївка</router-link>
+                            <RouterLink class="nav-link" :to="{ name: 'bunker' }">{{ $t('navigation.bunker') }}</RouterLink>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Інструкції</a>
+                            <RouterLink class="nav-link" :to="{ name: 'guide'}">{{ $t('navigation.instructions') }}</RouterLink>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Про Проєкт</a>
+                            <RouterLink class="nav-link" :to="{ name: 'about'}">{{ $t('navigation.about') }}</RouterLink>
                         </li>
                         <li class="nav-item">
                             <LocalePicker class="nav-link"/>

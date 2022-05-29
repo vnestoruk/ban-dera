@@ -2,14 +2,30 @@ export default {
     locale: 'Українська',
     app: {
         title: 'Ban-DERA',
-        subtitle: '<strong>BAN</strong> <strong>D</strong>igital <strong>E</strong>nvironment for <strong>R</strong>ussian <strong>A</strong>ssets',
-        versionTitle: 'Чорнобаївка'
+        versionTitle: 'Маріуполь'
+    },
+    authentication: {
+        signup: 'Реєстрація',
+        login: 'Вхід',
+        nickname: 'Нікнейм',
+        email: 'Email',
+        password: 'Пароль',
+        password_confirmation: 'Підтвердження пароля',
+        ctaSignup: 'Не маєте облікового запису?',
+        ctaLogin: 'Вже зареєстровані?',
+    },
+    navigation: {
+        index: 'Головна',
+        bunker: 'Криївка',
+        instructions: 'Інструкції',
+        about: 'Про проєкт'
     },
     statusPanel: {
         title: 'Панель стану',
         data: {
             ip: 'IP-адреса',
             country: 'Країна',
+            city: 'Місто',
             totalTargets: 'Всього цілей',
             activeTargets: 'Доступних',
             maxTargets: 'Одночасні цілі',
@@ -90,14 +106,20 @@ export default {
         title: {
             success: 'Успішно',
             warning: 'Увага',
-            error: 'Помилка'
+            error: 'Помилка',
+            newVisitor: 'На сайті новий гість',
+            newUser: 'Новий бан-дерівець',
+            newLogin: 'З поверненням!',
         },
         text: {
             error: {
                 'unknown': 'Поняття не маю що сталось. Спробуйте перезавантажити сторінку.',
                 '429': 'Надто багато запитів! Охолоньте, і спробуйте через хвилину.',
                 '500': 'Внутрішня помилка сервера.'
-            }
+            },
+            newVisitor: 'Місце: {city}, {country}',
+            newUser: 'Ласкаво просимо, {nickname}!',
+            newLogin: '{nickname} знову на зв\'язку',
         }
     }
 }

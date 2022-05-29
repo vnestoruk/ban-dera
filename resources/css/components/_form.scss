@@ -4,6 +4,15 @@
     }
 }
 
+.invalid {
+    color: var(--color-danger) !important;
+
+    .form-control {
+        border-color: var(--color-danger) !important;
+        color: var(--color-danger) !important;
+    }
+}
+
 .form-select {
     width: auto;
     text-align: end;

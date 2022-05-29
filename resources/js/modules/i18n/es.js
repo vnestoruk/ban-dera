@@ -3,7 +3,7 @@ export default {
     app: {
         title: 'Ban-DERA',
         subtitle: '<strong>BAN</strong> <strong>D</strong>igital <strong>E</strong>nvironment for <strong>R</strong>ussian <strong>A</strong>ssets',
-        versionTitle: 'Chornobaivka'
+        versionTitle: 'Mariúpol'
     },
     statusPanel: {
         title: 'Panel de estado',

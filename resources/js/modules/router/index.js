@@ -2,15 +2,23 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 
 import { AUTH } from "./helpers/authGuard";
+import NProgress from "nprogress";
 
 const routes = [
     {
         path: '/',
         component: () => import('../../views/pages/Main'),
         name: 'index',
-        meta: {
-            title: 'Ban-DERA'
-        }
+    },
+    {
+        path: '/targets',
+        component: () => import('../../views/pages/TargetList'),
+        name: 'targets'
+    },
+    {
+        path: '/target/:id',
+        component: () => import('../../views/pages/Target'),
+        name: 'target'
     },
     {
         path: '/bunker',
@@ -21,8 +29,11 @@ const routes = [
             {
                 path: '',
                 component: () => import('../../views/pages/bunker/Bunker'),
-                // beforeEnter: AUTH.USER,
-                name: 'dashboard'
+                beforeEnter: AUTH.USER,
+                name: 'bunker',
+                meta: {
+                    title: 'Криївка'
+                },
             },
             {
                 path: 'auth',
@@ -42,6 +53,23 @@ const routes = [
                 ]
             },
         ]
+    },
+    {
+        path: '/guide',
+        component: () => import('../../views/pages/Guide'),
+        name: 'guide',
+        meta: {
+            title: 'Guide'
+        },
+    },
+    {
+        path: '/about',
+        component: () => import('../../views/pages/About'),
+        name: 'about',
+        meta: {
+            title: 'About'
+        },
+
     }
 ]
 
@@ -58,6 +86,16 @@ const router = new VueRouter({
     linkActiveClass: 'active-route',
     linkExactActiveClass: 'exact-active-route',
     scrollBehavior: () => ({ y: 0 })
+});
+
+router.beforeEach((to, from, next) => {
+    NProgress.start();
+    next();
+});
+
+router.afterEach((to, from) => {
+    NProgress.done();
+    document.title = to.meta.title ? (to.meta.title + ' | Ban-DERA') : 'Ban-DERA';
 });
 
 export default router;

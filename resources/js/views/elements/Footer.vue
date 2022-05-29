@@ -1,15 +1,55 @@
 <template>
-    <div class="footer">
-        <div class="d-flex flex-wrap justify-content-center gap-3 mt-3">
-            <VPNServicesModal />
-            <a href="https://t.me/ban_dera_com" target="_blank" class="btn btn-sm btn-grey">
-                <i class="bi bi-telegram me-2"></i> Telegram
-            </a>
-            <a href="https://github.com/vnestoruk/ban-dera" target="_blank" class="btn btn-sm btn-grey">
-                <i class="bi bi-github me-2"></i> GitHub
-            </a>
+    <div class="footer container-fluid">
+        <div>
+            <p class="m-0">{{ new Date().getFullYear() }} | Зроблено в Україні.</p>
         </div>
-        <ShareTimer />
+        <div class="social-share-buttons">
+            <ShareNetwork
+                network="facebook"
+                url="https://ban-dera.com"
+                :title="$t('share.content.title')"
+                :description="$t('share.content.description')"
+            >
+                <i class="bi bi-facebook" v-tooltip:top="'Facebook'"></i>
+            </ShareNetwork>
+            <ShareNetwork
+                network="twitter"
+                url="https://ban-dera.com"
+                :title="$t('share.content.title')"
+            >
+                <i class="bi bi-twitter" v-tooltip:top="'Twitter'"></i>
+            </ShareNetwork>
+            <ShareNetwork
+                network="telegram"
+                url="https://ban-dera.com"
+                :title="$t('share.content.title')"
+                :description="$t('share.content.description')"
+            >
+                <i class="bi bi-telegram" v-tooltip:top="'Telegram'"></i>
+            </ShareNetwork>
+            <ShareNetwork
+                network="messenger"
+                url="https://ban-dera.com"
+                :title="$t('share.content.title')"
+            >
+                <i class="bi bi-messenger" v-tooltip:top="'Messenger'"></i>
+            </ShareNetwork>
+            <ShareNetwork
+                network="whatsapp"
+                url="https://ban-dera.com"
+                :title="$t('share.content.title')"
+                :description="$t('share.content.description')"
+            >
+                <i class="bi bi-whatsapp" v-tooltip:top="'WhatsApp'"></i>
+            </ShareNetwork>
+            <ShareNetwork
+                network="reddit"
+                url="https://ban-dera.com"
+                :title="$t('share.content.title')"
+            >
+                <i class="bi bi-reddit" v-tooltip:top="'Reddit'"></i>
+            </ShareNetwork>
+        </div>
     </div>
 </template>
 

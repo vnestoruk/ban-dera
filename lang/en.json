@@ -1,4 +1,9 @@
 {
+    "Can't find user with this nickname.": "Can't find user with this nickname.",
+    "Sorry, :input is reserved nickname.": "Sorry, :input is reserved nickname.",
+    "User with this email is registered already.": "User with this email is registered already.",
+    "Can't login. Check your credentials and try again.": "Can't login. Check your credentials and try again.",
+
     "The :attribute must contain at least one letter.": "The :attribute must contain at least one letter.",
     "The :attribute must contain at least one number.": "The :attribute must contain at least one number.",
     "The :attribute must contain at least one symbol.": "The :attribute must contain at least one symbol.",

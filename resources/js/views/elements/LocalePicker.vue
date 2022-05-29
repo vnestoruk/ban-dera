@@ -4,7 +4,7 @@
             <i class="bi bi-globe2 me-2"></i>{{ $t('locale') }}
         </a>
 
-        <ul class="dropdown-menu" aria-labelledby="dropdownLocalePickerLink">
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownLocalePickerLink">
             <li><a href="javascript:void(0);" @click="setLocale('uk')"> <img :src="'../../img/flags/ua.svg'" alt="" class="flag">Українська</a></li>
             <li><a href="javascript:void(0);" @click="setLocale('en')"> <img :src="'../../img/flags/gb.svg'" alt="" class="flag">English</a></li>
             <li><a href="javascript:void(0);" @click="setLocale('fr')"> <img :src="'../../img/flags/fr.svg'" alt="" class="flag">Français</a></li>
