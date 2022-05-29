@@ -36,14 +36,9 @@ class Target extends Model
             ->exists();
     }
 
-    public function ip_address(): \Illuminate\Support\Collection
+    public function ip_address()
     {
-        return $this
-            ->status()
-            ->whereNotNull('ip_address')
-            ->groupBy('ip_address')
-            ->get('ip_address')
-            ->pluck('ip_address');
+        return $this->hasMany(TargetIpAdress::class);
     }
 
     public function available_from(): \Illuminate\Support\Collection
