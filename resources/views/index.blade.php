@@ -8,6 +8,7 @@
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
     @endenv
 
+    @include('components.favicon')
     <title>Ban-DERA</title>
 
     <script>
@@ -34,6 +35,17 @@
 </head>
 
 <body>
+    <div id="preloader" class="preloader show">
+        <div class="container">
+            <h3 class="loading">Завантаження...</h3>
+            <div class="quote-container">
+                <div class="quote">
+                    {!! $quote->content !!}
+                </div>
+                <small>{!! $quote->author !!}</small>
+            </div>
+        </div>
+    </div>
     <div id="app" data-bs-popper="data">
         {{-- App Content will be rendered here--}}
     </div>

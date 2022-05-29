@@ -28,9 +28,7 @@ Route::get('/media/{media}', function ($media) {
     response()->redirectTo($path);
 });
 
-Route::get('/{any}', function () {
-    return view('index');
-})->where('any', '.*');
+Route::get('/{any}', [\App\Http\Controllers\Controller::class, 'index'])->where('any', '.*');
 
 Route::get('/media/{media}', function ($media) {
     switch ($media) {
