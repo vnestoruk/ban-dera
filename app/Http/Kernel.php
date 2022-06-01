@@ -40,6 +40,7 @@ class Kernel extends HttpKernel
         ],
 
         'api' => [
+            \App\Http\Middleware\ForceJsonResponse::class,
             \App\Http\Middleware\LocalePreferrences::class,
              \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
             'throttle:api',
