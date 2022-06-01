@@ -7,9 +7,10 @@ window.Pusher = require('pusher-js');
 window.Echo = new Echo({
     broadcaster: 'pusher',
     key: process.env.MIX_PUSHER_APP_KEY,
-    cluster: 'mt1',
     wsHost: window.location.hostname,
     wsPort: 6001,
-    enabledTransports: ['ws', 'wss']
-    // forceTLS: true
+    wssPort: 6001,
+    disableStats: true,
+    enabledTransports: ['ws', 'wss"'],
+    forceTLS: process.env.MIX_WEBSOCKETS_TLS
 });
