@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Events\SignUpEvent;
-use App\Events\NewVisitorEvent;
+use App\Models\Target;
 use App\Http\Resources\TargetResource;
 use App\Models\Node;
 use App\Models\Target;

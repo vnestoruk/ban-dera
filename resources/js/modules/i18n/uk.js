@@ -107,9 +107,7 @@ export default {
             success: 'Успішно',
             warning: 'Увага',
             error: 'Помилка',
-            newVisitor: 'На сайті новий гість',
-            newUser: 'Новий бан-дерівець',
-            newLogin: 'З поверненням!',
+            newUser: 'Новий користувач на сайті',
         },
         text: {
             error: {
@@ -117,9 +115,7 @@ export default {
                 '429': 'Надто багато запитів! Охолоньте, і спробуйте через хвилину.',
                 '500': 'Внутрішня помилка сервера.'
             },
-            newVisitor: 'Місце: {city}, {country}',
             newUser: 'Ласкаво просимо, {nickname}!',
-            newLogin: '{nickname} знову на зв\'язку',
         }
     }
 }

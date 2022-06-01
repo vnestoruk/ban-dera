@@ -47,29 +47,10 @@ export default {
             }, 2000);
         });
 
-        Echo.listen('default', 'NewVisitorEvent', (e) => {
-            this.$notify({
-                title: this.$t('notification.title.newVisitor'),
-                text: this.$t('notification.text.newVisitor', {
-                    city: e.data.cityName,
-                    country: e.data.countryName
-                })
-            })
-        });
-
         Echo.listen('default', 'SignUpEvent', (e) => {
             this.$notify({
                 title: this.$t('notification.title.newUser'),
                 text: this.$t('notification.text.newUser', {
-                    nickname: e.nickname,
-                })
-            })
-        });
-
-        Echo.listen('default', 'LogInEvent', (e) => {
-            this.$notify({
-                title: this.$t('notification.title.newLogin'),
-                text: this.$t('notification.text.newLogin', {
                     nickname: e.nickname,
                 })
             })
