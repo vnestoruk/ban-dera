@@ -16,7 +16,7 @@
                         </g>
                     </svg>
                 </RouterLink>
-                <div class="d-flex order-lg-1">
+                <div class="ui-elements order-lg-1">
                     <LocalePicker class="nav-link"/>
                     <ThemeToggle class="nav-link"/>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContainer" aria-controls="navbarContainer" aria-expanded="false" aria-label="Toggle navigation">
@@ -25,16 +25,16 @@
                 </div>
                 <div class="collapse navbar-collapse" id="navbarContainer">
                     <ul class="navbar-nav align-content-center gap-2">
-                        <li class="nav-item">
+                        <li class="nav-item" data-animation-offset="0.4s">
                             <RouterLink class="nav-link" :to="{ name: 'index' }">{{ $t('navigation.index') }}</RouterLink>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item" data-animation-offset="0.6s">
                             <RouterLink class="nav-link" :to="{ name: 'bunker' }">{{ $t('navigation.bunker') }}</RouterLink>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item" data-animation-offset="0.8s">
                             <RouterLink class="nav-link" :to="{ name: 'guide'}">{{ $t('navigation.instructions') }}</RouterLink>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item" data-animation-offset="1.0s">
                             <RouterLink class="nav-link" :to="{ name: 'about'}">{{ $t('navigation.about') }}</RouterLink>
                         </li>
 <!--                        <li class="nav-item">-->
@@ -54,7 +54,19 @@ import Logo from "./Logo";
 
 export default {
     name: "Header",
-    components: {Logo, LocalePicker, ThemeToggle}
+    components: {Logo, LocalePicker, ThemeToggle},
+    watch: {
+        '$route': (newVal, oldVal) => {
+            console.log(newVal.route);
+        }
+    },
+    mounted() {
+        let bsNavBar = new bootstrap.Collapse(document.getElementById('navbarContainer'), {toggle:false});
+        document.querySelectorAll('.nav-item').forEach((item, index) => {
+            item.addEventListener('click', (e) => {bsNavBar.toggle()})
+            item.style.transitionDelay = index * 0.1 + 's';
+        })
+    }
 }
 </script>
 

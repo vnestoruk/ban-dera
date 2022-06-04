@@ -7,8 +7,17 @@ header {
 
 .navbar {
 
-    .navbar-toggler {
-        color: var(--color-text);
+    .ui-elements {
+        display: flex;
+
+        .navbar-toggler {
+            color: var(--color-text);
+            cursor: pointer;
+
+            &:focus {
+                box-shadow: none;
+            }
+        }
     }
 
     .nav-link {
@@ -30,13 +39,32 @@ header {
 
         .navbar-collapse {
 
+            &.collapsing {
+                transition: height 1s cubic-bezier(1, 0, 0.5, 0.8);
+            }
+
             .navbar-nav {
                 align-items: center;
                 justify-content: center;
                 font-size: 2em;
                 height: calc(100vh - 65px);
-                border: 1px solid var(--color-text);
+                background-color: var(--color-text);
                 border-radius: 0.5rem;
+            }
+
+            .nav-item {
+                transform: translateX(-100px);
+                opacity: 0;
+                transition: all 0.4s ease-in-out;
+
+                .nav-link {
+                    color: var(--color-bg);
+                }
+            }
+
+            &.show .nav-item {
+                transform: translateX(0);
+                opacity: 1;
             }
         }
     }

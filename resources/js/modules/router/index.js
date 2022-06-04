@@ -27,7 +27,7 @@ const routes = [
         },
         children: [
             {
-                path: '',
+                path: 'dashboard',
                 component: () => import('../../views/pages/bunker/Bunker'),
                 beforeEnter: AUTH.USER,
                 name: 'bunker',

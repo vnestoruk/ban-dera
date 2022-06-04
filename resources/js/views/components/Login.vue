@@ -11,7 +11,8 @@
                         <input
                             v-model="credentials.nickname"
                             type="text"
-                            class="form-control">
+                            class="form-control"
+                            autocomplete="new-password">
                         <small v-if="errors && errors.nickname">{{ errors.nickname[0] }}</small>
                     </div>
                     <div class="mb-3" :class="{ 'invalid': errors && errors.password }">
@@ -19,7 +20,8 @@
                         <input
                             v-model="credentials.password"
                             type="password"
-                            class="form-control">
+                            class="form-control"
+                            autocomplete="new-password">
                         <small v-if="errors && errors.password">{{ errors.password[0] }}</small>
                     </div>
                     <div class="d-flex justify-content-center">
