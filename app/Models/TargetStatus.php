@@ -27,4 +27,9 @@ class TargetStatus extends Model
     {
         return $this->belongsTo(Node::class);
     }
+
+    public function scopeFailed($query)
+    {
+        return $query->where('error', '=', true);
+    }
 }

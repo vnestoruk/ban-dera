@@ -69,4 +69,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function suggestions()
+    {
+        return $this->hasMany(Target::class, 'suggested_by');
+    }
 }

@@ -17,8 +17,11 @@ return new class extends Migration
             $table->id();
             $table->string('url')->unique();
             $table->boolean('secure')->default(true);
+            $table->unsignedBigInteger('suggested_by')->nullable();
             $table->string('check_host_request_id')->nullable();
             $table->timestamps();
+
+            $table->foreign('suggested_by')->references('id')->on('users')->cascadeOnUpdate();
         });
     }
 

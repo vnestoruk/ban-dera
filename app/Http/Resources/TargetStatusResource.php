@@ -15,7 +15,7 @@ class TargetStatusResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'is_down' => $this->target->is_down(),
+            'is_down' => $this->target->isDown(),
             'target_id' => $this->target->id,
             'node_id' => $this->node->id,
         ];

@@ -29,31 +29,36 @@ class Target extends Model
         return $this->belongsToMany(Category::class);
     }
 
+    public function ipAddress()
+    {
+        return $this->hasMany(TargetIpAdress::class);
+    }
+
     public function status(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(TargetStatus::class);
     }
 
-    public function is_down(): bool
+    public function suggestedBy()
+    {
+        return $this->belongsTo(User::class, 'suggested_by');
+    }
+
+    public function isDown(): bool
     {
         return !$this
             ->status()
-            ->where('error', '=', false)
+            ->failed()
             ->exists();
     }
 
     public function health()
     {
-        Cache::forget('target-health-' . $this->id);
+        if (!$this->isDown())
         return Cache::remember('target-health-' . $this->id, 3600, function () {
-            return number_format($this->status()->where('error', '=', true)->count() / $this->status()->count(), 4);
+            return number_format($this->status()->failed()->count() / $this->status()->count(), 4);
         });
 
-    }
-
-    public function ip_address()
-    {
-        return $this->hasMany(TargetIpAdress::class);
     }
 
     public function available_from(): \Illuminate\Support\Collection

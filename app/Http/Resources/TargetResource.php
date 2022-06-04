@@ -19,8 +19,9 @@ class TargetResource extends JsonResource
             'id' => $this->id,
             'url' => $this->url,
             'health' => $this->health(),
-            'ip_addresses' => $this->when(!self::$_IS_COLLECTION, $this->ip_address),
+            'ip_addresses' => $this->when(!self::$_IS_COLLECTION, $this->ipAddress),
             'categories' => $this->when(!self::$_IS_COLLECTION, $this->categories),
+            'suggested_by' => UserResource::make($this->suggestedBy)->hide(['suggestions']),
             'status' => $this->when(!self::$_IS_COLLECTION, TargetStatusResource::collection($this->status))
         ];
     }

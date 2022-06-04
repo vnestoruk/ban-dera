@@ -30,6 +30,8 @@ Route::prefix('authentication')->group(function () {
 
 Route::get('/location', [\App\Http\Controllers\LocationController::class, 'show']);
 
+Route::get('/users', [\App\Http\Controllers\UserController::class, 'index']);
+
 Route::get('/targets', [\App\Http\Controllers\TargetController::class, 'index']);
 Route::get('/targets/{target}', [\App\Http\Controllers\TargetController::class, 'show']);
 
