@@ -2,11 +2,11 @@
 
 namespace App\Http\Resources;
 
-use App\Models\TargetStatus;
-use Illuminate\Http\Resources\Json\JsonResource;
+use App\Http\Resources\Json\JsonResource;
 
 class TargetResource extends JsonResource
 {
+
     /**
      * Transform the resource into an array.
      *
@@ -18,9 +18,10 @@ class TargetResource extends JsonResource
         return [
             'id' => $this->id,
             'url' => $this->url,
-            'ip_addresses' => $this->ip_address,
-            'categories' => $this->categories,
-            'is_down' => $this->is_down()
+            'health' => $this->health(),
+            'ip_addresses' => $this->when(!self::$_IS_COLLECTION, $this->ip_address),
+            'categories' => $this->when(!self::$_IS_COLLECTION, $this->categories),
+            'status' => $this->when(!self::$_IS_COLLECTION, TargetStatusResource::collection($this->status))
         ];
     }
 }
