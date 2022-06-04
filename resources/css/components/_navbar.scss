@@ -1,3 +1,10 @@
+header {
+    position: fixed;
+    width: 100%;
+    background: var(--color-bg);
+    z-index: 99;
+}
+
 .navbar {
 
     .navbar-toggler {
@@ -8,13 +15,28 @@
         color: var(--color-text);
     }
 
+    .navbar-collapse {
+        justify-content: flex-end;
+    }
+
     @include media-breakpoint-down(lg) {
+        position: relative;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+
         .navbar-collapse {
 
             .navbar-nav {
                 align-items: center;
+                justify-content: center;
                 font-size: 2em;
-                text-shadow: 0 0 10px var(--color-bg);
+                height: calc(100vh - 65px);
+                border: 1px solid var(--color-text);
+                border-radius: 0.5rem;
             }
         }
     }

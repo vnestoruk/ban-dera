@@ -1,5 +1,5 @@
 <template>
-    <div class="header container-fluid">
+    <header class="header">
         <nav class="navbar navbar-expand-lg">
             <div class="container-fluid align-content-center gap-2">
                 <RouterLink class="navbar-brand" :to="{ name: 'index' }">
@@ -16,15 +16,14 @@
                         </g>
                     </svg>
                 </RouterLink>
-                <div class="d-flex flex-row-reverse flex-lg-row">
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <div class="d-flex order-lg-1">
+                    <LocalePicker class="nav-link"/>
+                    <ThemeToggle class="nav-link"/>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContainer" aria-controls="navbarContainer" aria-expanded="false" aria-label="Toggle navigation">
                         <i class="bi bi-grid"></i>
                     </button>
-                    <ThemeToggle class="nav-link"/>
                 </div>
-
-
-                <div class="collapse navbar-collapse justify-content-lg-end" id="navbarSupportedContent">
+                <div class="collapse navbar-collapse" id="navbarContainer">
                     <ul class="navbar-nav align-content-center gap-2">
                         <li class="nav-item">
                             <RouterLink class="nav-link" :to="{ name: 'index' }">{{ $t('navigation.index') }}</RouterLink>
@@ -38,14 +37,14 @@
                         <li class="nav-item">
                             <RouterLink class="nav-link" :to="{ name: 'about'}">{{ $t('navigation.about') }}</RouterLink>
                         </li>
-                        <li class="nav-item">
-                            <LocalePicker class="nav-link"/>
-                        </li>
+<!--                        <li class="nav-item">-->
+<!--                            -->
+<!--                        </li>-->
                     </ul>
                 </div>
             </div>
         </nav>
-    </div>
+    </header>
 </template>
 
 <script>
