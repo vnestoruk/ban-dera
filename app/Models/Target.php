@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Cache;
 
 class Target extends Model
 {
@@ -39,6 +40,15 @@ class Target extends Model
             ->status()
             ->where('error', '=', false)
             ->exists();
+    }
+
+    public function health()
+    {
+        Cache::forget('target-health-' . $this->id);
+        return Cache::remember('target-health-' . $this->id, 3600, function () {
+            return number_format($this->status()->where('error', '=', true)->count() / $this->status()->count(), 4);
+        });
+
     }
 
     public function ip_address()

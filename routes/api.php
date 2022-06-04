@@ -1,7 +1,5 @@
 <?php
 
-use App\Http\Controllers\CheckHostController;
-use App\Http\Controllers\TargetController;
 use App\Http\Middleware\SecureAccess;
 use Illuminate\Support\Facades\Route;
 
@@ -30,10 +28,13 @@ Route::prefix('authentication')->group(function () {
     });
 });
 
-Route::get('/targets', [TargetController::class, 'index']);
+Route::get('/location', [\App\Http\Controllers\LocationController::class, 'show']);
+
+Route::get('/targets', [\App\Http\Controllers\TargetController::class, 'index']);
+Route::get('/targets/{target}', [\App\Http\Controllers\TargetController::class, 'show']);
 
 /*
  * Set APP_SECRET key in .env file and use it in your cron task to call this route securely
  * e.g. curl --header "X-App-Secret: {your_app_secret_here}" {your_route_here}
  */
-Route::get('/target/check-hosts', CheckHostController::class)->middleware([SecureAccess::class]);
+Route::get('/target/check-hosts', \App\Http\Controllers\CheckHostController::class)->middleware([SecureAccess::class]);
