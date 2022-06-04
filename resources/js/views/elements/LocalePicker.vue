@@ -1,7 +1,7 @@
 <template>
     <div class="dropdown">
         <a class="dropdown-toggle" href="#" id="dropdownLocalePickerLink" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="bi bi-globe2 me-2"></i>{{ $t('locale') }}
+            <i class="bi bi-translate me-2"></i>{{ $t('locale') }}
         </a>
 
         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownLocalePickerLink">
