@@ -14,6 +14,7 @@ import {mapActions} from "vuex";
 import Bandera from "../modules/bandera";
 import Header from "./elements/Header";
 import Footer from "./elements/Footer";
+import LocationResource from "../modules/ajax/api/LocationResource";
 
 export default {
     name: "App",
@@ -33,10 +34,25 @@ export default {
             if (typeof this.$route.query.autostart !== 'undefined') {
                 this.$store.commit('app/SET_AUTOSTART', this.$route.query.autostart === 'true')
             }
+        },
+        initListeners() {
+            Echo.listen('default', 'SignUpEvent', (e) => {
+                this.$notify({
+                    title: this.$t('notification.title.newUser'),
+                    text: this.$t('notification.text.newUser', {
+                        nickname: e.nickname,
+                    })
+                })
+            });
         }
     },
-    mounted() {
-        this.initTheme();
+    async mounted() {
+        await this.initTheme();
+        this.initListeners();
+
+        new LocationResource().getLocation().then(response => {
+            this.$store.commit('app/SET_LOCATION', response);
+        });
 
         this.authenticate().then((response) => {
             setTimeout(() => {
@@ -47,14 +63,7 @@ export default {
             }, 2000);
         });
 
-        Echo.listen('default', 'SignUpEvent', (e) => {
-            this.$notify({
-                title: this.$t('notification.title.newUser'),
-                text: this.$t('notification.text.newUser', {
-                    nickname: e.nickname,
-                })
-            })
-        });
+
 
         this.checkQuerySettings();
     },

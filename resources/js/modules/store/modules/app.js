@@ -1,15 +1,13 @@
 import TargetResource from "../../ajax/api/TargetResource";
 
 const state = {
-    locale: null,
     nightMode: null,
     autostart: false,
     interval: 100,
     maxTargets: 10,
     targets: [],
     blackList: [],
-    location: {},
-    status: {},
+    location: {}
 }
 
 const actions = {
@@ -17,8 +15,6 @@ const actions = {
         new TargetResource().getTargets().then(
             (response) => {
                 // TODO check data
-                context.commit('SET_LOCATION', response.location)
-                context.commit('SET_STATUS', response.status)
                 context.commit('SET_TARGETS', response.data)
             }
         );
@@ -47,24 +43,19 @@ const mutations = {
     SET_TARGETS: (state, targets) => {
         state.targets = targets;
     },
-    SET_STATUS: (state, status) => {
-        state.status = status;
-    },
     SET_LOCATION: (state, location) => {
         state.location = location;
     }
 }
 
 const getters = {
-    locale: (state) => state.locale,
     nightMode: (state) => state.nightMode,
     autostart: (state) => state.autostart,
     interval: (state) => state.interval,
     maxTargets: (state) => state.maxTargets,
     targets: (state) => state.targets,
     blackList: (state) => state.blackList,
-    location: (state) => state.location,
-    status: (state) => state.status
+    location: (state) => state.location
 }
 
 export default {

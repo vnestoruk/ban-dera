@@ -107,14 +107,16 @@ export default {
         title: {
             success: 'Success',
             warning: 'Warning',
-            error: 'Error'
+            error: 'Error',
+            newUser: 'New user on website',
         },
         text: {
             error: {
                 'unknown': 'Have no idea what\'s going on. Try to refresh the page.',
                 '429': 'Too many requests! Cool down, and try again in a minute.',
                 '500': 'Internal server error.'
-            }
+            },
+            newUser: 'Welcome, {nickname}!',
         }
     }
 }

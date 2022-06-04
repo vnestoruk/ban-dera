@@ -32,14 +32,6 @@
                         <p class="m-0">{{ $t('statusPanel.data.city') }}</p>
                         <h2>{{ location.cityName }}</h2>
                     </div>
-                    <div class="info-element">
-                        <p class="m-0">{{ $t('statusPanel.data.totalTargets') }}</p>
-                        <h2>{{ status.total }}</h2>
-                    </div>
-                    <div class="info-element">
-                        <p class="m-0">{{ $t('statusPanel.data.activeTargets') }}</p>
-                        <h2>{{ targets.length }}</h2>
-                    </div>
                 </div>
 
 <!--                <div class="card status-panel">-->
@@ -126,6 +118,7 @@ import IntervalPicker from "../elements/IntervalPicker";
 import AppLayout from "../layouts/AppLayout";
 import Logo from "../elements/Logo";
 import ConfigMixin from "../../modules/mixins/ConfigMixin";
+import LocationResource from "../../modules/ajax/api/LocationResource";
 
 export default {
     name: "Main",
@@ -144,7 +137,7 @@ export default {
         }
     },
     computed: {
-        ...mapGetters('app', ['autostart', 'location', 'status', 'targets', 'blackList', 'maxTargets', 'interval']),
+        ...mapGetters('app', ['autostart', 'location', 'targets', 'blackList', 'maxTargets', 'interval']),
         isRunning() {
             return this.queue.length > 0;
         }
