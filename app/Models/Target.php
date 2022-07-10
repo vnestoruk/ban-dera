@@ -14,13 +14,26 @@ class Target extends Model
 
     protected $fillable = [
         'url',
-        'secure'
+        'secure',
+        'approved'
     ];
 
     public function url(): Attribute
     {
         return Attribute::make(
             get: fn ($value) => ($this->secure ? 'https://' : 'http://') . $value,
+        );
+    }
+
+    public function health(): Attribute
+    {
+        return Attribute::make(
+            get: function ($value) {
+                if ($this->status()->count() > 0)
+                return Cache::remember('target-health-' . $this->id, 3600, function () {
+                    return number_format($this->status()->successful()->count() / $this->status()->count(), 4);
+                });
+            }
         );
     }
 
@@ -31,7 +44,7 @@ class Target extends Model
 
     public function ipAddress()
     {
-        return $this->hasMany(TargetIpAdress::class);
+        return $this->hasMany(TargetIpAddress::class);
     }
 
     public function status(): \Illuminate\Database\Eloquent\Relations\HasMany
@@ -52,25 +65,6 @@ class Target extends Model
             ->exists();
     }
 
-    public function health()
-    {
-        if (!$this->isDown())
-        return Cache::remember('target-health-' . $this->id, 3600, function () {
-            return number_format($this->status()->failed()->count() / $this->status()->count(), 4);
-        });
-
-    }
-
-    public function available_from(): \Illuminate\Support\Collection
-    {
-        return $this
-            ->status()
-            ->where('error', '=', false)
-            ->groupBy('node_id')
-            ->get()
-            ->pluck('node.location_country', 'node.location_iso');
-    }
-
     public function scopeAvailable($query)
     {
         return $query->whereHas('status', function(Builder $query) {
@@ -85,10 +79,19 @@ class Target extends Model
             $query
                 ->where('error', '=', false)
                 ->whereHas('node', function (Builder $query) use ($locationISO) {
-                    $query
-                        ->where('location_iso', '=', $locationISO);
+                    $query->where('location_iso', '=', $locationISO);
                 });
         });
+    }
+
+    public function scopeSearch($query, $keyword)
+    {
+        return $query->where('id', 'LIKE', '%' . $keyword . '%')
+            ->orWhere('url', 'LIKE', '%' . $keyword . '%')
+            ->orWhereHas('suggestedBy', function ($query) use ($keyword) {
+                $keyword = str_replace('@', '', $keyword);
+                return $query->where('nickname', 'LIKE', '%' . $keyword . '%');
+            });
     }
 
 }

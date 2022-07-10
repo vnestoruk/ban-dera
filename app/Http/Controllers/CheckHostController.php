@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Node;
 use App\Models\Target;
+use App\Models\TargetIpAddress;
 use App\Models\TargetStatus;
 
 class CheckHostController extends Controller
@@ -62,7 +63,6 @@ class CheckHostController extends Controller
         $target->check_host_request_id = null;
         $target->status()->delete();
 
-//        dd($response);
         foreach ($response as $node => $data) {
             if (!is_null($data) && !is_null($data[0])) {
                 $status = new TargetStatus;
@@ -75,6 +75,15 @@ class CheckHostController extends Controller
                 $status->node()->associate(Node::where('host', $node)->first());
 
                 $target->status()->save($status);
+
+                if (!is_null($data[0][4])) {
+                    $target->ipAddress()->updateOrCreate([
+                        'ip_address' => $data[0][4]
+                    ], [
+                        'type' => TargetIpAddress::_TYPE['IPv4'],
+                        'ip_address' => $data[0][4],
+                    ]);
+                }
             }
         }
 
