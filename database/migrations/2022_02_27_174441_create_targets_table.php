@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('url')->unique();
             $table->boolean('secure')->default(true);
             $table->unsignedBigInteger('suggested_by')->nullable();
+            $table->boolean('approved')->default(false);
             $table->string('check_host_request_id')->nullable();
             $table->timestamps();
 
