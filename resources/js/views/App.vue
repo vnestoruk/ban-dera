@@ -6,6 +6,7 @@
         </transition>
         <Footer/>
         <notifications position="bottom right" class="m-3"/>
+        <ControlPanel />
     </div>
 </template>
 
@@ -15,10 +16,12 @@ import Bandera from "../modules/bandera";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import LocationResource from "../modules/ajax/api/LocationResource";
+import ControlPanel from "./components/ControlPanel";
+
 
 export default {
     name: "App",
-    components: {Footer, Header},
+    components: {ControlPanel, Footer, Header},
     methods: {
         ...mapActions('app', ['initTheme']),
         ...mapActions('user', ['authenticate']),
