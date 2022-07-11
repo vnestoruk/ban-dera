@@ -1,6 +1,7 @@
 import Vue from "vue";
 import i18n from "../i18n";
 import NProgress from 'nprogress';
+import SoundsMixin from "../mixins/SoundsMixin";
 window._ = require('lodash');
 
 window.axios = require('axios');
@@ -48,11 +49,18 @@ instance.interceptors.response.use(
                     text: i18n.t('notification.text.error.500')
                 });
                 break;
-            // default:
-            //     Vue.notify({
-            //         title: i18n.t('notification.title.error'),
-            //         text: i18n.t('notification.text.error.unknown')
-            //     });
+            case 503:
+                Vue.notify({
+                    title: i18n.t('notification.title.error'),
+                    text: i18n.t('notification.text.error.unknown')
+                });
+                window.location.reload();
+                break;
+            default:
+                Vue.notify({
+                    title: i18n.t('notification.title.error'),
+                    text: i18n.t('notification.text.error.unknown')
+                });
         }
 
         return Promise.reject(error);

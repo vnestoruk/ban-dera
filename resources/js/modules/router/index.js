@@ -18,7 +18,8 @@ const routes = [
     {
         path: '/target/:id',
         component: () => import('../../views/pages/Target'),
-        name: 'target'
+        name: 'target',
+        props: true
     },
     {
         path: '/bunker',
@@ -37,16 +38,18 @@ const routes = [
             },
             {
                 path: 'auth',
-                beforeEnter: AUTH.GUEST,
                 component: () => import('../../views/pages/Authentication'),
+                redirect: '/auth/login',
                 children: [
                     {
                         path: 'login',
+                        beforeEnter: AUTH.GUEST,
                         component: () => import('../../views/components/Login'),
                         name: 'login'
                     },
                     {
                         path: 'signup',
+                        beforeEnter: AUTH.GUEST,
                         component: () => import('../../views/components/SignUp'),
                         name: 'signup'
                     }
