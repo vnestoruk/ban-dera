@@ -16,6 +16,7 @@ export default {
     },
     navigation: {
         index: 'Головна',
+        targets: 'Цілі',
         bunker: 'Криївка',
         instructions: 'Інструкції',
         about: 'Про проєкт'

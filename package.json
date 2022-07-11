@@ -21,10 +21,13 @@
         "vue-template-compiler": "^2.6.14"
     },
     "dependencies": {
+        "@vueuse/sound": "^1.1.7",
         "aos": "^3.0.0-beta.6",
         "bootstrap": "^5.1.3",
         "bootstrap-icons": "^1.8.1",
+        "file-loader": "^6.2.0",
         "laravel-echo": "^1.11.7",
+        "luxon": "^2.4.0",
         "nprogress": "^0.2.0",
         "pusher-js": "^4.4.0",
         "qrcode.vue": "^1.7.0",
@@ -32,6 +35,7 @@
         "vue-i18n": "^8.27.0",
         "vue-notification": "^1.3.20",
         "vue-router": "^3.5.3",
+        "vue-select": "^3.18.3",
         "vue-social-sharing": "^3.0.9",
         "vuex": "^3.6.2",
         "vuex-persistedstate": "^4.1.0"

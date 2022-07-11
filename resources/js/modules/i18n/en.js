@@ -16,6 +16,7 @@ export default {
     },
     navigation: {
         index: 'Home',
+        targets: 'Targets',
         bunker: 'Bunker',
         instructions: 'Instructions',
         about: 'About'
@@ -93,6 +94,9 @@ export default {
     copy: 'Copy',
     replace: 'Replace',
     open: 'Open',
+    close: 'Close',
+    enable: 'Enable',
+    disable: 'Disable',
     blackList: 'Remove',
     night: 'Night mode',
     loading: 'Loading',
@@ -114,7 +118,8 @@ export default {
             error: {
                 'unknown': 'Have no idea what\'s going on. Try to refresh the page.',
                 '429': 'Too many requests! Cool down, and try again in a minute.',
-                '500': 'Internal server error.'
+                '500': 'Internal server error.',
+                '503': 'Website under maintenance.'
             },
             newUser: 'Welcome, {nickname}!',
         }

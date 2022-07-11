@@ -12,8 +12,8 @@
 <script>
 import {mapActions} from "vuex";
 import Bandera from "../modules/bandera";
-import Header from "./elements/Header";
-import Footer from "./elements/Footer";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 import LocationResource from "../modules/ajax/api/LocationResource";
 
 export default {
@@ -37,6 +37,7 @@ export default {
         },
         initListeners() {
             Echo.listen('default', 'SignUpEvent', (e) => {
+                this.sfxPlay(this.sfx.newUser);
                 this.$notify({
                     title: this.$t('notification.title.newUser'),
                     text: this.$t('notification.text.newUser', {
@@ -63,8 +64,6 @@ export default {
             }, 2000);
         });
 
-
-
         this.checkQuerySettings();
     },
 }
@@ -73,7 +72,7 @@ export default {
 <style scoped>
 .fade-enter-active,
 .fade-leave-active {
-    transition-duration: 0.6s;
+    transition-duration: 0.4s;
     transition-property: opacity;
     transition-timing-function: ease-in-out;
 }

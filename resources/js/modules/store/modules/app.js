@@ -2,6 +2,7 @@ import TargetResource from "../../ajax/api/TargetResource";
 
 const state = {
     nightMode: null,
+    sounds: true,
     autostart: false,
     interval: 100,
     maxTargets: 10,
@@ -31,6 +32,9 @@ const mutations = {
     SET_THEME: (state, nightMode) => {
         state.nightMode = nightMode;
     },
+    SET_SOUNDS: (state, sounds) => {
+        state.sounds = sounds;
+    },
     SET_AUTOSTART: (state, autostart) => {
         state.autostart = autostart;
     },
@@ -50,6 +54,7 @@ const mutations = {
 
 const getters = {
     nightMode: (state) => state.nightMode,
+    sounds: (state) => state.sounds,
     autostart: (state) => state.autostart,
     interval: (state) => state.interval,
     maxTargets: (state) => state.maxTargets,
