@@ -1,6 +1,7 @@
 import TargetResource from "../../ajax/api/TargetResource";
 
 const state = {
+    locale: null,
     nightMode: null,
     sounds: true,
     autostart: false,
@@ -53,6 +54,7 @@ const mutations = {
 }
 
 const getters = {
+    locale: (state) => state.locale,
     nightMode: (state) => state.nightMode,
     sounds: (state) => state.sounds,
     autostart: (state) => state.autostart,
