@@ -1,6 +1,34 @@
+.form-floating > label {
+    transition-duration: 0.4s;
+}
+
+.input-group {
+    .input-group-text {
+        border-color: var(--color-text) !important;
+        color: var(--color-text);
+        background-color: var(--color-bg);
+    }
+
+    button {
+        color: var(--color-text);
+        background: none;
+    }
+}
+
 .form-control {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    border-color: var(--color-text);
+
     &:focus {
+        color: inherit;
+        background-color: inherit;
+        border-color: inherit;
         box-shadow: 0 0 3px 0.1rem var(--color-text);
+    }
+
+    &::placeholder {
+        color: var(--color-text-opaque);
     }
 }
 

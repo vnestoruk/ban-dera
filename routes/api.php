@@ -35,6 +35,8 @@ Route::get('/users', [\App\Http\Controllers\UserController::class, 'index']);
 Route::get('/targets', [\App\Http\Controllers\TargetController::class, 'index']);
 Route::get('/targets/{target}', [\App\Http\Controllers\TargetController::class, 'show']);
 
+Route::apiResource('categories', \App\Http\Controllers\CategoryController::class);
+
 /*
  * Set APP_SECRET key in .env file and use it in your cron task to call this route securely
  * e.g. curl --header "X-App-Secret: {your_app_secret_here}" {your_route_here}

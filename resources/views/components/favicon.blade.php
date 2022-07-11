@@ -15,5 +15,5 @@
 <meta name="msapplication-TileColor" content="#ffd500">
 <meta name="msapplication-TileColor" content="#005bbb" media="(prefers-color-scheme: dark)">
 <meta name="msapplication-TileImage" content="{{ asset('img/favicon/ms-icon-144x144.png') }}">
-<meta name="theme-color" content="#ffd500">
+<meta name="theme-color" content="#022C43">
 <meta name="theme-color" content="#005bbb" media="(prefers-color-scheme: dark)">

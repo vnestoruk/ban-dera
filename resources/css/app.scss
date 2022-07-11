@@ -11,7 +11,9 @@
 
 :root {
     --color-bg: #{$pure-white};
+    --color-bg-opaque: #{rgba($pure-white, .7)};
     --color-text: #{$dark-blue};
+    --color-text-opaque: #{rgba($dark-blue, .7)};
     --color-accent: #{$ukrainian-blue};
     --color-primary: #{$ukrainian-blue};
     --color-secondary: #{$ukrainian-yellow};
@@ -26,11 +28,24 @@ body {
     font-family: 'Inter', sans-serif;
     background: var(--color-bg);
     color: var(--color-text);
+    overflow: hidden scroll;
+
+    &, & > * {
+        transition: all 0.4s ease-in-out;
+    }
 
     &[data-theme="night"] {
         --color-bg: #{$dark-blue};
+        --color-bg-opaque: #{rgba($dark-blue, .7)};
         --color-text: #{$ukrainian-yellow};
+        --color-text-opaque: #{rgba($ukrainian-yellow, .7)};
         //--color-faded: #242424;
+    }
+
+    &.freeze {
+        .content-wrapper {
+            filter: blur(5px);
+        }
     }
 
 }
@@ -95,26 +110,6 @@ a.dropdown-toggle {
     margin-top: 10px !important;
 }
 
-body[data-theme="night"] .offcanvas,
-body[data-theme="night"] .modal .modal-content,
-body[data-theme="night"] .form-control {
-    background-color: var(--color-bg);
-    color: var(--color-text);
-    border-color: var(--color-text);
-}
-
-.modal-backdrop.show {
-    opacity: .8;
-}
-
-body[data-theme="night"] .modal .modal-body {
-    color: var(--color-text) !important;
-}
-
-body[data-theme="night"] .modal .modal-header {
-    border-bottom: 1px solid var(--color-text);
-}
-
 body[data-theme="night"] #monobank_logo {
     filter: invert(1);
 }
@@ -142,14 +137,4 @@ body[data-theme="night"] .btn-close {
 
 ::-webkit-scrollbar-thumb:hover {
     background: #555;
-}
-
-.offcanvas {
-    width: 50%;
-}
-
-@media screen and (max-width: 768px) {
-    .offcanvas {
-        width: 100%;
-    }
 }

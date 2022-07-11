@@ -1,0 +1,24 @@
+.modal {
+
+    .modal-content {
+        color: var(--color-text);
+        border-color: var(--color-text);
+        background-color: var(--color-bg);
+    }
+
+    .modal-header {
+        border-bottom: none;
+    }
+
+    .modal-body {
+        color: var(--color-text) !important;
+    }
+
+    .modal-footer {
+        border-top: none;
+    }
+}
+
+.modal-backdrop.show {
+    opacity: .8;
+}

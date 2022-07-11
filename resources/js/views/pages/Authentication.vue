@@ -18,18 +18,17 @@
 
 <script>
 
-import AppLayout from "../layouts/AppLayout";
 import Logo from "../elements/Logo";
 export default {
     name: "Login",
-    components: {Logo, AppLayout},
+    components: {Logo},
 }
 </script>
 
 <style scoped>
 .fade-enter-active,
 .fade-leave-active {
-    transition-duration: 0.6s;
+    transition-duration: 0.4s;
     transition-property: opacity;
     transition-timing-function: ease-in-out;
 }

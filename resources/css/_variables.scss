@@ -4,16 +4,30 @@ $nightly-dark: #00050a;
 $dark-blue: #022C43;
 $ukrainian-blue: #005bbb;
 $ukrainian-yellow: #ffd500;
-$hacker-green: #5cd700;
+$success-green: #22BB00;
 $russian-shit: #d46e00;
 $russian-blood: #d20000;
 
 $theme-colors: (
     "primary":  $ukrainian-blue,
     "secondary":$ukrainian-yellow,
+    "success":  $success-green,
     "warning":  $russian-shit,
     "danger":   $russian-blood,
     "grey":     $muted-gray,
     "light":    $pure-white,
     "dark":     $nightly-dark
-)
+);
+
+$box-shadow:                  0 .5rem 1rem rgba($ukrainian-yellow, .15);
+$box-shadow-sm:               0 .125rem .25rem rgba($ukrainian-yellow, .075);
+$box-shadow-lg:               0 1rem 3rem rgba($ukrainian-yellow, .175);
+$box-shadow-inset:            inset 0 1px 2px rgba($ukrainian-yellow, .075);
+
+$accordion-color: var(--color-text);
+$accordion-bg: var(--color-bg);
+$accordion-button-color: var(--color-bg);
+$accordion-button-bg: var(--color-text);
+$accordion-button-active-color:           var(--color-bg);
+$accordion-button-active-bg:              var(--color-text);
+

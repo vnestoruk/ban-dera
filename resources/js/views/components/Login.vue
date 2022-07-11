@@ -6,22 +6,26 @@
             </div>
             <div class="card-body">
                 <form @submit.prevent="login()">
-                    <div class="mb-3" :class="{ 'invalid': errors && errors.nickname }">
-                        <label class="form-label">{{ $t('authentication.nickname') }}<sup>*</sup></label>
+                    <div class="form-floating mb-3" :class="{ 'invalid': errors && errors.nickname }">
                         <input
+                            id="loginNickname"
                             v-model="credentials.nickname"
                             type="text"
                             class="form-control"
+                            :placeholder="$t('authentication.nickname')"
                             autocomplete="new-password">
+                        <label for="loginNickname" class="form-label">{{ $t('authentication.nickname') }}<sup>*</sup></label>
                         <small v-if="errors && errors.nickname">{{ errors.nickname[0] }}</small>
                     </div>
-                    <div class="mb-3" :class="{ 'invalid': errors && errors.password }">
-                        <label class="form-label">{{ $t('authentication.password') }}<sup>*</sup></label>
+                    <div class="form-floating mb-3" :class="{ 'invalid': errors && errors.password }">
                         <input
+                            id="loginPassword"
                             v-model="credentials.password"
                             type="password"
                             class="form-control"
+                            :placeholder="$t('authentication.password')"
                             autocomplete="new-password">
+                        <label for="loginPassword" class="form-label">{{ $t('authentication.password') }}<sup>*</sup></label>
                         <small v-if="errors && errors.password">{{ errors.password[0] }}</small>
                     </div>
                     <div class="d-flex justify-content-center">
@@ -40,13 +44,12 @@
 
 <script>
 
-import AppLayout from "../layouts/AppLayout";
 import Logo from "../elements/Logo";
 import AuthenticationResource from "../../modules/ajax/api/AuthenticationResource";
 import {mapMutations} from "vuex";
 export default {
     name: "Login",
-    components: {Logo, AppLayout},
+    components: {Logo},
     data() {
         return {
             credentials: {

@@ -55,7 +55,7 @@ export default {
 .image-head,
 .image-hand-fingers,
 .image-hand-ribbon {
-    transition: all 0.6s ease-out;
+    transition: all 0.4s ease-out;
 }
 
 .logo-text {

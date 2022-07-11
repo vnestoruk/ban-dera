@@ -1,17 +1,17 @@
 <template>
-    <div class="content-wrapper container">
+    <div class="content-wrapper">
         <div class="row m-2 w-100">
             <div class="col-lg-4 d-flex align-items-center flex-column justify-content-center">
                 <Logo class="w-50 mb-2" />
                 <h6>v.{{ appVersion }} «{{ $t('app.versionTitle') }}»</h6>
-                <div class="d-flex flex-wrap justify-content-center gap-3 m-2">
-                    <button class="btn btn-primary btn-lg my-2" :disabled="this.isRunning" @click="start()">
-                        <i class="bi bi-play me-2"></i>{{ $t('start') }}
-                    </button>
-                    <button class="btn btn-danger btn-lg my-2" :disabled="!this.isRunning" @click="stop()">
-                        <i class="bi bi-stop me-2"></i>{{ $t('stop') }}
-                    </button>
-                </div>
+<!--                <div class="d-flex flex-wrap justify-content-center gap-3 m-2">-->
+<!--                    <button class="btn btn-primary btn-lg my-2" :disabled="this.isRunning" @click="start()">-->
+<!--                        <i class="bi bi-play me-2"></i>{{ $t('start') }}-->
+<!--                    </button>-->
+<!--                    <button class="btn btn-danger btn-lg my-2" :disabled="!this.isRunning" @click="stop()">-->
+<!--                        <i class="bi bi-stop me-2"></i>{{ $t('stop') }}-->
+<!--                    </button>-->
+<!--                </div>-->
 
 <!--                <div class="d-flex flex-wrap justify-content-center gap-3 m-2">-->
 <!--                    <HelpArmyModal />-->
@@ -33,41 +33,6 @@
                         <h2>{{ location.cityName }}</h2>
                     </div>
                 </div>
-
-<!--                <div class="card status-panel">-->
-<!--                    <div class="card-header">-->
-<!--                        {{ $t('statusPanel.title') }}-->
-<!--                        <div class="float-end">-->
-<!--                            <InfoModal />-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <div class="card-body">-->
-<!--                        <div class="status-item">-->
-<!--                            <span>{{ $t('statusPanel.data.ip') }}</span>-->
-<!--                            <span>{{ location.ip }}</span>-->
-<!--                        </div>-->
-<!--                        <div class="status-item">-->
-<!--                            <span>{{ $t('statusPanel.data.country') }}</span>-->
-<!--                            <span><img v-if="location.countryCode" :src="'../../img/flags/'+location.countryCode.toLowerCase()+'.svg'" alt="" class="flag me-3">{{ location.countryName }}</span>-->
-<!--                        </div>-->
-<!--                        <div class="status-item">-->
-<!--                            <span>{{ $t('statusPanel.data.totalTargets') }}</span>-->
-<!--                            <span>{{ status.total }}</span>-->
-<!--                        </div>-->
-<!--                        <div class="status-item">-->
-<!--                            <span>{{ $t('statusPanel.data.activeTargets') }}</span>-->
-<!--                            <span>{{ targets.length }}</span>-->
-<!--                        </div>-->
-<!--                        <div class="status-item">-->
-<!--                            <span>{{ $t('statusPanel.data.maxTargets') }}</span>-->
-<!--                            <MaxTargetPicker />-->
-<!--                        </div>-->
-<!--                        <div class="status-item">-->
-<!--                            <span>{{ $t('statusPanel.data.attackSpeed') }}</span>-->
-<!--                            <IntervalPicker />-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
             </div>
         </div>
 
@@ -115,17 +80,14 @@ import VPNServicesModal from "../components/modal/VPNServicesModal";
 import {mapActions, mapGetters} from "vuex";
 import MaxTargetPicker from "../elements/MaxTargetPicker";
 import IntervalPicker from "../elements/IntervalPicker";
-import AppLayout from "../layouts/AppLayout";
 import Logo from "../elements/Logo";
 import ConfigMixin from "../../modules/mixins/ConfigMixin";
-import LocationResource from "../../modules/ajax/api/LocationResource";
 
 export default {
     name: "Main",
     mixins: [ConfigMixin],
     components: {
         Logo,
-        AppLayout,
         IntervalPicker,
         MaxTargetPicker, VPNServicesModal, CopyToClipboard, InfoModal, SupportProjectModal, HelpArmyModal },
     data() {

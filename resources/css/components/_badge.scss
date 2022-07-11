@@ -1,0 +1,27 @@
+.badge {
+    cursor: default;
+    border: 1px solid transparent;
+
+    &-primary {
+        color: var(--color-bg);
+        background-color: var(--color-text);
+        border-color: var(--color-text);
+    }
+
+    &-secondary {
+        color: var(--color-text);
+        background-color: var(--color-bg);
+        border-color: var(--color-text);
+    }
+
+    &-gray {
+        color: var(--color-light);
+        background-color: var(--color-grey);
+    }
+
+    &-danger {
+        color: var(--color-light);
+        background-color: var(--color-danger);
+    }
+
+}

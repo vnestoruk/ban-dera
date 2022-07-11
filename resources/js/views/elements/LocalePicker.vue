@@ -1,7 +1,7 @@
 <template>
-    <div class="dropdown">
-        <a class="dropdown-toggle" href="#" id="dropdownLocalePickerLink" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="bi bi-translate me-2"></i>{{ $t('locale') }}
+    <div class="locale-picker dropdown">
+        <a class="dropdown-toggle action-button" href="javascript:void(0);" id="dropdownLocalePickerLink" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-translate me-2"></i><span class="d-none d-md-inline">{{ $t('locale') }}</span>
         </a>
 
         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownLocalePickerLink">
@@ -19,17 +19,6 @@ import {mapGetters} from "vuex";
 
 export default {
     name: "LocalePicker",
-    data() {
-        return {
-            flags: {
-                uk: 'ua',
-                en: 'gb',
-                fr: 'fr',
-                es: 'es',
-                pl: 'pl'
-            }
-        }
-    },
     computed: {
         ...mapGetters('app', ['locale'])
     },

@@ -6,41 +6,48 @@
             </div>
             <div class="card-body">
                 <form @submit.prevent="signUp">
-                    <div class="mb-3" :class="{ 'invalid': errors && errors.nickname }">
-                        <label class="form-label">{{ $t('authentication.nickname')}}<sup>*</sup></label>
+                    <div class="form-floating mb-3" :class="{ 'invalid': errors && errors.nickname }">
                         <input
+                            id="signupNickname"
                             v-model="credentials.nickname"
                             type="text"
                             class="form-control"
+                            :placeholder="$t('authentication.nickname')"
                             autocomplete="new-password">
-
+                        <label for="signupNickname" class="form-label">{{ $t('authentication.nickname') }}<sup>*</sup></label>
                         <small v-if="errors && errors.nickname">{{ errors.nickname[0] }}</small>
                     </div>
-                    <div class="mb-3" :class="{ 'invalid': errors && errors.email }">
-                        <label class="form-label">{{ $t('authentication.email') }}</label>
+                    <div class="form-floating mb-3" :class="{ 'invalid': errors && errors.email }">
                         <input
+                            id="signupEmail"
                             v-model="credentials.email"
                             type="email"
                             class="form-control"
+                            :placeholder="$t('authentication.email')"
                             autocomplete="new-password">
+                        <label for="signupEmail" class="form-label">{{ $t('authentication.email') }}</label>
                         <small v-if="errors && errors.email">{{ errors.email[0] }}</small>
                     </div>
-                    <div class="mb-3" :class="{ 'invalid': errors && errors.password }">
-                        <label class="form-label">{{ $t('authentication.password') }}<sup>*</sup></label>
+                    <div class="form-floating mb-3" :class="{ 'invalid': errors && errors.password }">
                         <input
+                            id="signupPassword"
                             v-model="credentials.password"
                             type="password"
                             class="form-control"
+                            :placeholder="$t('authentication.password')"
                             autocomplete="new-password">
+                        <label for="signupPassword" class="form-label">{{ $t('authentication.password') }}<sup>*</sup></label>
                         <small v-if="errors && errors.password">{{ errors.password[0] }}</small>
                     </div>
-                    <div class="mb-3" :class="{ 'invalid': errors && errors.password_confiramtion }">
-                        <label class="form-label">{{ $t('authentication.password_confirmation') }}<sup>*</sup></label>
+                    <div class="form-floating mb-3" :class="{ 'invalid': errors && errors.password_confirmation }">
                         <input
+                            id="signupPasswordConfirmation"
                             v-model="credentials.password_confirmation"
                             type="password"
                             class="form-control"
+                            :placeholder="$t('authentication.password_confirmation')"
                             autocomplete="new-password">
+                        <label for="signupPasswordConfirmation" class="form-label">{{ $t('authentication.password_confirmation') }}<sup>*</sup></label>
                         <small v-if="errors && errors.password_confirmation">{{ errors.password_confirmation[0] }}</small>
                     </div>
                     <div class="d-flex justify-content-center">
@@ -59,13 +66,12 @@
 
 <script>
 
-import AppLayout from "../layouts/AppLayout";
 import Logo from "../elements/Logo";
 import AuthenticationResource from "../../modules/ajax/api/AuthenticationResource";
 import {mapMutations} from "vuex";
 export default {
     name: "SingUp",
-    components: {Logo, AppLayout},
+    components: {Logo},
     data() {
         return {
             credentials: {

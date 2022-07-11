@@ -1,0 +1,30 @@
+.table {
+    color: var(--color-text);
+
+    & > :not(caption) > * > * {
+        border: none;
+    }
+
+    tr {
+        border: none;
+        &:hover {
+            & > * {
+                color: inherit;
+            }
+        }
+    }
+}
+
+.target-list table {
+    width: 100%;
+
+    tbody {
+
+        tr {
+            &:hover {
+                cursor: pointer;
+                background-color: #00000022;
+            }
+        }
+    }
+}
