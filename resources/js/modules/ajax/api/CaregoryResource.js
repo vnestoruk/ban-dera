@@ -1,12 +1,12 @@
 import request from "../request";
 
-class TargetResource {
+class CategoryResource {
 
     constructor() {
-        this.uri = '/api/targets'
+        this.uri = '/api/categories'
     }
 
-    getTargets(params = {}) {
+    index(params = {}) {
         return request({
             method: 'GET',
             url: this.uri,
@@ -14,7 +14,7 @@ class TargetResource {
         })
     }
 
-    getTargetById(id) {
+    show(id) {
         return request({
             method: 'GET',
             url: this.uri + '/' + id
@@ -22,4 +22,4 @@ class TargetResource {
     }
 }
 
-export default TargetResource;
+export default CategoryResource;

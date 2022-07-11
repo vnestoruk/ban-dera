@@ -94,4 +94,9 @@ class Target extends Model
             });
     }
 
+    public function scopeApprovedOnly($query)
+    {
+        return $query->where('approved', true);
+    }
+
 }

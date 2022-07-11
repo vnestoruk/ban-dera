@@ -2,7 +2,8 @@
 
 namespace App\Http\Resources;
 
-use Illuminate\Http\Resources\Json\JsonResource;
+
+use App\Http\Resources\Json\JsonResource;
 
 class TargetStatusResource extends JsonResource
 {
@@ -15,9 +16,12 @@ class TargetStatusResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'is_down' => $this->target->isDown(),
-            'target_id' => $this->target->id,
-            'node_id' => $this->node->id,
+            'is_down' => $this->error,
+            'status_code' => $this->status_code,
+            'message' => $this->message,
+            'response_time' => $this->response_time,
+            'last_checked' => $this->created_at,
+            'node' => NodeResource::make($this->node),
         ];
     }
 }

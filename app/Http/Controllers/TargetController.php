@@ -7,12 +7,20 @@ use App\Http\Resources\TargetResource;
 
 class TargetController extends Controller
 {
-    public function index()
+    /**
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     */
+    public function index(): \Illuminate\Http\Resources\Json\AnonymousResourceCollection
     {
-        return TargetResource::collection(Target::paginate(15));
+        return TargetResource::collection(
+            Target::orderBy('updated_at', 'desc')
+                ->search(request()->input('keyword', null))
+                ->paginate(15)
+                ->onEachSide(1)
+        );
     }
 
-    public function show(Target $target)
+    public function show(Target $target): \App\Http\Resources\Json\JsonResource
     {
         return TargetResource::make($target);
     }

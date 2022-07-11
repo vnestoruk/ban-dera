@@ -32,7 +32,7 @@ class Node extends Model
         return $this
             ->status()
             ->where('error', '=', false)
-            ->groupBy('node_id')
+            ->groupBy('node_host')
             ->count();
     }
 
