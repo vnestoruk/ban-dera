@@ -124,7 +124,7 @@ export default {
         this.stop();
     },
     methods: {
-        ...mapActions('app', ['getTargets', 'initTheme']),
+        ...mapActions('app', ['getTargets']),
         start() {
             if (!this.isRunning) this.getRandomTargets(this.maxTargets);
             clearInterval(this.timer);

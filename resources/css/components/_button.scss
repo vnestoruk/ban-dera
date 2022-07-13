@@ -35,6 +35,13 @@
             color: var(--color-bg);
             background-color: transparent;
             border-color: var(--color-bg);
+
+            &:hover,
+            &:focus {
+                color: var(--color-text);
+                background-color: var(--color-bg);
+                box-shadow: 0 0 0.25rem 0 var(--color-text);
+            }
         }
 
         &:hover,

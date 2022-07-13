@@ -1,23 +1,35 @@
 <template>
     <div id="control-panel" :class="{ collapsed }" >
-        <div class="trigger">
-            <button class="btn btn-primary-outline" :disabled="this.isRunning" @click="start()">
+        <div class="trigger" @click="collapsed = !collapsed">
+            <button class="btn btn-primary-outline" :disabled="this.isRunning" @click.stop="start()">
                 <i class="bi bi-play me-2"></i>{{ $t('start') }}
             </button>
-            <span class="bi bi-chevron-up trigger-element" @click="collapsed = !collapsed"></span>
+            <span class="bi bi-chevron-down trigger-element"></span>
         </div>
         <div class="control-container">
             <div class="control-row">
                 <div class="control-value control-value-big">
-                    <span class="value">349</span>
+                    <span class="value">---</span>
                     <span class="unit">запитів/с</span>
                 </div>
                 <div class="control-value control-value-big">
-                    <span class="value">19</span>
+                    <span class="value">---</span>
                     <span class="unit">цілей</span>
                 </div>
             </div>
-
+            <hr>
+            <div class="control-row">
+                <div class="control-value control-value-big">
+                    <label for="customRange2" class="form-label unit">Швидкість</label>
+                    <input type="range" class="form-range" min="1" max="50" value="25" id="customRange2">
+                </div>
+            </div>
+            <div class="control-row">
+                <div class="control-value control-value-big">
+                    <label for="customRange3" class="form-label unit">Сайтів</label>
+                    <input type="range" class="form-range" min="1" max="50" value="25" id="customRange3">
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -47,16 +59,16 @@ export default {
     justify-content: center;
     align-items: center;
     gap: 1rem;
-    background: var(--color-text-opaque);
+    background: var(--color-text);
     color: var(--color-bg);
     z-index: 99;
     width: fit-content;
     min-width: 20rem;
     inset: auto 0 0;
-    margin: 0 auto -1rem;
-    padding: .5rem .5rem 1.5rem;
+    margin: 0 auto -2rem;
+    padding: 0 0 1rem;
     text-align: center;
-    backdrop-filter: blur(5px) grayscale(1) brightness(2);
+    filter: drop-shadow(0px -1px 5px var(--color-bg-opaque));
     border-top-left-radius: .5rem;
     border-top-right-radius: .5rem;
     transition: all .4s ease-in-out, transform 1s cubic-bezier(.5, -.4, .5, 1.4);
@@ -66,12 +78,13 @@ export default {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 0 1rem;
+        padding: .5rem 1rem .5rem;
+        border-bottom: 1px solid var(--color-bg-opaque);
+        cursor: pointer;
         width: 100%;
 
         .trigger-element {
             font-size: 1.2rem;
-            cursor: pointer;
             transition: transform 1s cubic-bezier(.5, -.4, .5, 1.4);
         }
     }
@@ -80,7 +93,8 @@ export default {
         display: flex;
         flex-direction: column;
         gap: 1rem;
-        width: 100%;;
+        padding: 0.5rem 1.5rem 2.5rem;
+        width: 100%;
 
         .control-row {
             display: flex;
@@ -91,6 +105,7 @@ export default {
         .control-value {
             display: flex;
             flex-direction: column;
+            width: 100%;
 
             &-big {
                 padding: 0 1.5rem;
@@ -111,7 +126,7 @@ export default {
     }
 
     &.collapsed {
-        transform: translateY(calc(100% - 4rem));
+        transform: translateY(calc(100% - 5rem));
 
         .trigger .trigger-element {
             transform: rotate(-180deg);

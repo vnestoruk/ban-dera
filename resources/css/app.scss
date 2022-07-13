@@ -10,8 +10,8 @@
 @import "components/index";
 
 :root {
-    --color-bg: #{$pure-white};
-    --color-bg-opaque: #{rgba($pure-white, .7)};
+    --color-bg: #{$creme-white};
+    --color-bg-opaque: #{rgba($creme-white, .7)};
     --color-text: #{$dark-blue};
     --color-text-opaque: #{rgba($dark-blue, .7)};
     --color-accent: #{$ukrainian-blue};
@@ -61,6 +61,10 @@ h6 {
 
 a {
     color: var(--color-text);
+
+    &:hover {
+        color: var(--color-text-opaque);
+    }
 }
 
 .table-container {

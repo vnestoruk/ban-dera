@@ -1,0 +1,39 @@
+.form-range {
+
+    &:focus {
+        outline: 0;
+        &::-webkit-slider-thumb { box-shadow: var(--color-text-opaque); }
+        &::-moz-range-thumb     { box-shadow: var(--color-text-opaque); }
+    }
+
+    &::-webkit-slider-thumb {
+        border: 3px solid var(--color-bg);
+        background: var(--color-text);
+        transition: all 0.2s ease-in-out;
+        &:active {
+            background-color: var(--color-text);
+            transform-origin: 50% 50%;
+            transform: scale(1.5);
+        }
+    }
+
+    &::-webkit-slider-runnable-track {
+        background: var(--color-bg);
+    }
+
+    &::-moz-range-thumb {
+        border: 3px solid var(--color-bg);
+        background: var(--color-text);
+        transition: all 0.2s ease-in-out;
+        &:active {
+
+            background-color: var(--color-text);
+            transform-origin: 50% 50%;
+            transform: scale(1.5);
+        }
+    }
+
+    &::-moz-range-track {
+        background: var(--color-bg);
+    }
+}
