@@ -4,7 +4,11 @@ const Tooltip = {
             title: binding.value,
             placement: binding.arg,
             container: 'body',
-            trigger: 'hover'
+            trigger: 'hover',
+            delay: {
+                show: 1000,
+                hide: 0
+            }
         });
         el.addEventListener('mouseleave', function() {
             tooltip.hide();
