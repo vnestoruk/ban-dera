@@ -29,10 +29,8 @@ body {
     background: var(--color-bg);
     color: var(--color-text);
     overflow: hidden scroll;
+    transition: all 0.4s ease-in-out;
 
-    &, & > * {
-        transition: all 0.4s ease-in-out;
-    }
 
     &[data-theme="night"] {
         --color-bg: #{$dark-blue};
