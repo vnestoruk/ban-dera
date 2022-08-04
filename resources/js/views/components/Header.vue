@@ -1,8 +1,8 @@
 <template>
     <header>
         <RouterLink class="brand-logo" :to="{ name: 'index' }">
-            <svg height="1.5em" version="1.1" viewBox="0 0 100 16.667" xmlns="http://www.w3.org/2000/svg">
-                <g transform="matrix(1.0417 0 0 1.0952 -2.0833 -90.932)" aria-label="Ban-DERA" style="fill: var(--color-text)">
+            <svg height="1.5em" viewBox="0 0 100 16.667" xmlns="http://www.w3.org/2000/svg" aria-label="Ban-DERA">
+                <g transform="matrix(1.0417 0 0 1.0952 -2.0833 -90.932)" style="fill: var(--color-text)">
                     <path d="m90.262 87.104 1.575-3.0359 6.1631 11.893h-3.2718zm1.1261 4.0479-2.4424 4.8088h-3.2718l4.124-7.9588z"/>
                     <path d="m76.772 95.961h-3.0435v-7.6088h3.0435zm4.5653-8.3697h-7.6088l-1.5218-2.2826h9.1305q3.8044 0 3.8044 3.0435v0.76088q0 2.4424-2.45 2.9218l2.45 3.9261h-3.8044l-3.8044-6.087h3.8044q0.76088 0 0.76088-0.76088v-0.76088q0-0.76088-0.76088-0.76088z"/>
                     <path d="m72.206 87.591h-10.652l-1.5218-2.2826h12.174zm-10.652 0.76088h3.0435v5.3262h7.6088v2.2826h-10.652zm10.652 3.8044h-4.5653l-2.2826-2.2826h6.8479z"/>

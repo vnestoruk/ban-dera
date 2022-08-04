@@ -65,6 +65,10 @@ a {
     }
 }
 
+button {
+    border: none;
+}
+
 .table-container {
     overflow-x: scroll;
     display: block;
@@ -99,10 +103,6 @@ td {
 .bandera {
     background: var(--color-bg);
     color: var(--color-text);
-}
-
-a.dropdown-toggle {
-    text-decoration: none;
 }
 
 .dropdown-menu {

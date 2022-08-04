@@ -1,12 +1,12 @@
 <template>
-    <a
-        href="javascript:void(0);"
+    <button
         class="sounds-toggle"
         v-tooltip:bottom="(sounds ? 'Disable' : 'Enable') + ' sounds'"
         :key="sounds"
-        @click.prevent="sounds = !sounds">
+        @click.prevent="sounds = !sounds"
+        aria-label="Sounds toggle">
         <i class="bi" :class="sounds ? 'bi-volume-up-fill' : 'bi-volume-mute-fill'"></i>
-    </a>
+    </button>
 </template>
 
 <script>

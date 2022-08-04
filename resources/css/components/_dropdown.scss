@@ -1,7 +1,30 @@
 .dropdown-menu {
+    min-width: 12rem;
+
     li {
-        a {
-            text-decoration: none;
+        button {
+            display: flex;
+            align-items: center;
+            margin: 0.5rem 0;
+            width: 100%;
+            background-color: var(--color-bg);
+            transition: all 0.4s ease-in-out;
+            border-radius: 0.2rem;
+            overflow: hidden;
+
+            .flag {
+                transition: all 0.4s ease-in-out;
+            }
+
+            &:hover {
+                background-color: var(--color-text-opaque);
+                color: var(--color-bg);
+
+                .flag {
+                    transform: scale(1.7);
+                    margin-right: 1.4rem;
+                }
+            }
         }
     }
 }

@@ -1,13 +1,13 @@
 <template>
     <div class="menu">
-        <a
+        <button
             class="action-button"
-            href="javascript:void(0);"
             v-tooltip:bottom="(navigationOpened ? 'Close' : 'Open') + ' menu'"
             :key="navigationOpened"
-            @click.prevent="toggleNavigation()">
+            @click.prevent="toggleNavigation()"
+            aria-label="Open menu" >
             <i class="bi" :class="navigationOpened ? 'bi-grid-fill' : 'bi-grid'"></i>
-        </a>
+        </button>
 
         <div class="navigation" :class="{ show: navigationOpened, transition: transition }">
             <div class="nav-item">

@@ -23,19 +23,16 @@ window.bootstrap = bootstrap;
 /**
  * Components
  */
-
 Vue.component('v-select', vSelect);
 
 /**
  * Directives
  */
-
 Vue.directive('tooltip', Tooltip);
 
 /**
  * Filters
  */
-
 Vue.filter('filterDateTime', filterDateTime);
 Vue.filter('filterNickname', filterNickname);
 Vue.filter('filterPrice', filterPrice);

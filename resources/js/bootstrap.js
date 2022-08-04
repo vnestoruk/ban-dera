@@ -11,6 +11,6 @@ window.Echo = new Echo({
     wsPort: 6001,
     wssPort: 6001,
     disableStats: true,
-    enabledTransports: ['ws', 'wss"'],
+    enabledTransports: ['ws', 'wss'],
     forceTLS: process.env.MIX_WEBSOCKETS_TLS
 });

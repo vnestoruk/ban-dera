@@ -61,6 +61,10 @@ header {
                     text-transform: uppercase;
                     font-weight: 600;
 
+                    @include media-breakpoint-down(md) {
+                        font-size: 1.5rem;
+                    }
+
                     &:hover,
                     &.exact-active-route {
                         text-decoration: underline;

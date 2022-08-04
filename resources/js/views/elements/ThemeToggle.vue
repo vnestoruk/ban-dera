@@ -1,12 +1,12 @@
 <template>
-    <a
-        href="javascript:void(0);"
+    <button
         class="theme-toggle"
         v-tooltip:bottom="'Switch to ' + (nightMode ? 'light' : 'dark') + ' theme'"
         :key="nightMode"
-        @click.prevent="nightMode = !nightMode">
+        @click.prevent="nightMode = !nightMode"
+        aria-label="Change theme">
         <i class="bi" :class="nightMode ? 'bi-moon-fill' : 'bi-sun'"></i>
-    </a>
+    </button>
 </template>
 
 <script>

@@ -15,13 +15,26 @@ footer {
         flex-direction: column-reverse;
         justify-content: center;
         gap: 1rem;
+        position: initial;
+        height: auto;
+        padding: 0;
+        margin: 10px 0 28px;
+
+        * {
+            color: var(--color-bg) !important;
+        }
+
+        .disclaimer {
+            font-size: 0.6rem;
+        }
     }
 
     .social-share-buttons {
         display: flex;
         gap: 0.5rem;
 
-        a {
+        button {
+            border: none;
             font-size: 1rem;
         }
     }
