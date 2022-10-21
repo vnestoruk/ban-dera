@@ -11,8 +11,8 @@ class TargetSeeder extends Seeder
      * How to work with this list, if you want to add new targets:
      * 1) For VSCode, install: github.com/Tyriar/vscode-sort-lines
      * 2) Add new website to the end of the list
-     * 3) Select all the lines betwen [ and ]
-     * 4) Press CTRL + SHIFT + P, type `sort` and select "Sort lines (unique ascending, case insensetive)"
+     * 3) Select all the lines between [ and ]
+     * 4) Press CTRL + SHIFT + P, type `sort` and select "Sort lines (unique ascending, case insensitive)"
      * OR you can use online-utility.org/text/sort.jsp with "Remove duplicates" option
      *
      * Then paste new list instead old one
