@@ -30,8 +30,8 @@ header {
             transition: all 0.4s ease-in-out, height 1s cubic-bezier(1, 0, 0.5, 0.8);
             transition-delay: 0.5s;
             display: flex;
-            background: var(--color-text);
-            color: var(--color-bg);
+            background: hsl(210 100% 2% / .5);
+            color: var(--color-light);
             inset: 3.5rem 1rem;
             border-radius: 0.5rem;
             flex-direction: column;
@@ -56,7 +56,7 @@ header {
                 transition: all 0.4s ease-in-out;
 
                 .nav-link {
-                    color: var(--color-bg);
+                    color: var(--color-light);
                     font-size: 2rem;
                     text-transform: uppercase;
                     font-weight: 600;

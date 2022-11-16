@@ -5,8 +5,6 @@
 @import "~bootstrap/scss/bootstrap";
 @import "~bootstrap-icons";
 
-@import "~aos/dist/aos.css";
-
 @import "components/index";
 
 :root {
@@ -16,7 +14,7 @@
     --color-text-opaque: #{rgba($dark-blue, .7)};
     --color-accent: #{$ukrainian-blue};
     --color-primary: #{$ukrainian-blue};
-    --color-secondary: #{$ukrainian-yellow};
+    --color-secondary: #{$ukrainian-yellow-tined};
     --color-warning: #{$russian-shit};
     --color-danger: #{$russian-blood};
     --color-grey: #{$muted-gray};
@@ -35,8 +33,8 @@ body {
     &[data-theme="night"] {
         --color-bg: #{$dark-blue};
         --color-bg-opaque: #{rgba($dark-blue, .7)};
-        --color-text: #{$ukrainian-yellow};
-        --color-text-opaque: #{rgba($ukrainian-yellow, .7)};
+        --color-text: #{$ukrainian-yellow-tined};
+        --color-text-opaque: #{rgba($ukrainian-yellow-tined, .7)};
         //--color-faded: #242424;
     }
 

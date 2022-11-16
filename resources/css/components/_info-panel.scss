@@ -1,10 +1,15 @@
 .info-panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+
     .info-container {
         display: flex;
         justify-content: space-between;
         flex-wrap: wrap;
         column-gap: 2em;
         row-gap: 4em;
+        margin-bottom: 2rem;
 
         @include media-breakpoint-down(md) {
             column-gap: 1em;
@@ -13,6 +18,7 @@
         .info-element {
             flex-basis: 12em;
             flex-grow: 1;
+            text-align: center;
 
             @include media-breakpoint-down(md) {
                 flex-basis: 10em;
