@@ -1,10 +1,10 @@
 <template>
     <div class="main">
         <Header/>
-        <transition name="fade" mode="out-in">
+        <transition name="fade" mode="out-in" :duration="{ enter: 1500, leave: 1500 }">
             <router-view></router-view>
         </transition>
-        <Footer/>
+        <Footer class="d-none d-md-flex"/>
         <notifications position="bottom right" class="m-3"/>
         <ControlPanel />
     </div>
@@ -17,14 +17,28 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import LocationResource from "../modules/ajax/api/LocationResource";
 import ControlPanel from "./components/ControlPanel";
+import AuthenticationResource from "../modules/ajax/api/AuthenticationResource";
 
 
 export default {
     name: "App",
     components: {ControlPanel, Footer, Header},
+    computed: {
+        nightMode: {
+            set(value) {
+                this.$store.commit('app/SET_THEME', value);
+            },
+            get() {
+                return this.$store.getters['app/nightMode'];
+            },
+        },
+    },
     methods: {
-        ...mapActions('app', ['initTheme']),
-        ...mapActions('user', ['authenticate']),
+        ...mapActions('user', ['authenticate', 'logout']),
+        initTheme() {
+            this.nightMode ??= window.matchMedia("(prefers-color-scheme: dark)").matches;
+            document.body.setAttribute('data-theme', (this.nightMode) ? 'night' : 'light');
+        },
         checkQuerySettings() {
             if (typeof this.$route.query.speed !== 'undefined' && Bandera._attackSpeed.includes(parseInt(this.$route.query.speed))) {
                 this.$store.commit('app/SET_INTERVAL', (1000 / parseInt(this.$route.query.speed)))
@@ -38,36 +52,56 @@ export default {
                 this.$store.commit('app/SET_AUTOSTART', this.$route.query.autostart === 'true')
             }
         },
-        initListeners() {
-            Echo.listen('default', 'SignUpEvent', (e) => {
-                this.sfxPlay(this.sfx.newUser);
-                this.$notify({
-                    title: this.$t('notification.title.newUser'),
-                    text: this.$t('notification.text.newUser', {
-                        nickname: e.nickname,
-                    })
-                })
-            });
-        }
+    },
+    beforeMount() {
+        this.initTheme();
     },
     async mounted() {
-        await this.initTheme();
-        this.initListeners();
-
-        new LocationResource().getLocation().then(response => {
-            this.$store.commit('app/SET_LOCATION', response);
-        });
-
-        this.authenticate().then((response) => {
-            setTimeout(() => {
-                document.getElementById('preloader').classList.remove('show');
-                setTimeout(() => {
-                    document.getElementById('preloader').remove();
-                }, 400)
-            }, 2000);
-        });
-
         this.checkQuerySettings();
+
+        // Get info about current location by IP-address
+        await new LocationResource().getLocation()
+            .then(response => {
+                this.$store.commit('app/SET_LOCATION', response);
+            });
+        // Authentication
+        await new AuthenticationResource().signIn()
+            .then((response) => {
+                this.authenticate(response.data);
+                Echo.join('app').listen('SignUpEvent', (e) => {
+                    this.$notify({
+                        title: this.$t('notification.title.newUser'),
+                        text: this.$t('notification.text.newUser', {
+                            nickname: e.nickname,
+                        })
+                    })
+                });
+            })
+            .catch((e) => {
+                this.logout();
+            });
+
+        Echo.listen('default', 'NewUser', (e) => {
+            // this.sfxPlay(this.sfx.newUser);
+            this.$notify({
+                title: this.$t('notification.title.newUser'),
+                text: this.$t('notification.text.newUser', {
+                    nickname: e.nickname,
+                })
+            })
+        });
+
+        // Echo.listen('default', 'TargetsUpdatedEvent', (e) => {
+        //     this.sfxPlay(this.sfx.targetUpdated);
+        //     this.$notify({
+        //         title: this.$t('notification.title.newUser'),
+        //         text: this.$t('notification.text.newUser', {
+        //             nickname: e.nickname,
+        //         })
+        //     })
+        // });
+
+        document.getElementById('preloader').classList.remove('show');
     },
 }
 </script>
@@ -75,7 +109,7 @@ export default {
 <style scoped>
 .fade-enter-active,
 .fade-leave-active {
-    transition-duration: 0.4s;
+    transition-duration: 0.8s;
     transition-property: opacity;
     transition-timing-function: ease-in-out;
 }

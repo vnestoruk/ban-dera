@@ -7,17 +7,17 @@ import NProgress from "nprogress";
 const routes = [
     {
         path: '/',
-        component: () => import('../../views/pages/Main'),
+        component: () => import(/* webpackChunkName: "home" */'../../views/pages/Home'),
         name: 'index',
     },
     {
         path: '/targets',
-        component: () => import('../../views/pages/TargetList'),
+        component: () => import(/* webpackChunkName: "targets" */'../../views/pages/TargetList'),
         name: 'targets'
     },
     {
         path: '/target/:id',
-        component: () => import('../../views/pages/Target'),
+        component: () => import(/* webpackChunkName: "target" */'../../views/pages/Target'),
         name: 'target',
         props: true
     },
@@ -26,31 +26,34 @@ const routes = [
         component: {
             template: '<router-view></router-view>'
         },
+        redirect: { name: 'dashboard' },
+        name: 'bunker',
         children: [
             {
                 path: 'dashboard',
-                component: () => import('../../views/pages/bunker/Bunker'),
+                component: () => import(/* webpackChunkName: "bunker" */'../../views/pages/bunker/Bunker'),
                 beforeEnter: AUTH.USER,
-                name: 'bunker',
+                name: 'dashboard',
                 meta: {
                     title: 'Криївка'
                 },
             },
             {
                 path: 'auth',
-                component: () => import('../../views/pages/Authentication'),
-                redirect: '/auth/login',
+                component: () => import(/* webpackChunkName: "auth" */'../../views/pages/Authentication'),
+                redirect: { name: 'login' },
+                name: 'auth',
                 children: [
                     {
                         path: 'login',
                         beforeEnter: AUTH.GUEST,
-                        component: () => import('../../views/components/Login'),
+                        component: () => import(/* webpackChunkName: "login" */'../../views/components/Login'),
                         name: 'login'
                     },
                     {
                         path: 'signup',
                         beforeEnter: AUTH.GUEST,
-                        component: () => import('../../views/components/SignUp'),
+                        component: () => import(/* webpackChunkName: "signup" */'../../views/components/SignUp'),
                         name: 'signup'
                     }
                 ]
@@ -59,7 +62,7 @@ const routes = [
     },
     {
         path: '/guide',
-        component: () => import('../../views/pages/Guide'),
+        component: () => import(/* webpackChunkName: "guide" */'../../views/pages/Guide'),
         name: 'guide',
         meta: {
             title: 'Guide'
@@ -67,7 +70,7 @@ const routes = [
     },
     {
         path: '/about',
-        component: () => import('../../views/pages/About'),
+        component: () => import(/* webpackChunkName: "about" */'../../views/pages/About'),
         name: 'about',
         meta: {
             title: 'About'

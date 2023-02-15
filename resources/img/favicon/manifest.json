@@ -1,6 +1,8 @@
 {
     "name": "Ban-Dera",
     "start_url": "/",
+    "theme_color": "#022c43",
+    "background_color": "#022c43",
     "display": "fullscreen",
     "icons": [
         {
@@ -32,6 +34,12 @@
             "sizes": "144x144",
             "type": "image/png",
             "density": "3.0"
+        },
+        {
+            "src": "/img/favicon/android-icon-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "density": "4.0"
         },
         {
             "src": "/img/favicon/android-icon-192x192.png",

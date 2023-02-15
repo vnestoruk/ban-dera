@@ -17,7 +17,7 @@ class UserResource extends JsonResource
         return $this->filterFields([
             'id' => $this->id,
             'nickname' => $this->nickname,
-            'suggestions' => $this->suggestions->pluck('url'),
+            'suggestions_count' => $this->suggestions()->count(),
         ]);
     }
 }

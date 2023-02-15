@@ -2,7 +2,7 @@
     <div class="menu">
         <button
             class="action-button"
-            v-tooltip:bottom="(navigationOpened ? 'Close' : 'Open') + ' menu'"
+            v-tooltip="(navigationOpened ? 'Close' : 'Open') + ' menu'"
             :key="navigationOpened"
             @click.prevent="toggleNavigation()"
             aria-label="Open menu" >

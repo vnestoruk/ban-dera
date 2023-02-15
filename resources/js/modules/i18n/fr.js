@@ -3,7 +3,7 @@ export default {
     app: {
         title: 'Ban-DERA',
         subtitle: '<strong>BAN</strong> <strong>D</strong>igital <strong>E</strong>nvironment for <strong>R</strong>ussian <strong>A</strong>ssets (BANNIR les Moyens Numériques des Actifs Russes)',
-        versionTitle: 'Marioupol'
+        versionTitle: 'Azov'
     },
     statusPanel: {
         title: 'Résumé',

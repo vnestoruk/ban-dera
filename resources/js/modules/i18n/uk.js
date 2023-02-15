@@ -2,7 +2,7 @@ export default {
     locale: 'Українська',
     app: {
         title: 'Ban-DERA',
-        versionTitle: 'Маріуполь'
+        versionTitle: 'Азов'
     },
     authentication: {
         signup: 'Реєстрація',
@@ -117,6 +117,22 @@ export default {
                 '500': 'Внутрішня помилка сервера.'
             },
             newUser: 'Ласкаво просимо, {nickname}!',
+        }
+    },
+    about: {
+        title: 'Про проєкт',
+        sections: {
+            general: {
+                text: [
+                    ''
+                ]
+            },
+            partners: {
+                title: 'Спонсори'
+            },
+            thirdParties: {
+                title: 'Використані технології/бібліотеки'
+            }
         }
     }
 }

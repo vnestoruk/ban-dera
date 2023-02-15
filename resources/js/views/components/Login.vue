@@ -28,6 +28,14 @@
                         <label for="loginPassword" class="form-label">{{ $t('authentication.password') }}<sup>*</sup></label>
                         <small v-if="errors && errors.password">{{ errors.password[0] }}</small>
                     </div>
+                    <div class="form-check mb-3 form-switch">
+                        <input
+                            id="loginRemember"
+                            v-model="credentials.remember"
+                            type="checkbox"
+                            class="form-check-input">
+                        <label class="form-check-label" for="loginRemember">Remember me</label>
+                    </div>
                     <div class="d-flex justify-content-center">
                         <button type="submit" class="btn btn-primary m-auto">
                             <i class="bi bi-lock me-3"></i>{{ $t('authentication.login') }}
@@ -44,30 +52,27 @@
 
 <script>
 
-import Logo from "../elements/Logo";
 import AuthenticationResource from "../../modules/ajax/api/AuthenticationResource";
-import {mapMutations} from "vuex";
+import {mapActions} from "vuex";
 export default {
     name: "Login",
-    components: {Logo},
     data() {
         return {
             credentials: {
                 nickname: '',
-                password: ''
+                password: '',
+                remember: false
             },
             errors: null
         }
     },
     methods: {
-        ...mapMutations('user', {
-            setUser: 'SET_USER'
-        }),
+        ...mapActions('user', ['authenticate']),
         login() {
             new AuthenticationResource().logIn(this.credentials).then(
                 (response) => {
                     this.errors = null;
-                    this.setUser(response.data);
+                    this.authenticate(response.data);
                     this.$router.push({ name: 'bunker' });
                 }
             ).catch(

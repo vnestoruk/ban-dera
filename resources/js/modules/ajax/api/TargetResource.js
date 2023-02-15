@@ -14,10 +14,26 @@ class TargetResource {
         })
     }
 
+    getAttackList(params = {}) {
+        return request({
+            method: 'GET',
+            url: this.uri + '/attack',
+            params
+        })
+    }
+
     getTargetById(id) {
         return request({
             method: 'GET',
             url: this.uri + '/' + id
+        })
+    }
+
+    store(target) {
+        return request({
+            method: 'POST',
+            url: this.uri,
+            data: target
         })
     }
 }

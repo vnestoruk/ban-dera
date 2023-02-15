@@ -15,13 +15,14 @@ mix.js('resources/js/app.js', 'public/js').vue();
 mix.sass('resources/css/app.scss', 'public/css');
 
 mix.copy('resources/img', 'public/img');
-mix.copy('resources/sfx', 'public/sfx');
+// mix.copy('resources/sfx', 'public/sfx');
+mix.copy('resources/js/workers', 'public/js/workers');
 mix.webpackConfig({
     module: {
         rules: [
             {
                 test: /\.mp3$/,
-                loader: 'file-loader'
+                loader: 'file-loader',
             }
         ]
     }

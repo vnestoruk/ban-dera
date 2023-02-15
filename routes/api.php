@@ -32,10 +32,11 @@ Route::get('/location', [\App\Http\Controllers\LocationController::class, 'show'
 
 Route::get('/users', [\App\Http\Controllers\UserController::class, 'index']);
 
-Route::get('/targets', [\App\Http\Controllers\TargetController::class, 'index']);
-Route::get('/targets/{target}', [\App\Http\Controllers\TargetController::class, 'show']);
+Route::get('/targets/attack', [\App\Http\Controllers\TargetController::class, 'attackList']);
+Route::apiResource('targets', \App\Http\Controllers\TargetController::class)->only('index', 'show');
+Route::apiResource('targets', \App\Http\Controllers\TargetController::class)->only('store')->middleware('auth:sanctum');
 
-Route::apiResource('categories', \App\Http\Controllers\CategoryController::class);
+Route::apiResource('categories', \App\Http\Controllers\CategoryController::class)->only('index', 'show');
 
 /*
  * Set APP_SECRET key in .env file and use it in your cron task to call this route securely

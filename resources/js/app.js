@@ -1,4 +1,5 @@
 require('./bootstrap');
+// import wb from "./modules/pwa/registerServiceWorker";
 
 import Vue from "vue";
 import i18n from "./modules/i18n";
@@ -7,12 +8,11 @@ import router from "./modules/router";
 import VueNotification from "vue-notification";
 import VueSocialSharing from "vue-social-sharing";
 import * as bootstrap from "bootstrap";
-import vSelect from "vue-select";
 
 import App from './views/App'
 
-import SoundsMixin from "./modules/mixins/SoundsMixin";
 import filterDateTime from "./modules/filters/dateTime";
+import filterDataUnits from "./modules/filters/dataUnits";
 import filterNickname from "./modules/filters/nickname";
 import filterPrice from "./modules/filters/price";
 import filterTargetHealth from "./modules/filters/targetHealth";
@@ -23,7 +23,7 @@ window.bootstrap = bootstrap;
 /**
  * Components
  */
-Vue.component('v-select', vSelect);
+
 
 /**
  * Directives
@@ -34,6 +34,7 @@ Vue.directive('tooltip', Tooltip);
  * Filters
  */
 Vue.filter('filterDateTime', filterDateTime);
+Vue.filter('filterDataUnits', filterDataUnits);
 Vue.filter('filterNickname', filterNickname);
 Vue.filter('filterPrice', filterPrice);
 Vue.filter('filterTargetHealth', filterTargetHealth);
@@ -48,7 +49,7 @@ Vue.use(VueSocialSharing);
 /**
  * Mixins
  */
-Vue.mixin(SoundsMixin);
+// Vue.mixin(SoundsMixin);
 
 new Vue({
     el: '#app',

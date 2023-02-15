@@ -4,7 +4,7 @@
             <span class="input-group-text" id="addon-wrapping">
                 <i class="bi bi-search"></i>
             </span>
-            <input v-model="content" type="text" class="form-control" :placeholder="$t('search')">
+            <input v-model="content" type="text" class="form-control" :placeholder="$t('search') + '...'">
             <button v-if="content.length > 0" type="button" class="position-absolute end-0 btn bg-transparent" style="z-index: 100;" @click="clear">
                 <i class="bi bi-x"></i>
             </button>

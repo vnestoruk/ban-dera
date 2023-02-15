@@ -1,7 +1,6 @@
 import Vue from "vue";
 import i18n from "../i18n";
 import NProgress from 'nprogress';
-import SoundsMixin from "../mixins/SoundsMixin";
 window._ = require('lodash');
 
 window.axios = require('axios');
@@ -37,6 +36,9 @@ instance.interceptors.response.use(
     error => {
         NProgress.done();
         switch(error.response.status) {
+            case 401:
+
+                break;
             case 429:
                 Vue.notify({
                     title: i18n.t('notification.title.error'),

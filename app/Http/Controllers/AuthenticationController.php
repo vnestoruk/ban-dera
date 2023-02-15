@@ -21,6 +21,8 @@ class AuthenticationController extends Controller
             'password' => Hash::make($request->password)
         ]);
 
+        Auth::attempt($request->only(['nickname', 'password']), true);
+
         return UserResource::make($_user);
     }
 
@@ -29,13 +31,15 @@ class AuthenticationController extends Controller
         if (Auth::check()) {
             return new UserResource(Auth::user());
         } else {
-            return response()->json([],401);
+            return response()->json([
+                'message' => 'Unauthenticated'
+            ]);
         }
     }
 
     public function logIn(LoginRequest $request)
     {
-        if (Auth::attempt($request->all())) {
+        if (Auth::attempt($request->only(['nickname', 'password']), $request->remember)) {
             return UserResource::make(Auth::user());
         }
 

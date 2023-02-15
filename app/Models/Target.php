@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 
 class Target extends Model
@@ -18,6 +19,10 @@ class Target extends Model
         'approved'
     ];
 
+    protected $casts = [
+        'approved' => 'boolean'
+    ];
+
     public function url(): Attribute
     {
         return Attribute::make(
@@ -28,8 +33,8 @@ class Target extends Model
     public function health(): Attribute
     {
         return Attribute::make(
-            get: function ($value) {
-                if ($this->status()->count() > 0)
+            get: function () {
+                if ($this->status()->count() === 0) return 0;
                 return Cache::remember('target-health-' . $this->id, 3600, function () {
                     return number_format($this->status()->successful()->count() / $this->status()->count(), 4);
                 });
@@ -94,9 +99,14 @@ class Target extends Model
             });
     }
 
-    public function scopeApprovedOnly($query)
+    public function scopeApproved($query)
     {
         return $query->where('approved', true);
+    }
+
+    public function scopeUnderAttack($query)
+    {
+        return $query->where('under_attack', true);
     }
 
 }

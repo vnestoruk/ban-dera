@@ -7,19 +7,19 @@
         </button>
         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownLocalePickerLink">
             <li>
-                <button @click="setLocale('uk')"><img :src="'../../img/flags/ua.svg'" alt="" class="flag">Українська</button>
+                <button class="dropdown-item" @click="setLocale('uk')"><img :src="'../../img/flags/ua.svg'" alt="" class="flag">Українська</button>
             </li>
             <li>
-                <button @click="setLocale('en')"><img :src="'../../img/flags/gb.svg'" alt="" class="flag">English</button>
+                <button class="dropdown-item" @click="setLocale('en')"><img :src="'../../img/flags/gb.svg'" alt="" class="flag">English</button>
             </li>
             <li>
-                <button @click="setLocale('fr')"><img :src="'../../img/flags/fr.svg'" alt="" class="flag">Français</button>
+                <button class="dropdown-item" @click="setLocale('fr')"><img :src="'../../img/flags/fr.svg'" alt="" class="flag">Français</button>
             </li>
             <li>
-                <button @click="setLocale('es')"><img :src="'../../img/flags/es.svg'" alt="" class="flag">Español</button>
+                <button class="dropdown-item" @click="setLocale('es')"><img :src="'../../img/flags/es.svg'" alt="" class="flag">Español</button>
             </li>
             <li>
-                <button @click="setLocale('pl')"><img :src="'../../img/flags/pl.svg'" alt="" class="flag">Polski</button>
+                <button class="dropdown-item" @click="setLocale('pl')"><img :src="'../../img/flags/pl.svg'" alt="" class="flag">Polski</button>
             </li>
         </ul>
     </div>

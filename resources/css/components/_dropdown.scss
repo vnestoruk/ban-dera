@@ -1,30 +1,39 @@
 .dropdown-menu {
     min-width: 12rem;
 
-    li {
-        button {
-            display: flex;
-            align-items: center;
-            margin: 0.5rem 0;
-            width: 100%;
-            background-color: var(--color-bg);
-            color: var(--color-text);
-            transition: all 0.4s ease-in-out;
-            border-radius: 0.2rem;
-            overflow: hidden;
+    .dropdown-item {
+        display: flex;
+        align-items: center;
+        margin: 0;
+        width: 100%;
+        background-color: var(--color-bg);
+        color: var(--color-text);
+        transition: all 0.4s ease-in-out;
+        border-radius: 0.2rem;
+        overflow: hidden;
+
+        .flag {
+            transition: all 0.2s ease-in-out;
+        }
+
+        &:hover {
+            background-color: var(--color-text);
+            color: var(--color-bg);
 
             .flag {
-                transition: all 0.4s ease-in-out;
+                transform: scale(1.7);
+                margin-right: 1.4rem;
             }
+        }
 
-            &:hover {
-                background-color: var(--color-text-opaque);
-                color: var(--color-bg);
+        &.selected {
 
-                .flag {
-                    transform: scale(1.7);
-                    margin-right: 1.4rem;
-                }
+            &:after {
+                content: "\f26e";
+                font-family: "bootstrap-icons" !important;
+                position: absolute;
+                right: 1.4rem;
+                font-size: 1.2rem;
             }
         }
     }

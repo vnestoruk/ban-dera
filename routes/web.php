@@ -28,13 +28,13 @@ Route::get('/media/{media}', function ($media) {
     response()->redirectTo($path);
 });
 
-Route::get('/{any}', [\App\Http\Controllers\Controller::class, 'index'])->where('any', '.*');
+Route::get('/{any}', [\App\Http\Controllers\Controller::class, 'index'])->where('any', '^(?!api).*$');
 
-Route::get('/media/{media}', function ($media) {
-    switch ($media) {
-        case 'youtube':
-            return response()->redirectTo('https://www.youtube.com/channel/UCOLh8pXAIT-6oGMaf3GadTA');
-    }
-
-    return response()->redirectTo('');
-});
+//Route::get('/media/{media}', function ($media) {
+//    switch ($media) {
+//        case 'youtube':
+//            return response()->redirectTo('https://www.youtube.com/channel/UCOLh8pXAIT-6oGMaf3GadTA');
+//    }
+//
+//    return response()->redirectTo('');
+//});

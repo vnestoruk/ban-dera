@@ -66,12 +66,10 @@
 
 <script>
 
-import Logo from "../elements/Logo";
 import AuthenticationResource from "../../modules/ajax/api/AuthenticationResource";
-import {mapMutations} from "vuex";
+import {mapActions} from "vuex";
 export default {
     name: "SingUp",
-    components: {Logo},
     data() {
         return {
             credentials: {
@@ -84,14 +82,12 @@ export default {
         }
     },
     methods: {
-        ...mapMutations('user', {
-            setUser: 'SET_USER'
-        }),
+        ...mapActions('user', ['authenticate']),
         signUp() {
             new AuthenticationResource().signUp(this.credentials).then(
                 (response) => {
                     this.errors = null;
-                    this.setUser(response.data);
+                    this.authenticate(response.data);
                     this.$router.push({ name: 'bunker' });
                 }
             ).catch(

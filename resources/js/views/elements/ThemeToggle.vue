@@ -1,7 +1,7 @@
 <template>
     <button
         class="theme-toggle"
-        v-tooltip:bottom="'Switch to ' + (nightMode ? 'light' : 'dark') + ' theme'"
+        v-tooltip="'Switch to ' + (nightMode ? 'light' : 'dark') + ' theme'"
         :key="nightMode"
         @click.prevent="nightMode = !nightMode"
         aria-label="Change theme">

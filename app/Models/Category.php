@@ -12,7 +12,7 @@ class Category extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'title'
+        'key'
     ];
 
     public function targets()

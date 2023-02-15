@@ -7,7 +7,7 @@
                 </div>
                 <div class="col-lg-6 d-flex align-items-center flex-column justify-content-center">
                     <transition name="fade" mode="out-in">
-                        <RouterView />
+                        <router-view />
                     </transition>
                 </div>
             </div>
@@ -18,10 +18,8 @@
 
 <script>
 
-import Logo from "../elements/Logo";
 export default {
-    name: "Login",
-    components: {Logo},
+    name: "Authentication"
 }
 </script>
 

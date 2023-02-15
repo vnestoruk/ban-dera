@@ -1,7 +1,7 @@
 <template>
     <footer class="footer">
         <div>
-            <p class="disclaimer m-0">{{ new Date().getFullYear() }} | Зроблено в Україні.</p>
+            <p class="disclaimer m-0">{{ new Date().getFullYear() }} | {{ $t('footer.disclaimer') }}</p>
         </div>
         <div class="social-share-buttons">
             <ShareNetwork
@@ -66,12 +66,8 @@
 </template>
 
 <script>
-import InfoModal from "./modal/InfoModal";
-import VPNServicesModal from "./modal/VPNServicesModal";
-import ShareTimer from "../elements/ShareTimer";
 export default {
-    name: "Footer",
-    components: {ShareTimer, VPNServicesModal, InfoModal}
+    name: "Footer"
 }
 </script>
 

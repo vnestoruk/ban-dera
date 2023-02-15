@@ -2,7 +2,7 @@ export default {
     locale: 'English',
     app: {
         title: 'Ban-DERA',
-        versionTitle: 'Mariupol'
+        versionTitle: 'Azov'
     },
     authentication: {
         signup: 'Sign Up',
@@ -27,10 +27,10 @@ export default {
             ip: 'IP-address',
             country: 'Country',
             city: 'City',
-            totalTargets: 'Targets total',
-            activeTargets: 'Available',
-            maxTargets: 'Attack max. targets',
-            attackSpeed: 'Speed'
+            // totalTargets: 'Targets total',
+            // activeTargets: 'Available',
+            // maxTargets: 'Attack max. targets',
+            // attackSpeed: 'Speed'
         }
     },
     donation: {
@@ -89,23 +89,26 @@ export default {
         requests: 'Requests',
         actions: 'Actions'
     },
+    add: 'Add',
     start: 'Start',
     stop: 'Stop',
+    create: 'Create',
     copy: 'Copy',
     replace: 'Replace',
     open: 'Open',
     close: 'Close',
+    back: 'Back',
     enable: 'Enable',
     disable: 'Disable',
     blackList: 'Remove',
     night: 'Night mode',
     loading: 'Loading',
-    search: 'Search...',
+    search: 'Search',
     filter: 'Filtered',
     settings: 'Settings',
     units: {
-        target: '{n} website | {n} websites',
-        request: '{n} request/s | {n} requests/s'
+        target: 'targets | target | targets',
+        speed: 'speed | request/s | requests/s'
     },
     notification: {
         title: {
@@ -123,5 +126,58 @@ export default {
             },
             newUser: 'Welcome, {nickname}!',
         }
-    }
+    },
+    about: {
+        title: 'About the project',
+        sections: {
+            general: {
+                text: [
+                    ''
+                ]
+            },
+            partners: {
+                title: 'Sponsors'
+            },
+            thirdParties: {
+                title: 'Frameworks/libraries used'
+            },
+            usefulLinks: {
+                title: 'Useful Links'
+            }
+        }
+    },
+    targetList: {
+        title: 'Targets list',
+        table: {
+            url: 'URL',
+            category: 'Category',
+            health: 'Health',
+            suggestedBy: 'Suggested By',
+            status: 'Status',
+        },
+        pagination: {
+            showing: 'Showing {from} - {to} of {total}'
+        }
+    },
+    target: {
+        categories: {
+            automotive: 'Automotive',
+            business: 'Business',
+            casino: 'Casino',
+            entertainment: 'Entertainment',
+            financial: 'Financial',
+            government: 'Government',
+            media: 'Media',
+            piracy: 'Piracy',
+            services: 'Services',
+            social_network: 'Social Network',
+            tourism: 'Tourism',
+        },
+    },
+    createTargetModal: {
+        title: 'New target'
+    },
+    footer: {
+        disclaimer: 'Made in Ukraine'
+    },
 }

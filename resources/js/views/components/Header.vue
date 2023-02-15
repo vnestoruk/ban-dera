@@ -16,7 +16,13 @@
         </RouterLink>
         <div class="ui-elements">
             <LocalePicker />
-            <SoundsToggle class="action-button"/>
+            <button
+                v-if="$store.getters['user/isAuthenticated']"
+                class="action-button"
+                @click="$router.push({'name': 'bunker'})">
+                <i class="bi bi-person me-2"></i>{{ $store.getters['user/user'].nickname | filterNickname }}
+            </button>
+<!--            <SoundsToggle class="action-button"/>-->
             <ThemeToggle class="action-button"/>
             <Menu/>
         </div>

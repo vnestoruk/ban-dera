@@ -4,11 +4,9 @@
             <div class="card w-100">
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <SearchBar v-model="filter.keyword" :delay="1000" />
-                    <h3>Список цілей</h3>
-                    <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#modalCreateTarget">
-                        <i class="bi bi-plus-square me-2"></i> Додати
-                    </button>
-                    <CreateTargetModal />
+                    <h3 class="flex-grow-1 text-center">{{ $t('targetList.title') }}</h3>
+
+                    <TargetModal />
                 </div>
                 <div class="card-body position-relative" :class="{ loading }">
                     <div class="loading-layer">
@@ -17,38 +15,37 @@
                     <table class="table">
                         <thead>
                         <tr>
-                            <th>URL</th>
-                            <th class="d-none d-md-table-cell">Category</th>
-                            <th class="d-none d-md-table-cell">Health</th>
-                            <th class="d-none d-md-table-cell">Suggested By</th>
-                            <th>Status</th>
+                            <th>{{ $t('targetList.table.url') }}</th>
+                            <th class="d-none d-md-table-cell">{{ $t('targetList.table.category') }}</th>
+                            <th class="d-none d-md-table-cell">{{ $t('targetList.table.suggestedBy') }}</th>
+                            <th>{{ $t('targetList.table.status') }}</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr v-for="target in targets" :key="target.id" @click="openTargetInfo(target.id)">
+                        <tr v-for="target in targets" :key="target.id" @click.stop="openTargetInfo(target.id)">
                             <td>
                                 <span>{{ target.url }}</span>
                             </td>
                             <td class="d-none d-md-table-cell">
-                                <template v-if="target.categories.length > 0">
-                                    <div v-for="category in target.categories" :key="category" class="badge badge-primary">{{ category }}</div>
+                                <template v-if="target.categories.length === 0">
+                                    <div class="badge badge-gray">Other</div>
                                 </template>
                                 <template v-else>
-                                    <div  class="badge badge-gray">Other</div>
+                                    <div class="badge badge-primary">{{ $t(`target.categories.${ target.categories[0].key }`) }}</div>
+                                    <div v-if="target.categories.length > 1" class="badge badge-secondary"
+                                         v-tooltip:right="target.categories.map(c => $t(`target.categories.${c.key}`)).join(', ')">+{{ target.categories.length - 1 }}</div>
                                 </template>
                             </td>
                             <td class="d-none d-md-table-cell">
-                                {{ target.health | filterTargetHealth }}
-                            </td>
-                            <td class="d-none d-md-table-cell">
-
                                 <RouterLink v-if="target.suggested_by" :to="{ name: 'index' }">
                                     <div class="badge badge-secondary">{{ target.suggested_by.nickname | filterNickname }}</div>
                                 </RouterLink>
                             </td>
                             <td>
-                                <div v-if="target.health > 0.1" class="badge badge-primary">Online</div>
-                                <div v-else class="badge badge-gray">Offline</div>
+                                <i v-if="target.approved" class="bi bi-patch-check-fill" v-tooltip="'Approved'"></i>
+                                <i v-if="target.under_attack" class="bi bi-lightning-fill text-danger" v-tooltip="'Under attack'"></i>
+<!--                                <div v-if="target.health > 0.1" class="badge badge-primary">Online</div>-->
+<!--                                <div v-else class="badge badge-gray">Offline</div>-->
                             </td>
 
                         </tr>
@@ -56,7 +53,12 @@
                     </table>
                 </div>
                 <div class="card-footer d-flex justify-content-between align-items-center">
-                    <h6>Показано цілі {{ meta.from }} - {{ meta.to }} із {{ meta.total }}</h6>
+                    <span>{{ $t(
+                        'targetList.pagination.showing', {
+                            from: meta.from,
+                            to: meta.to,
+                            total: meta.total
+                        }) }}</span>
                     <Paginator v-model="filter.page" :links="meta.links" />
                 </div>
             </div>
@@ -68,11 +70,11 @@
 import TargetResource from "../../modules/ajax/api/TargetResource";
 import SearchBar from "../elements/SearchBar";
 import Paginator from "../elements/Paginator";
-import CreateTargetModal from "../components/modal/CreateTargetModal";
+import TargetModal from "../components/modal/TargetModal";
 
 export default {
     name: "TargetList",
-    components: {CreateTargetModal, Paginator, SearchBar},
+    components: {TargetModal, Paginator, SearchBar},
     data() {
         return {
             loading: true,

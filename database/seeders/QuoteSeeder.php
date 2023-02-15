@@ -16,6 +16,10 @@ class QuoteSeeder extends Seeder
         [
             'content' => 'Russian warship, go fuck yourself!',
             'author' => 'Roman Hrybov'
+        ],
+        [
+            'content' => 'Nothing can stop an idea whose time has come!',
+            'author' => 'Stepan Bandera'
         ]
     ];
 

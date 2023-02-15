@@ -25,6 +25,10 @@
                 cursor: pointer;
                 background-color: #00000022;
             }
+
+            td > * {
+                cursor: pointer;
+            }
         }
     }
 }

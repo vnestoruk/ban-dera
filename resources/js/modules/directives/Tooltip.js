@@ -2,7 +2,7 @@ const Tooltip = {
     bind(el, binding) {
         let tooltip = new bootstrap.Tooltip(el, {
             title: binding.value,
-            placement: binding.arg,
+            placement: binding.arg || 'auto',
             container: 'body',
             trigger: 'hover',
             delay: {
@@ -15,7 +15,7 @@ const Tooltip = {
         })
     },
     unbind(el) {
-        console.log(bootstrap.Tooltip.getInstance(el).dispose());
+        bootstrap.Tooltip.getInstance(el).dispose();
     }
 }
 

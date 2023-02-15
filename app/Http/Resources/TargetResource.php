@@ -20,9 +20,10 @@ class TargetResource extends JsonResource
             'url' => $this->getRawOriginal('url'),
             'health' => $this->health,
             'ip_addresses' => $this->when(!self::$_IS_COLLECTION, $this->ipAddress),
-            'categories' => $this->categories->pluck('title'),
+            'categories' => CategoryResource::collection($this->categories),
             'suggested_by' => UserResource::make($this->suggestedBy)->hide(['suggestions']),
-            'ia_approved' => $this->approved,
+            'approved' => $this->approved,
+            'under_attack' => $this->under_attack,
             'status' => $this->when(!self::$_IS_COLLECTION, TargetStatusResource::collection($this->status)),
         ];
     }
