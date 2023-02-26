@@ -13,13 +13,6 @@ class CategoryResource {
             params
         })
     }
-
-    show(id) {
-        return request({
-            method: 'GET',
-            url: this.uri + '/' + id
-        })
-    }
 }
 
 export default CategoryResource;
