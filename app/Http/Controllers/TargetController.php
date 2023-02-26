@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Target\StoreRequest;
-use App\Models\Category;
+use App\Http\Requests\Target\ApproveTargetRequest;
+use App\Http\Requests\Target\DestroyTargetRequest;
+use App\Http\Requests\Target\UpdateTargetRequest;
+use App\Http\Requests\Target\StoreTargetRequest;
 use App\Models\Target;
 use App\Http\Resources\TargetResource;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class TargetController extends Controller
@@ -36,10 +37,10 @@ class TargetController extends Controller
         return TargetResource::make($target);
     }
 
-    public function store(StoreRequest $request) {
+    public function store(StoreTargetRequest $request) {
         $target = Target::create([
-            'url' => $request->input('url'),
-            'secure' => $request->input('secure', true),
+            'url' => $request->validated('url'),
+            'secure' => $request->validated('secure', true),
             'approved' => false
         ]);
 
@@ -48,5 +49,25 @@ class TargetController extends Controller
 
         $target->categories()->attach($request->validated('categories'));
         $target->save();
+
+        return TargetResource::make($target);
+    }
+
+    public function update(UpdateTargetRequest $request, Target $target) {
+        $validated = $request->validated();
+
+        $target->fill($validated);
+
+        if (isset($validated['categories'])) {
+            $target->categories()->sync($request->validated('categories'));
+        }
+
+        $target->save();
+
+        return TargetResource::make($target);
+    }
+
+    public function destroy(DestroyTargetRequest $request, Target $target) {
+        $target->delete();
     }
 }

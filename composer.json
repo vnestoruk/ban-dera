@@ -16,6 +16,7 @@
         "laravel/sanctum": "^2.15",
         "laravel/tinker": "^2.7",
         "pusher/pusher-php-server": "7.0.2",
+        "spatie/laravel-permission": "^5.9",
         "stevebauman/location": "^6.3"
     },
     "require-dev": {

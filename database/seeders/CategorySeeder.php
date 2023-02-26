@@ -8,17 +8,17 @@ use Illuminate\Database\Seeder;
 class CategorySeeder extends Seeder
 {
     private array $_CATEGORIES = [
-        'Automotive',
-        'Business',
-        'Casino',
-        'Entertainment',
-        'Financial',
-        'Government',
-        'Media',
-        'Piracy',
-        'Services',
-        'Social Network',
-        'Tourism'
+        'automotive',
+        'business',
+        'casino',
+        'entertainment',
+        'financial',
+        'government',
+        'media',
+        'piracy',
+        'services',
+        'social_network',
+        'tourism'
     ];
 
     /**
@@ -29,8 +29,8 @@ class CategorySeeder extends Seeder
     public function run()
     {
         foreach ($this->_CATEGORIES as $CATEGORY) {
-            if (!Category::where('title', '=', $CATEGORY)->exists()) {
-                Category::create(['title' => $CATEGORY]);
+            if (!Category::where('key', '=', $CATEGORY)->exists()) {
+                Category::create(['key' => $CATEGORY]);
             }
         }
         $this->command->info(count($this->_CATEGORIES) . ' categories added.');

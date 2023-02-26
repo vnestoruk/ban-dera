@@ -90,6 +90,7 @@ export default {
         actions: 'Actions'
     },
     add: 'Add',
+    edit: 'Edit',
     start: 'Start',
     stop: 'Stop',
     create: 'Create',
@@ -120,6 +121,8 @@ export default {
         text: {
             error: {
                 'unknown': 'Have no idea what\'s going on. Try to refresh the page.',
+                '401': 'You can\'t do it without authorization.',
+                '422': 'Unprocessable entity.',
                 '429': 'Too many requests! Cool down, and try again in a minute.',
                 '500': 'Internal server error.',
                 '503': 'Website under maintenance.'
@@ -174,7 +177,7 @@ export default {
             tourism: 'Tourism',
         },
     },
-    createTargetModal: {
+    targetModal: {
         title: 'New target'
     },
     footer: {

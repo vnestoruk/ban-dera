@@ -23,6 +23,9 @@ class AuthenticationController extends Controller
 
         Auth::attempt($request->only(['nickname', 'password']), true);
 
+        $_user->assignRole('member');
+        $_user->save();
+
         return UserResource::make($_user);
     }
 

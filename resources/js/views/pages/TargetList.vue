@@ -6,7 +6,7 @@
                     <SearchBar v-model="filter.keyword" :delay="1000" />
                     <h3 class="flex-grow-1 text-center">{{ $t('targetList.title') }}</h3>
 
-                    <TargetModal />
+                    <TargetModal v-if="$store.getters['user/isAdmin'] || $store.getters['user/isModerator']" />
                 </div>
                 <div class="card-body position-relative" :class="{ loading }">
                     <div class="loading-layer">
@@ -31,9 +31,9 @@
                                     <div class="badge badge-gray">Other</div>
                                 </template>
                                 <template v-else>
-                                    <div class="badge badge-primary">{{ $t(`target.categories.${ target.categories[0].key }`) }}</div>
+                                    <div class="badge badge-primary">{{ $t(`target.categories.${ target.categories[0] }`) }}</div>
                                     <div v-if="target.categories.length > 1" class="badge badge-secondary"
-                                         v-tooltip:right="target.categories.map(c => $t(`target.categories.${c.key}`)).join(', ')">+{{ target.categories.length - 1 }}</div>
+                                         v-tooltip:right="target.categories.map(c => $t(`target.categories.${c}`)).join(', ')">+{{ target.categories.length - 1 }}</div>
                                 </template>
                             </td>
                             <td class="d-none d-md-table-cell">
@@ -42,10 +42,8 @@
                                 </RouterLink>
                             </td>
                             <td>
-                                <i v-if="target.approved" class="bi bi-patch-check-fill" v-tooltip="'Approved'"></i>
-                                <i v-if="target.under_attack" class="bi bi-lightning-fill text-danger" v-tooltip="'Under attack'"></i>
-<!--                                <div v-if="target.health > 0.1" class="badge badge-primary">Online</div>-->
-<!--                                <div v-else class="badge badge-gray">Offline</div>-->
+                                <i class="me-2 bi bi-patch-check-fill" :class="target.approved ? 'text-light' : 'text-muted'" v-tooltip:top="'Approved'"></i>
+                                <i class="me-2 bi bi-lightning-fill" :class="target.under_attack ? 'text-light' : 'text-muted'" v-tooltip:top="'Under attack'"></i>
                             </td>
 
                         </tr>

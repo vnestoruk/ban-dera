@@ -14,8 +14,10 @@ return new class extends Migration
     public function up()
     {
         Schema::create('category_target', function (Blueprint $table) {
-            $table->foreignId('target_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
-            $table->foreignId('category_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId('target_id')->constrained('targets')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->char('category_key', 16);
+
+            $table->foreign('category_key')->references('key')->on('categories')->cascadeOnUpdate()->cascadeOnDelete();
         });
     }
 

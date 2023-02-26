@@ -48,6 +48,9 @@ const mutations = {
 const getters = {
     user: (state) => state.user,
     isAuthenticated: (state) => state.user != null,
+    isAdmin: (state) => state.user && state.user.roles.includes('admin'),
+    isModerator: (state) => state.user && state.user.roles.includes('moderator'),
+    isMember: (state) => state.user && state.user.roles.includes('member'),
     channels: (state) => state.channels
 }
 

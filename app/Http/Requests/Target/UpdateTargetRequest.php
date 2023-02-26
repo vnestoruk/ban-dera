@@ -3,8 +3,10 @@
 namespace App\Http\Requests\Target;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 
-class StoreRequest extends FormRequest
+class UpdateTargetRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +15,7 @@ class StoreRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return Auth::hasUser() && Auth::user()->hasAnyRole('admin|moderator');
     }
 
     /**
@@ -24,10 +26,11 @@ class StoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'url' => 'required|string|unique:App\Models\Target,url',
+            'url' => 'string|unique:App\Models\Target,url,'.$this->id,
             'secure' => 'boolean',
+            'approved' => 'boolean',
             'categories' => 'array',
-            'categories.*' => 'exists:categories,id'
+            'categories.*' => 'exists:categories,key'
         ];
     }
 }

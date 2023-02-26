@@ -37,7 +37,16 @@ instance.interceptors.response.use(
         NProgress.done();
         switch(error.response.status) {
             case 401:
-
+                Vue.notify({
+                    title: i18n.t('notification.title.error'),
+                    text: i18n.t('notification.text.error.401')
+                });
+                break;
+            case 422:
+                Vue.notify({
+                    title: i18n.t('notification.title.error'),
+                    text: i18n.t('notification.text.error.422')
+                });
                 break;
             case 429:
                 Vue.notify({

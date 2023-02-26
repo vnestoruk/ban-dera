@@ -1,21 +1,20 @@
 <template>
     <div>
-        <button v-if="$store.getters['user/isAuthenticated']" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#modalTarget">
+        <button v-if="targetId" class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#modalTarget">
+            <i class="bi bi-pencil-square me-2"></i> {{ $t('edit') }}
+        </button>
+        <button v-else class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#modalTarget">
             <i class="bi bi-plus-square me-2"></i> {{ $t('add') }}
         </button>
-        <router-link v-else class="btn btn-sm btn-primary" :to="{name: 'login'}">
-            <i class="bi bi-plus-square me-2"></i> {{ $t('add') }}
-        </router-link>
         <div class="modal fade" id="modalTarget" tabindex="-1" aria-labelledby="labelTarget" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="labelTarget">{{ $t('createTargetModal.title') }}</h5>
+                        <h5 class="modal-title" id="labelTarget">{{ targetId ? target.url : $t('targetModal.title') }}</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <div class="mb-3">
-                            <!--                        <label for="newTargetUrl" class="form-label">URL<sup>*</sup></label>-->
                             <div class="input-group mb-3">
                                 <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     {{ target.secure ? 'https://' : 'http://' }}</button>
@@ -36,14 +35,13 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="mb-3">
-                                    <!--                                <label for="newTargetCategories" class="form-label">Categories<sup>*</sup></label>-->
                                     <div class="dropdown">
                                         <button class="btn btn-primary dropdown-toggle w-100" type="button" id="newTargetCategories" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
                                             {{ `${target.categories.length} categories selected` }}
                                         </button>
                                         <ul class="dropdown-menu w-100" aria-labelledby="newTargetCategories">
-                                            <li v-for="category in categories" :key="category.key">
-                                                <a class="dropdown-item" role="button" :class="{'selected': target.categories.includes(category.id)}" @click="selectCategory(category.id)">{{ $t(`target.categories.${category.key}`) }}</a>
+                                            <li v-for="category in categories" :key="category">
+                                                <a class="dropdown-item" role="button" :class="{'selected': target.categories.includes(category)}" @click="selectCategory(category)">{{ $t(`target.categories.${category}`) }}</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -68,9 +66,13 @@
 import CategoryResource from "../../../modules/ajax/api/CaregoryResource";
 import TargetResource from "../../../modules/ajax/api/TargetResource";
 import Vue from "vue";
+import i18n from "../../../modules/i18n";
 
 export default {
     name: "TargetModal",
+    props: {
+        targetId: null
+    },
     data() {
         return {
             categories: [],
@@ -83,13 +85,19 @@ export default {
         }
     },
     beforeMount() {
+        if (this.$props.targetId) {
+            new TargetResource().getTargetById(this.$props.targetId).then((response) => {
+                this.target = response.data;
+            });
+        }
         this.getCategories();
     },
     methods: {
         getCategories() {
             this.loading = true;
             new CategoryResource().index().then((response) => {
-                this.categories = response.data;
+                console.log(response)
+                this.categories = response;
             }).then(() => {
                 this.loading = false;
             });
@@ -101,13 +109,28 @@ export default {
 
         },
         save() {
-            new TargetResource().store(this.target).then((response) => {
+            let resource;
+            if (this.$props.targetId) {
+                resource = new TargetResource().update(this.target);
+            } else {
+                resource = new TargetResource().store(this.target);
+            }
+
+            resource.then((response) => {
                 Vue.notify({
-                    title: 'Thank you!',
+                    title: i18n.t('notification.title.success'),
                     text: 'Target was saved successfully'
                 });
+            }).catch((e) => {
+                if (e.response.status === 422) {
+                    Vue.notify({
+                        title: i18n.t('notification.title.error'),
+                        text: 'Seems like this target is already in our database'
+                    });
+                }
             });
-        }
+
+        },
     }
 }
 </script>

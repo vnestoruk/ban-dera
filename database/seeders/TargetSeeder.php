@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Target;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class TargetSeeder extends Seeder
@@ -943,9 +944,10 @@ class TargetSeeder extends Seeder
      */
     public function run()
     {
+        $admin = User::first();
         foreach ($this->_TARGETS as $target) {
             if (!Target::where('url', '=', $target['url'])->exists()) {
-                Target::create($target);
+                Target::create($target)->suggestedBy()->associate($admin->id)->save();
             }
         }
         $this->command->info(count($this->_TARGETS) . ' targets prepared.');

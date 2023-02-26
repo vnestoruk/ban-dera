@@ -1,17 +1,18 @@
 <template>
-    <div class="content-wrapper container justify-content-start">
+    <div v-if="target" class="content-wrapper container justify-content-start">
         <div class="d-flex flex-column-reverse flex-md-row align-items-center justify-content-between mb-2 w-100">
             <div class="d-flex gap-2">
                 <button class="btn btn-sm btn-primary" @click="$router.go(-1)">
                     <i class="bi bi-arrow-left me-2"></i>{{ $t('back') }}
                 </button>
-                <button v-if="target.approved" class="btn btn-sm btn-warning" @click="$router.go(-1)">
+                <button v-if="($store.getters['user/isAdmin'] || $store.getters['user/isModerator']) && target.approved && $store" class="btn btn-sm btn-warning" @click="approveTarget(false)">
                     <i class="bi bi-x-circle me-2"></i>Refuse
                 </button>
-                <button v-else class="btn btn-sm btn-success" @click="$router.go(-1)">
+                <button v-else-if="$store.getters['user/isAdmin'] || $store.getters['user/isModerator']" class="btn btn-sm btn-success" @click="approveTarget(true)">
                     <i class="bi bi-check-circle me-2"></i>Approve
                 </button>
-                <button class="btn btn-sm btn-danger" @click="$router.go(-1)">
+                <TargetModal :target-id="target.id" />
+                <button v-if="$store.getters['user/isAdmin']" class="btn btn-sm btn-danger" @click="destroy">
                     <i class="bi bi-trash me-2"></i>Delete
                 </button>
             </div>
@@ -24,7 +25,7 @@
         </div>
         <div class="d-flex justify-content-end gap-2 w-100">
             <template v-if="target.categories.length > 0">
-                <div v-for="category in target.categories" :key="category.id" class="badge badge-primary">{{ $t(`target.categories.${category.key}`) }}</div>
+                <div v-for="category in target.categories" :key="category" class="badge badge-primary">{{ $t(`target.categories.${category}`) }}</div>
             </template>
             <template v-else>
                 <div class="badge badge-gray">Other</div>
@@ -73,9 +74,13 @@
 
 <script>
 import TargetResource from "../../modules/ajax/api/TargetResource";
+import TargetModal from "../components/modal/TargetModal";
+import Vue from "vue";
+import i18n from "../../modules/i18n";
 
 export default {
     name: "Target",
+    components: {TargetModal},
     props: {
         id: {
             required: true
@@ -83,13 +88,34 @@ export default {
     },
     data() {
         return {
-            target: {}
+            target: null
         }
     },
     async beforeMount() {
         await new TargetResource().getTargetById(this.id).then((response) => {
             this.target = response.data;
         });
+    },
+    methods: {
+        approveTarget(stateToSet) {
+            this.target.approved = stateToSet;
+            new TargetResource().update(this.target).then((response) => {
+                Vue.notify({
+                    title: i18n.t('notification.title.success'),
+                    text: `Target was ${ stateToSet ? 'approved' : 'refused' } successfully`
+                });
+            })
+        },
+        destroy() {
+            new TargetResource().destroy(this.target)
+                .then((response) => {
+                    Vue.notify({
+                        title: i18n.t('notification.title.success'),
+                        text: 'Target was deleted successfully'
+                    });
+                    this.$router.go(-1);
+                });
+        }
     }
 }
 </script>

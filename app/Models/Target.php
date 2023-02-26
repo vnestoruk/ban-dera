@@ -20,6 +20,7 @@ class Target extends Model
     ];
 
     protected $casts = [
+        'secure' => 'boolean',
         'approved' => 'boolean'
     ];
 
@@ -44,7 +45,7 @@ class Target extends Model
 
     public function categories()
     {
-        return $this->belongsToMany(Category::class);
+        return $this->belongsToMany(Category::class, 'category_target', 'target_id', 'category_key');
     }
 
     public function ipAddress()

@@ -10,6 +10,10 @@ class Category extends Model
     use HasFactory;
 
     public $timestamps = false;
+    public $incrementing = false;
+
+    protected $primaryKey = 'key';
+    protected $keyType = 'char';
 
     protected $fillable = [
         'key'
@@ -17,6 +21,6 @@ class Category extends Model
 
     public function targets()
     {
-        $this->belongsToMany(Target::class);
+        $this->belongsToMany(Target::class, 'category_target', 'category_key', 'target_id');
     }
 }

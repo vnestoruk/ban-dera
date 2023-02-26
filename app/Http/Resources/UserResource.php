@@ -18,6 +18,7 @@ class UserResource extends JsonResource
             'id' => $this->id,
             'nickname' => $this->nickname,
             'suggestions_count' => $this->suggestions()->count(),
+            'roles' => $this->getRoleNames()
         ]);
     }
 }
