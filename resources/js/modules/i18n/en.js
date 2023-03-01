@@ -7,6 +7,7 @@ export default {
     authentication: {
         signup: 'Sign Up',
         login: 'Log In',
+        logout: 'Logout',
         nickname: 'Nickname',
         email: 'Email',
         password: 'Password',
@@ -90,7 +91,9 @@ export default {
         actions: 'Actions'
     },
     add: 'Add',
+    suggest: 'Suggest',
     edit: 'Edit',
+    save: 'Save',
     start: 'Start',
     stop: 'Stop',
     create: 'Create',
@@ -108,8 +111,10 @@ export default {
     filter: 'Filtered',
     settings: 'Settings',
     units: {
-        target: 'targets | target | targets',
-        speed: 'speed | request/s | requests/s'
+        target: 'targets',
+        speed: 'requests/s',
+        rate: 'failure',
+        traffic: 'Traffic used'
     },
     notification: {
         title: {
@@ -117,6 +122,7 @@ export default {
             warning: 'Warning',
             error: 'Error',
             newUser: 'New user on website',
+            targetAttackState: 'Target attack state changed',
         },
         text: {
             error: {
@@ -128,6 +134,10 @@ export default {
                 '503': 'Website under maintenance.'
             },
             newUser: 'Welcome, {nickname}!',
+            targetAttackState: {
+                start: "[{url}] is under attack now",
+                stop: "[{url}] was removed from attack-list"
+            }
         }
     },
     about: {
@@ -140,6 +150,12 @@ export default {
             },
             partners: {
                 title: 'Sponsors'
+            },
+            openSource: {
+                title: 'GitHub open-source'
+            },
+            share: {
+                title: 'Share with friends'
             },
             thirdParties: {
                 title: 'Frameworks/libraries used'
@@ -158,12 +174,18 @@ export default {
             suggestedBy: 'Suggested By',
             status: 'Status',
         },
+        statuses: {
+            approved: 'Approved',
+            underAttack: 'Under attack'
+        },
         pagination: {
             showing: 'Showing {from} - {to} of {total}'
-        }
+        },
+        notFound: 'Targets not found'
     },
     target: {
         categories: {
+            other: 'Other',
             automotive: 'Automotive',
             business: 'Business',
             casino: 'Casino',
@@ -176,9 +198,35 @@ export default {
             social_network: 'Social Network',
             tourism: 'Tourism',
         },
+        actions: {
+            refuse: 'Refuse',
+            approve: 'Approve',
+            stopAttack: 'Stop attack',
+            startAttack: 'Start attack',
+            delete: 'Delete',
+        },
+        suggested: 'by',
+        statistics: {
+            notFound: 'Target\'s health statistics not available'
+        },
+        notification: {
+            saved: 'Target was saved successfully',
+            deleted: 'Target was deleted successfully',
+            duplicated: 'Seems like this target is already in our database',
+        }
+    },
+    bunker: {
+        title: 'Bunker',
+        welcome: 'Welcome, {nickname}',
+        online: 'Online',
+        chat: {
+            title: 'Chat',
+            comingSoon: 'Coming soon...'
+        }
     },
     targetModal: {
-        title: 'New target'
+        title: 'New target',
+        categoriesPlaceholder: 'Categories selected: {n}'
     },
     footer: {
         disclaimer: 'Made in Ukraine'

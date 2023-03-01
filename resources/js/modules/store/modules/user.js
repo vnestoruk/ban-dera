@@ -1,10 +1,8 @@
 import AuthenticationResource from "../../ajax/api/AuthenticationResource";
+import i18n from "../../i18n";
 
 const state = {
-    user: null,
-    channels: {
-        app: null
-    }
+    user: null
 }
 
 const actions = {
@@ -28,7 +26,12 @@ const actions = {
                 context.commit('app/REMOVE_ACTIVE_USER', user, { root: true });
             })
             .listen('SignUpEvent', (e) => {
-                console.log('sign-up-event fired')
+                this.$notify({
+                    title: i18n.t('notification.title.newUser'),
+                    text: i18n.t('notification.text.newUser', {
+                        nickname: e.nickname,
+                    })
+                })
             });
     },
     stopListening: (context) => {
@@ -39,9 +42,6 @@ const actions = {
 const mutations = {
     SET_USER: (state, user) => {
         state.user = user;
-    },
-    SET_CHANNELS: (state, channels) => {
-        state.channels = channels;
     }
 }
 
@@ -50,8 +50,7 @@ const getters = {
     isAuthenticated: (state) => state.user != null,
     isAdmin: (state) => state.user && state.user.roles.includes('admin'),
     isModerator: (state) => state.user && state.user.roles.includes('moderator'),
-    isMember: (state) => state.user && state.user.roles.includes('member'),
-    channels: (state) => state.channels
+    isMember: (state) => state.user && state.user.roles.includes('member')
 }
 
 export default {

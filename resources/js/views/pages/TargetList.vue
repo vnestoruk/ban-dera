@@ -1,18 +1,17 @@
 <template>
-    <div class="content-wrapper target-list">
+    <div class="content-wrapper">
         <div class="container">
             <div class="card w-100">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <SearchBar v-model="filter.keyword" :delay="1000" />
                     <h3 class="flex-grow-1 text-center">{{ $t('targetList.title') }}</h3>
-
-                    <TargetModal v-if="$store.getters['user/isAdmin'] || $store.getters['user/isModerator']" />
+                    <SearchBar v-model="filter.keyword" :delay="1000" />
+                    <TargetModal class="ms-2" :suggest="filter.keyword"/>
                 </div>
                 <div class="card-body position-relative" :class="{ loading }">
                     <div class="loading-layer">
                         <h3>{{ $t('loading') }}...</h3>
                     </div>
-                    <table class="table">
+                    <table v-if="targets.length" class="table target-list">
                         <thead>
                         <tr>
                             <th>{{ $t('targetList.table.url') }}</th>
@@ -28,7 +27,7 @@
                             </td>
                             <td class="d-none d-md-table-cell">
                                 <template v-if="target.categories.length === 0">
-                                    <div class="badge badge-gray">Other</div>
+                                    <div class="badge badge-primary">{{ $t('target.categories.other') }}</div>
                                 </template>
                                 <template v-else>
                                     <div class="badge badge-primary">{{ $t(`target.categories.${ target.categories[0] }`) }}</div>
@@ -41,20 +40,22 @@
                                     <div class="badge badge-secondary">{{ target.suggested_by.nickname | filterNickname }}</div>
                                 </RouterLink>
                             </td>
-                            <td>
-                                <i class="me-2 bi bi-patch-check-fill" :class="target.approved ? 'text-light' : 'text-muted'" v-tooltip:top="'Approved'"></i>
-                                <i class="me-2 bi bi-lightning-fill" :class="target.under_attack ? 'text-light' : 'text-muted'" v-tooltip:top="'Under attack'"></i>
+                            <td class="target-status">
+                                <i class="me-2 bi bi-patch-check-fill" :class="{'inactive': !target.approved}" v-tooltip:top="$t('targetList.statuses.approved')"></i>
+                                <i class="me-2 bi bi-lightning-fill" :class="{'inactive': !target.under_attack}" v-tooltip:top="$t('targetList.statuses.underAttack')"></i>
                             </td>
-
                         </tr>
                         </tbody>
                     </table>
+                    <div v-else class="d-flex justify-content-center">
+                        <h4 class="my-5">{{ $t('targetList.notFound') }}</h4>
+                    </div>
                 </div>
                 <div class="card-footer d-flex justify-content-between align-items-center">
                     <span>{{ $t(
                         'targetList.pagination.showing', {
-                            from: meta.from,
-                            to: meta.to,
+                            from: (meta.from || 0),
+                            to: (meta.to || 0),
                             total: meta.total
                         }) }}</span>
                     <Paginator v-model="filter.page" :links="meta.links" />

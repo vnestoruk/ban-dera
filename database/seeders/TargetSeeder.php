@@ -947,7 +947,9 @@ class TargetSeeder extends Seeder
         $admin = User::first();
         foreach ($this->_TARGETS as $target) {
             if (!Target::where('url', '=', $target['url'])->exists()) {
-                Target::create($target)->suggestedBy()->associate($admin->id)->save();
+                $target = Target::create($target);
+                $target->approved = true;
+                $target->suggestedBy()->associate($admin->id)->save();
             }
         }
         $this->command->info(count($this->_TARGETS) . ' targets prepared.');

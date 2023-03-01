@@ -16,7 +16,12 @@ const modules = modulesFiles.keys().reduce((modules, modulePath) => {
 
 export default new Vuex.Store({
     plugins:[
-        createPersistedState()
+        createPersistedState({
+            reducer: (state, paths) => {
+                const { activeUsers, isRunning, workers, location, ...appRest} = state.app;
+                return { app: appRest, user: state.user }
+            }
+        })
     ],
     modules
 });

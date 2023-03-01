@@ -27,3 +27,15 @@
     justify-content: center;
     cursor: pointer;
 }
+
+.bunker {
+    &-users-list {
+        height: 20rem;
+        overflow: auto;
+        text-align: start;
+    }
+
+    &-chat-container {
+        height: 20rem;
+    }
+}

@@ -29,6 +29,7 @@ class UpdateTargetRequest extends FormRequest
             'url' => 'string|unique:App\Models\Target,url,'.$this->id,
             'secure' => 'boolean',
             'approved' => 'boolean',
+            'under_attack' => 'boolean',
             'categories' => 'array',
             'categories.*' => 'exists:categories,key'
         ];

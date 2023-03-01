@@ -26,7 +26,7 @@
                             <div class="d-flex flex-column align-items-center">
                                 <img id="monobank_logo" class="w-50 mb-3" src="img/monobank-logo.svg" alt="">
                                 <CopyToClipboard>
-                                    <h3 class="d-inline">4441 1144 5100 7866</h3>
+                                    <h3 class="d-inline">5375 4115 0677 1430</h3>
                                 </CopyToClipboard>
                             </div>
                             <hr>

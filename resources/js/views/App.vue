@@ -68,21 +68,12 @@ export default {
         await new AuthenticationResource().signIn()
             .then((response) => {
                 this.authenticate(response.data);
-                Echo.join('app').listen('SignUpEvent', (e) => {
-                    this.$notify({
-                        title: this.$t('notification.title.newUser'),
-                        text: this.$t('notification.text.newUser', {
-                            nickname: e.nickname,
-                        })
-                    })
-                });
             })
             .catch((e) => {
                 this.logout();
             });
 
         Echo.listen('default', 'NewUser', (e) => {
-            // this.sfxPlay(this.sfx.newUser);
             this.$notify({
                 title: this.$t('notification.title.newUser'),
                 text: this.$t('notification.text.newUser', {
@@ -91,15 +82,18 @@ export default {
             })
         });
 
-        // Echo.listen('default', 'TargetsUpdatedEvent', (e) => {
-        //     this.sfxPlay(this.sfx.targetUpdated);
-        //     this.$notify({
-        //         title: this.$t('notification.title.newUser'),
-        //         text: this.$t('notification.text.newUser', {
-        //             nickname: e.nickname,
-        //         })
-        //     })
-        // });
+        Echo.listen('default', 'TargetAttackState', (e) => {
+            console.log(e.target);
+            e.target.under_attack
+                ? this.$store.dispatch('app/addWorker', e.target)
+                : this.$store.dispatch('app/removeWorker', e.target);
+            this.$notify({
+                title: this.$t('notification.title.targetAttackState'),
+                text: this.$t('notification.text.targetAttackState.' + (e.target.under_attack ? 'start' : 'stop'), {
+                    url: e.target.url,
+                })
+            });
+        });
 
         document.getElementById('preloader').classList.remove('show');
     },

@@ -4,14 +4,15 @@ class WorkerWrapper {
 
     target = null;
     worker = null;
+    analytics = {};
 
     constructor(target, interval) {
         this.target = target;
         this.worker = new Worker(WorkerWrapper.path);
 
-        this.worker.onmessage = function (e) {
-            console.log('MESSAGE FROM WORKER');
-        };
+        this.worker.onmessage = (e) => {
+            this.analytics = e.data;
+        }
 
         this.worker.postMessage({
             target,
@@ -29,6 +30,7 @@ class WorkerWrapper {
         this.worker.postMessage({
             action: 'stop'
         });
+        this.analytics = null;
     }
 
 }

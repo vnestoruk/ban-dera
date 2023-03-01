@@ -19,9 +19,9 @@
             <div class="nav-item">
                 <RouterLink class="nav-link" :to="{ name: 'bunker' }">{{ $t('navigation.bunker') }}</RouterLink>
             </div>
-            <div class="nav-item">
-                <RouterLink class="nav-link" :to="{ name: 'guide'}">{{ $t('navigation.instructions') }}</RouterLink>
-            </div>
+<!--            <div class="nav-item">-->
+<!--                <RouterLink class="nav-link" :to="{ name: 'guide'}">{{ $t('navigation.instructions') }}</RouterLink>-->
+<!--            </div>-->
             <div class="nav-item">
                 <RouterLink class="nav-link" :to="{ name: 'about'}">{{ $t('navigation.about') }}</RouterLink>
             </div>

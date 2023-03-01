@@ -13,30 +13,34 @@
         </div>
         <div class="control-container">
             <div class="control-row">
-                <div class="control-value control-value-big">
-                    <span class="value">---</span>
-                    <span class="unit">{{ $tc('units.target', 0) }}</span>
+                <div class="control-value control-value">
+                    <span class="value">{{ $store.getters['app/workers'].length || '---' }}</span>
+                    <span class="unit">{{ $t('units.target') }}</span>
                 </div>
-                <div class="control-value control-value-big">
-                    <span class="value">---</span>
-                    <span class="unit">{{ $tc('units.speed', 0) }}</span>
+                <div class="control-value control-value">
+                    <span class="value">{{ $store.getters['app/speed'] }}</span>
+                    <span class="unit">{{ $t('units.speed') }}</span>
+                </div>
+                <div class="control-value control-value">
+                    <span class="value">{{ $store.getters['app/rate'] }}%</span>
+                    <span class="unit">{{ $t('units.rate') }}</span>
                 </div>
             </div>
             <div class="control-row">
                 <div class="control-value control-value-big">
-                    <span class="value">{{ traffic | filterDataUnits }}</span>
-                    <span class="unit">Traffic used</span>
+                    <span class="value">{{ $store.getters['app/traffic'] | filterDataUnits }}</span>
+                    <span class="unit">{{ $t('units.traffic') }}</span>
                 </div>
             </div>
-            <hr>
-            <div class="control-row">
-                <div class="control-value control-value-big">
-                    <div class="form-check form-switch">
-                        <input v-model="autostart" class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-                        <label class="form-check-label" for="flexSwitchCheckDefault">Autostart</label>
-                    </div>
-                </div>
-            </div>
+<!--            <hr>-->
+<!--            <div class="control-row">-->
+<!--                <div class="control-value control-value-big">-->
+<!--                    <div class="form-check form-switch">-->
+<!--                        <input v-model="autostart" class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">-->
+<!--                        <label class="form-check-label" for="flexSwitchCheckDefault">Autostart</label>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
         </div>
         <Footer class="d-flex position-static d-md-none"/>
     </div>
@@ -72,10 +76,6 @@ export default {
                 this.start();
             }
         },
-        getTotalTrafficSize() {
-            let performance = window.performance || window.mozPerformance || window.msPerformance || window.webkitPerformance || {};
-            return
-        }
     },
     data() {
         return {
@@ -89,13 +89,13 @@ export default {
         }
     },
     mounted() {
-        let performance = window.performance || window.mozPerformance || window.msPerformance || window.webkitPerformance || {};
-
-        setInterval(() => {
-            this.traffic = performance.getEntries().reduce((sum, current) => {
-                return sum + (current.transferSize | 0);
-            }, 0);
-        }, 10000);
+        // let performance = window.performance || window.mozPerformance || window.msPerformance || window.webkitPerformance || {};
+        //
+        // setInterval(() => {
+        //     this.traffic = performance.getEntriesByType('fetch').reduce((sum, current) => {
+        //         return sum + (current.transferSize | 0);
+        //     }, 0);
+        // }, 10000);
     }
 }
 </script>
@@ -157,19 +157,25 @@ export default {
             flex-direction: column;
             width: 100%;
 
+            .value {
+                font-family: 'Oswald', sans-serif;
+                font-size: 1.5rem;
+                text-align: center;
+            }
+
+            .unit {
+                font-size: 0.75rem;
+                text-transform: uppercase;
+            }
+
+
             &-big {
                 padding: 0 1.5rem;
 
                 .value {
-                    font-family: 'Oswald', sans-serif;
                     font-size: 2.5rem;
-                    text-align: center;
                 }
 
-                .unit {
-                    font-size: 0.75rem;
-                    text-transform: uppercase;
-                }
             }
         }
 
@@ -182,17 +188,6 @@ export default {
             transform: rotate(-180deg);
         }
     }
-
-    //@media all and (max-width: 786px) {
-    //    inset: 0 -4.5rem 0 auto;
-    //    transform: rotate(-90deg);
-    //
-    //    &.collapsed {
-    //        inset: 0 -4.5rem 0 auto;
-    //        transform: rotate(-90deg) translateY(7.5em);
-    //    }
-    //}
-
 
 }
 </style>

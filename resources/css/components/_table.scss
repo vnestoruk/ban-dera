@@ -13,22 +13,30 @@
             }
         }
     }
-}
 
-.target-list table {
-    width: 100%;
+    &.target-list {
+        width: 100%;
 
-    tbody {
+        tbody {
+            tr {
+                &:hover {
+                    cursor: pointer;
+                    background-color: #00000022;
+                }
 
-        tr {
-            &:hover {
-                cursor: pointer;
-                background-color: #00000022;
+                td > * {
+                    cursor: pointer;
+                }
             }
+        }
 
-            td > * {
-                cursor: pointer;
+        .target-status {
+            .inactive {
+                filter: grayscale(0);
+                opacity: 0.2;
             }
         }
     }
 }
+
+

@@ -16,12 +16,14 @@ class Target extends Model
     protected $fillable = [
         'url',
         'secure',
-        'approved'
+        'approved',
+        'under_attack'
     ];
 
     protected $casts = [
         'secure' => 'boolean',
-        'approved' => 'boolean'
+        'approved' => 'boolean',
+        'under_attack' => 'boolean'
     ];
 
     public function url(): Attribute

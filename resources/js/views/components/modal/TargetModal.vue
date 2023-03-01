@@ -1,10 +1,10 @@
 <template>
-    <div>
+    <div v-if="$store.getters['user/isAdmin'] || $store.getters['user/isModerator']">
         <button v-if="targetId" class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#modalTarget">
             <i class="bi bi-pencil-square me-2"></i> {{ $t('edit') }}
         </button>
-        <button v-else class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#modalTarget">
-            <i class="bi bi-plus-square me-2"></i> {{ $t('add') }}
+        <button v-else class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#modalTarget" @click="checkSuggestion">
+            <i class="bi bi-plus-square me-2"></i> {{ $t('suggest') }}
         </button>
         <div class="modal fade" id="modalTarget" tabindex="-1" aria-labelledby="labelTarget" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
@@ -37,7 +37,7 @@
                                 <div class="mb-3">
                                     <div class="dropdown">
                                         <button class="btn btn-primary dropdown-toggle w-100" type="button" id="newTargetCategories" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
-                                            {{ `${target.categories.length} categories selected` }}
+                                            {{ $t('targetModal.categoriesPlaceholder', {n: target.categories.length}) }}
                                         </button>
                                         <ul class="dropdown-menu w-100" aria-labelledby="newTargetCategories">
                                             <li v-for="category in categories" :key="category">
@@ -53,7 +53,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary" @click="save()">
-                            <i class="bi bi-save me-2"></i> Save
+                            <i class="bi bi-save me-2"></i> {{ $t('save') }}
                         </button>
                     </div>
                 </div>
@@ -71,7 +71,8 @@ import i18n from "../../../modules/i18n";
 export default {
     name: "TargetModal",
     props: {
-        targetId: null
+        targetId: null,
+        suggest: ''
     },
     data() {
         return {
@@ -93,6 +94,11 @@ export default {
         this.getCategories();
     },
     methods: {
+        checkSuggestion() {
+            if (this.$props.suggest.length) {
+                this.target.url = this.$props.suggest;
+            }
+        },
         getCategories() {
             this.loading = true;
             new CategoryResource().index().then((response) => {
@@ -119,13 +125,13 @@ export default {
             resource.then((response) => {
                 Vue.notify({
                     title: i18n.t('notification.title.success'),
-                    text: 'Target was saved successfully'
+                    text: $t('target.notification.saved')
                 });
             }).catch((e) => {
                 if (e.response.status === 422) {
                     Vue.notify({
                         title: i18n.t('notification.title.error'),
-                        text: 'Seems like this target is already in our database'
+                        text: $t('target.notification.duplicated')
                     });
                 }
             });

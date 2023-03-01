@@ -8,6 +8,6 @@ class LocationController extends Controller
 {
     public function show()
     {
-        return Location::get('93.175.200.119');
+        return Location::get();
     }
 }

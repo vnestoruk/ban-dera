@@ -7,7 +7,7 @@ const state = {
         nightMode: null,
         sounds: true,
         autostart: false,
-        interval: 100,
+        interval: 200,
         maxTargets: 10,
     },
     activeUsers: [],
@@ -17,28 +17,55 @@ const state = {
 }
 
 const actions = {
-    getAttack: (context) => {
+    getAttack: async (context) => {
         context.commit('SET_WORKERS', []);
-        new TargetResource().getAttackList().then(
+        await new TargetResource().getAttackList().then(
             (response) => {
                 response.data.forEach(target => {
-                    context.commit('ADD_WORKER', new WorkerWrapper(target, context.getters['interval']));
+                    // console.log(target);
+                    context.dispatch('addWorker', target);
+                    // context.commit('ADD_WORKER', new WorkerWrapper(target));
                 });
             }
         )
     },
-    start: (context) => {
+    start: async (context) => {
+        if (context.getters['isRunning']) return;
+
+        // if it is our first start - retrieving attack list from server
+        if (!context.getters['workers'].length) {
+            await context.dispatch('getAttack');
+        }
+
         context.getters['workers'].forEach(worker => {
             worker.start();
         });
+
         context.commit('SET_RUNNING', true);
     },
     stop: (context) => {
+        if (!context.getters['isRunning']) return;
+
         context.getters['workers'].forEach(worker => {
             worker.stop();
         });
         context.commit('SET_RUNNING', false);
     },
+    addWorker(context, target) {
+        const wrapper = new WorkerWrapper(target);
+        context.commit('ADD_WORKER', wrapper);
+        if (context.getters['isRunning']) {
+            context.getters['workers'].at(-1).start();
+        }
+    },
+    removeWorker(context, target) {
+        const index = context.getters['workers'].map(w => w.target.id).indexOf(target.id);
+        if (context.getters['isRunning']) {
+            context.getters['workers'][index].stop();
+        }
+
+        context.commit('REMOVE_WORKER', index);
+    }
 }
 
 const mutations = {
@@ -64,21 +91,10 @@ const mutations = {
         state.workers = value;
     },
     ADD_WORKER: (state, wrapper) => {
-        // let workerObj = {
-        //     id: target.id,
-        //     worker: new Worker("/js/workers/bandera.js")
-        // };
-        //
-        // workerObj.worker.onmessage = function(e) {
-        //     console.log('Target URL: ' + target.url + '; ' + e.data.total);
-        // }
-        //
-        // workerObj.worker.postMessage({
-        //     target,
-        //     interval: state.settings.interval
-        // });
-
         state.workers.push(wrapper);
+    },
+    REMOVE_WORKER: (state, index) => {
+        state.workers.splice(index, 1);
     },
     SET_LOCATION: (state, location) => {
         state.location = location;
@@ -109,6 +125,9 @@ const getters = {
     location: (state) => state.location,
     isRunning: (state) => state.isRunning,
     activeUsers: (state) => state.activeUsers,
+    speed: (state) => state.isRunning ? state.workers.length * 5 : 0,
+    rate: (state) => Math.floor(state.workers.reduce((acc, w) => acc + w.analytics?.rate, 0) / state.workers.length) || 0,
+    traffic: (state) => state.workers.reduce((acc, w) => acc + w.analytics?.traffic, 0) || 0
 }
 
 export default {

@@ -17,7 +17,7 @@ class TargetResource {
     getAttackList(params = {}) {
         return request({
             method: 'GET',
-            url: this.uri + '/attack',
+            url: this.uri + '/attack-list',
             params
         })
     }

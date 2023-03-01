@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\TargetAttackState;
 use App\Http\Requests\Target\ApproveTargetRequest;
 use App\Http\Requests\Target\DestroyTargetRequest;
 use App\Http\Requests\Target\UpdateTargetRequest;
@@ -9,6 +10,7 @@ use App\Http\Requests\Target\StoreTargetRequest;
 use App\Models\Target;
 use App\Http\Resources\TargetResource;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class TargetController extends Controller
 {
@@ -62,7 +64,10 @@ class TargetController extends Controller
             $target->categories()->sync($request->validated('categories'));
         }
 
+        TargetAttackState::dispatchIf($target->isDirty('under_attack'), $target);
+
         $target->save();
+        Log::info($target);
 
         return TargetResource::make($target);
     }
