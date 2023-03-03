@@ -32,11 +32,7 @@ const actions = {
     start: async (context) => {
         if (context.getters['isRunning']) return;
 
-        // if it is our first start - retrieving attack list from server
-        if (!context.getters['workers'].length) {
-            await context.dispatch('getAttack');
-        }
-
+        await context.dispatch('getAttack');
         context.getters['workers'].forEach(worker => {
             worker.start();
         });
